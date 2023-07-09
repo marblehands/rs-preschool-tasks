@@ -1,6 +1,6 @@
-# Anna Chebysheva
+# marblehands-JSFEPRESCHOOL2023Q2
 
-### Get in touch with me
+### Contacts
 Check out my [CV](https://marblehands.github.io/rsschool-cv/).
 
 ### Task List
