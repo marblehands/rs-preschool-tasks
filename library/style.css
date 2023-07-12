@@ -57,6 +57,7 @@ h2::after {
 
 .section-lead {
   text-align: center;
+  margin-bottom: 20px;
 }
 
 /* Header */
@@ -165,5 +166,51 @@ h2::after {
 /* Sections */
 
 .section {
-  padding: 20px;
+  padding: 20px 0 40px;
+}
+
+/* Carousel */
+
+.item-container {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.item {
+  width: 450px;
+  height: 560px;
+  flex-shrink: 0;
+}
+
+.item-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.hide {
+  display: none;
+}
+
+.dot {
+  width: 16px;
+  height: 16px;
+  background-color: #0c0c0e;
+  border-radius: 50%;
+  display: block;
+}
+
+.active-dot {
+  background-color: #bb945f;
+}
+
+.control {
+  padding: 40px 0;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
