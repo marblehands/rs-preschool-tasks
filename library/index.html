@@ -40,7 +40,7 @@
         <main>
           <section class="welcome">
             <div class="container">
-              <p class="welcome-title">Welcome<br> to the Brooklyn Library</p>
+              <p class="welcome-title">Welcome&nbsp; to&nbsp;the&nbsp;Brooklyn Library</p>
             </div>
           </section>
         <section class="section about">
@@ -82,37 +82,90 @@
             </div>
           </div>
         </section>
-        <!-- <section class="section favorites">
+        <section class="section favorites">
           <div class="container wrapper__section">
             <h2 class="about-title" id="favorites">Favorites</h2>
-            <fieldset class="favorites-select">
-              <legend class="legend-title">Pick favorites of season</legend>
-              <div class="radio-wrapper">
-                <input type="radio" id="winter" name="season" value="winter"
-                       checked class="radio-button">
-                <label for="winter" class="radio-label">Winter</label>
+            <p class="legend-title">Pick favorites of season</p>
+            <div class="radio-wrapper">
+              <label class="radio-label">
+                <input type="radio" class="radio-btn" name="season" checked>
+                <span class="radio-check"></span>
+                <span class="text">Winter</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" class="radio-btn" name="season">
+                <span class="radio-check"></span>
+                <span class="text">Spring</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" class="radio-btn" name="season">
+                <span class="radio-check"></span>
+                <span class="text">Summer</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" class="radio-btn" name="season">
+                <span class="radio-check"></span>
+                <span class="text">Autumn</span>
+              </label>
+            </div>
+            <div class="wrapper-picks">
+              <div class="picks-item">
+                <div class="picks-border">
+                  <h5 class="picks-title">Staff Picks</h5>
+                  <p class="picks-name">The Book Eaters</p>
+                  <p class="picks-author">By Sunyi Dean</p>
+                  <p class="picks-info">An unusual sci-fi story about a book eater woman who tries desperately to save her dangerous mind-eater son from tradition and certain death. Complete with dysfunctional family values, light Sapphic romance, and a strong, complex protagonist. Not for the faint of heart.</p>
+                  <div class="wrapper__picks-cover">
+                    <img src="assets/img/book-1.jpg" alt="The Book Eaters Cover" class="picks-cover">
+                  </div>
+                  <button class="secondary-btn">Buy</button>
+                </div>
               </div>
-              <div class="radio-wrapper">
-                <input type="radio" id="spring" name="season" value="spring">
-                <label for="spring" class="radio-label">Spring</label>
+              <div class="picks-item">
+                <div class="picks-border">
+                  <h5 class="picks-title">Staff Picks</h5>
+                  <p class="picks-name">Cackle</p>
+                  <p class="picks-author">By Rachel Harrison</p>
+                  <p class="picks-info">Are your Halloween movies of choice The Witches of Eastwick and Practical Magic? Look no further than here - where a woman recovering from a breakup moves to a quaint town in upstate New York and befriends a beautiful witch.</p>
+                  <div class="wrapper__picks-cover">
+                    <img src="assets/img/book-2.jpg" alt="The Book Eaters Cover" class="picks-cover">
+                  </div>
+                  <button class="secondary-btn">Buy</button>
+                </div>
               </div>
-              <div class="radio-wrapper">
-                <input type="radio" id="summer" name="season" value="summer">
-                <label for="summer" class="radio-label">Summer</label>
+              <div class="picks-item">
+                <div class="picks-border">
+                  <h5 class="picks-title">Staff Picks</h5>
+                  <p class="picks-name">Dante: Poet of the Secular World</p>
+                  <p class="picks-author">By Erich Auerbach</p>
+                  <p class="picks-info">Auerbach's engaging book places the 'Comedy' within the tradition of epic, tragedy, and philosophy in general, arguing for Dante's uniqueness as one who raised the individual and his drama of soul into something of divine significance—an inspired introduction to Dante's main themes.</p>
+                  <div class="wrapper__picks-cover">
+                    <img src="assets/img/book-3.jpg" alt="The Book Eaters Cover" class="picks-cover">
+                  </div>
+                  <button class="secondary-btn">Buy</button>
+                </div>
               </div>
-              <div class="radio-wrapper">
-                <input type="radio" id="autumn" name="season" value="autumn">
-                <label for="autumn" class="radio-label">Autumn</label>
+              <div class="picks-item">
+                <div class="picks-border">
+                  <h5 class="picks-title">Staff Picks</h5>
+                  <p class="picks-name">The Last Queen</p>
+                  <p class="picks-author">By Clive Irving</p>
+                  <p class="picks-info">A timely and revelatory new biography of Queen Elizabeth (and her family) exploring how the Windsors have evolved and thrived as the modern world has changed around them.</p>
+                  <div class="wrapper__picks-cover">
+                    <img src="assets/img/book-4.jpg" alt="The Book Eaters Cover" class="picks-cover">
+                  </div>
+                  <button class="secondary-btn">Buy</button>
+                </div>
               </div>
-          </fieldset>
+            </div>
           </div>
-        </section> -->
+        </section>
         <section class="section coffee-shop">
           <div class="container wrapper__section">
             <h2 class="about-title" id="coffee-shop">Coffee shop</h2>
             <p class="section-lead">
               In our library, we have of cozy coffee shop, welcoming in customers with frothy cappuccinos and friendly conversation. 
-you can get a favorite book and read in coffee shop. Our barista to cook you best coffee, and also you can try desserts from bakery.
+You can get a favorite book and read in coffee shop. our barista to cook you best coffee, and also you can try desserts from bakery.
               </p>
             <div class="wrapper__menu">
               <div class="wrapper__menu-drinks">
@@ -135,11 +188,11 @@ you can get a favorite book and read in coffee shop. Our barista to cook you bes
                     <span class="item__price">&#36;4</span>
                   </li>
                   <li class="menu__item">
-                    <span class="item__title">Hot tea</span>
+                    <span class="item__title">Hot Tea</span>
                     <span class="item__price">&#36;2</span>
                   </li>
                   <li class="menu__item">
-                    <span class="item__title">Cold tea</span>
+                    <span class="item__title">Cold Tea</span>
                     <span class="item__price">&#36;2</span>
                   </li>
                 </ul>
@@ -194,7 +247,7 @@ you can get a favorite book and read in coffee shop. Our barista to cook you bes
 
               </div>
               <div class="contacts__map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1069.5021789554285!2d-73.9921311438605!3d40.69580002915306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a49b649b8c3%3A0x6342a2291cea2e!2zMjg2IENhZG1hbiBQbGF6YSBXLCBCcm9va2x5biwgTlkgMTEyMDEsINCh0KjQkA!5e0!3m2!1sru!2str!4v1689102186763!5m2!1sru!2str" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1069.5021789554285!2d-73.9921311438605!3d40.69580002915306!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a49b649b8c3%3A0x6342a2291cea2e!2zMjg2IENhZG1hbiBQbGF6YSBXLCBCcm9va2x5biwgTlkgMTEyMDEsINCh0KjQkA!5e0!3m2!1sru!2str!4v1689102186763!5m2!1sru!2str" width="696" height="414" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
               </div>
             </div>
           </div>

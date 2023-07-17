@@ -90,6 +90,7 @@ h2::after {
 
 .nav-item {
   list-style: none;
+  letter-spacing: normal;
 }
 
 .nav-icon-wrapper {
@@ -175,6 +176,14 @@ h2::after {
 
 /* Carousel */
 
+.about {
+  padding-bottom: 35px;
+}
+
+.about p.section-lead {
+  letter-spacing: normal;
+}
+
 .item-container {
   display: flex;
   justify-content: center;
@@ -200,7 +209,7 @@ h2::after {
 .controls {
   display: flex;
   justify-content: center;
-  padding: 35px 0;
+  padding-top: 35px;
 }
 
 .control {
@@ -226,39 +235,139 @@ h2::after {
 
 /* Favorites */
 
-.favorites-select {
-  border: 0;
-  padding-left: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 90px;
-}
-
-.radio-wrapper {
-  padding: 5px;
-  cursor: pointer;
-}
-
-fieldset .radio-wrapper:nth-child(2) {
-  padding: 5px 5px 5px 0px;
-}
-
 .legend-title {
   color: #000;
   font-family: Inter;
   font-size: 20px;
   font-weight: 700;
-  line-height: normal;
-  width: 100%;
+  line-height: 24px;
   margin-bottom: 30px;
+  letter-spacing: normal;
+}
+
+.radio-wrapper {
+  display: flex;
+  align-items: center;
 }
 
 .radio-label {
-  color: #000;
-  font-family: Inter;
+  display: inline-block;
+  line-height: 24px;
+  padding: 11px 91px 10px 0px;
+  display: flex;
+  align-items: center;
+}
+
+.radio-btn {
+  display: none;
+}
+
+.radio-check {
+  position: relative;
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  border: 2px solid #000000;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.radio-check::before {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #000000;
+  opacity: 0;
+  transition: 0.2s;
+}
+
+.radio-btn:checked + .radio-check::before {
+  opacity: 1;
+}
+
+.text {
+  line-height: 24px;
+  letter-spacing: normal;
+}
+
+.radio-btn:checked ~ .text {
+  font-weight: 700;
+}
+
+/* Season Cards */
+
+.wrapper-picks {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding-top: 29px;
+}
+
+.picks-item {
+  position: relative;
+  min-width: 590px;
+}
+
+.picks-border {
+  max-width: 550px;
+  border: 1px solid #000;
+  padding: 15px 20px;
+  font-size: 15px;
+  min-height: 555px;
+}
+
+.picks-title {
+  font-family: Forum;
   font-size: 20px;
-  line-height: normal;
-  letter-spacing: 0;
+  font-weight: 400;
+  line-height: 38px;
+  letter-spacing: 2px;
+  text-transform: capitalize;
+  margin-bottom: 19px;
+}
+
+.picks-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: #bb945f;
+}
+
+.picks-name {
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.picks-author {
+  font-weight: 700;
+  text-transform: capitalize;
+  margin-bottom: 20px;
+}
+
+.picks-info {
+  max-width: 357px;
+  text-transform: capitalize;
+  margin-bottom: 15px;
+}
+
+.wrapper__picks-cover {
+  max-width: 200px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.picks-cover {
+  display: block;
+  width: 100%;
 }
 
 /* Menu */
@@ -270,7 +379,7 @@ fieldset .radio-wrapper:nth-child(2) {
 .wrapper__menu {
   display: flex;
   justify-content: space-between;
-  padding: 40px 0;
+  padding: 20px 0 0 0;
 }
 
 h3.menu__title {
@@ -334,6 +443,7 @@ h3.menu__title {
 
 .contacts__title {
   font-weight: 700;
+  text-transform: capitalize;
 }
 
 .contacts__list {
@@ -345,6 +455,7 @@ h3.menu__title {
 
 .contacts__item {
   list-style: none;
+  text-transform: capitalize;
 }
 
 .hr {
@@ -422,6 +533,10 @@ input[type="submit"] {
 
 /* Digital Library Cards / Get in touch */
 
+.library-cards {
+  padding-top: 10px;
+}
+
 .wrapper__cards {
   display: flex;
   justify-content: space-between;
@@ -451,6 +566,7 @@ h4.input-title {
 }
 
 .secondary-btn {
+  display: block;
   width: 75px;
   height: 30px;
   flex-shrink: 0;
