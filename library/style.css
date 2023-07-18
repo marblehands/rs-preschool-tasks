@@ -302,6 +302,10 @@ h2::after {
 
 /* Season Cards */
 
+.hide {
+  display: none;
+}
+
 .wrapper-picks {
   display: flex;
   justify-content: space-between;
@@ -316,6 +320,8 @@ h2::after {
 }
 
 .picks-border {
+  display: flex;
+  flex-direction: column;
   max-width: 550px;
   border: 1px solid #000;
   padding: 15px 20px;
@@ -353,9 +359,9 @@ h2::after {
 }
 
 .picks-info {
+  flex-grow: 1;
   max-width: 357px;
   text-transform: capitalize;
-  margin-bottom: 15px;
 }
 
 .wrapper__picks-cover {
@@ -405,10 +411,6 @@ h3.menu__title {
   display: flex;
   justify-content: space-between;
 }
-
-/* .item__title {
-  flex-grow: 1;
-} */
 
 .item__price::before {
   content: "";
@@ -534,7 +536,7 @@ input[type="submit"] {
 /* Digital Library Cards / Get in touch */
 
 .library-cards {
-  padding-top: 10px;
+  padding-top: 7px;
 }
 
 .wrapper__cards {
@@ -588,6 +590,12 @@ h4.input-title {
   color: #bb945f;
   transition: 0.5s;
   cursor: pointer;
+}
+
+.signup__lead {
+  font-weight: 400;
+  line-height: 40px; /* 200% */
+  letter-spacing: 0.4px;
 }
 
 /* Footer */
