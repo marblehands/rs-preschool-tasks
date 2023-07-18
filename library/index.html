@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Forum&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <title>Library</title>
   </head>
   <body>
@@ -33,13 +34,14 @@
               </li>
             </ul>
           </nav>
-          <img src="assets/svg/icon_profile.svg" alt="Profile Icon" class="profile-icon">
+          <a href="#" class="profile-link"><img src="assets/svg/icon_profile.svg" alt="Profile Icon" class="profile-icon"></a>
           </div>
         </div>
         </header>
         <main>
           <section class="welcome">
             <div class="container">
+              <h2 class="hide">Welcome to the Brooklyn Library</h2>
               <p class="welcome-title">Welcome&nbsp; to&nbsp;the&nbsp;Brooklyn Library</p>
             </div>
           </section>
@@ -154,7 +156,7 @@
                   <div class="wrapper__picks-cover">
                     <img src="assets/img/book-4.jpg" alt="The Last Queen By Clive Irving" class="picks-cover">
                   </div>
-                  <button class="secondary-btn">Own</button>
+                  <button disabled class="secondary-btn disabled">Own</button>
                 </div>
               </div>
               <div class="picks-item hide">
@@ -382,12 +384,12 @@ You can get a favorite book and read in coffee shop. our barista to cook you bes
                   For all Library inquiries:
                 </p>
                 <ul class="contacts__list">
-                  <li class="contacts__item">Please call (617) 730-2370</li>
-                  <li class="contacts__item">For TTY service, please call (617) 730-2370</li>
-                  <li class="contacts__item">Putterham Library: (617) 730-2385</li>
+                  <li class="contacts__item">Please call <a href="tel:+6177302370">(617) 730-2370</a></li>
+                  <li class="contacts__item">For TTY service, please call <a href="tel:+6177302370">(617) 730-2370</a></li>
+                  <li class="contacts__item">Putterham Library: <a href="tel:+6177302385">(617) 730-2385</a></li>
                 </ul>
                 <p class="contacts__title hr">Senior Staff</p>
-                  <p>Library Director: <strong>Amanda Hirst</strong></p>
+                  <p>Library Director: <a href="mailto:AmandaHirst@gmail.com"><strong>Amanda Hirst</strong></a></p>
 
               </div>
               <div class="contacts__map">
@@ -402,7 +404,7 @@ You can get a favorite book and read in coffee shop. our barista to cook you bes
             <div class="wrapper__cards">
               <div class="wrapper__form">
                 <p class="form-title">Find your Library card</p>
-                <form action="" class="cards">
+                <form action="#" class="cards">
                   <fieldset>
                     <legend></legend>
                     <div class="input-bg">
@@ -431,12 +433,12 @@ You can get a favorite book and read in coffee shop. our barista to cook you bes
         <div class="container footer-section">
           <div class="footer-info">
           <div class="wrapper-left">
-            <p class="footer-address">286 Cadman Plaza, New York, NY 11238, United States</p>
-            <div class="wrapper-social">
-              <img src="assets/svg/u_twitter-alt.svg" alt="Twitter Logo Icon" class="social-icon">
-              <img src="assets/svg/u_instagram.svg" alt="Instagram Logo Icon" class="social-icon">
-              <img src="assets/svg/u_facebook-f.svg" alt="Facebook Logo Icon" class="social-icon">
-            </div>
+            <p class="footer-address"><a href="https://goo.gl/maps/6MHEurgxUCWtmcm37" class="footer-link" target="_blank">286 Cadman Plaza, New York, NY 11238, United States</a></p>
+            <ul class="social-list">
+              <li class="social-item"><a href="https://twitter.com/rollingscopes" class="social-link" target="_blank"><img src="assets/svg/u_twitter-alt.svg" alt="Twitter Logo Icon" class="social-icon"></a></li>
+              <li class="social-item"><a href="https://www.instagram.com/rsschool_news/" class="social-link" target="_blank"><img src="assets/svg/u_instagram.svg" alt="Instagram Logo Icon" class="social-icon"></a></li>
+              <li class="social-item"><a href="https://www.facebook.com/RollingScopesSchool" class="social-link" target="_blank"><img src="assets/svg/u_facebook-f.svg" alt="Facebook Logo Icon" class="social-icon"></a></li>
+            </ul>
           </div>
           <div class="wrapper-right">
             <ul class="schedule-list">
@@ -451,7 +453,7 @@ You can get a favorite book and read in coffee shop. our barista to cook you bes
         </div>
         <div class="footer-copyright">
           <p>2023</p>
-          <p>The Rolling Scopes School</p>
+          <p><a href="https://rs.school/js/" class="footer-link" target="_blank">The Rolling Scopes School</a></p>
           <p>Ania <a href="https://github.com/marblehands" class="footer-link" target="_blank">&#64;marblehands</a></p>
         </div>
 

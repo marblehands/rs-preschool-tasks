@@ -39,6 +39,7 @@ h1 {
   line-height: 50px;
   letter-spacing: 0.6px;
   color: #ffffff;
+  font-weight: 400;
 }
 
 h2 {
@@ -48,6 +49,7 @@ h2 {
   letter-spacing: 2px;
   text-transform: capitalize;
   text-align: center;
+  font-weight: 400;
 }
 
 h2::after {
@@ -118,9 +120,74 @@ h2::after {
   cursor: pointer;
 }
 
+.profile-link {
+  line-height: 18px;
+}
+
 .profile-icon {
   width: 28px;
   height: 28px;
+}
+
+.profile-icon:hover {
+  filter: invert(63%) sepia(9%) saturate(1867%) hue-rotate(355deg)
+    brightness(95%) contrast(88%);
+  transition: 0.2s;
+}
+
+/* Buttons */
+
+.primary-btn {
+  background-color: #ffffff;
+  padding: 10px 40px;
+  border-radius: 2px;
+  border: 1px solid #0c0c0e;
+  color: #0c0c0e;
+  text-align: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1px;
+  transition: 0.5s;
+}
+
+.secondary-btn {
+  display: block;
+  width: 75px;
+  height: 30px;
+  flex-shrink: 0;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 2px;
+  color: #0c0c0e;
+  text-align: center;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1px;
+  transition: 0.5s;
+}
+
+.secondary-btn:hover,
+.primary-btn:hover {
+  border: 1px solid #bb945f;
+  color: #0c0c0e;
+  background-color: #bb945f;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+.disabled {
+  border: 1px solid #bb945f;
+  color: #bb945f;
+}
+
+.disabled:hover {
+  cursor: auto;
+  border: 1px solid #bb945f;
+  color: #bb945f;
+  background-color: #fff;
 }
 
 /* Welcome Section */
@@ -378,10 +445,6 @@ h2::after {
 
 /* Menu */
 
-.coffee-shop {
-  /* padding: 0 20px; */
-}
-
 .wrapper__menu {
   display: flex;
   justify-content: space-between;
@@ -398,6 +461,7 @@ h3.menu__title {
   letter-spacing: 2px;
   text-transform: capitalize;
   margin-bottom: 40px;
+  font-weight: 400;
 }
 
 .menu__list {
@@ -415,10 +479,10 @@ h3.menu__title {
 .item__price::before {
   content: "";
   display: inline-block;
-  width: 100px;
+  width: 102px;
   height: 1px;
   background-color: #bb945f;
-  margin: 0 60px;
+  margin: 0 58px 6px;
 }
 
 .item__price {
@@ -464,6 +528,18 @@ h3.menu__title {
   margin-bottom: 20px;
 }
 
+.contacts__info a:link {
+  text-decoration: none;
+  color: #000000;
+  transition: 0.5s;
+}
+
+.contacts__info a:hover {
+  text-decoration: none;
+  color: #bb945f;
+  transition: 0.5s;
+}
+
 /* Digital Library Cards / Form */
 
 .form-title {
@@ -484,17 +560,17 @@ fieldset {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 20px 20px 30px 20px;
+  padding: 17px 17px 27px 17px;
   border: 3px solid #bb945f;
   align-items: center;
 }
 
 .input-bg {
   background: #bb945f;
-  padding: 20px 20px 25px 20px;
+  padding: 30px 20px 25px 20px;
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 26px;
   width: 100%;
 }
 
@@ -518,21 +594,6 @@ input[type="submit"] {
   width: fit-content;
 }
 
-.primary-btn {
-  background-color: #ffffff;
-  padding: 10px 40px;
-  border-radius: 2px;
-  border: 1px solid #0c0c0e;
-  color: #0c0c0e;
-  text-align: center;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: 1px;
-  /* transition: 0.5s; */
-}
-
 /* Digital Library Cards / Get in touch */
 
 .library-cards {
@@ -550,6 +611,7 @@ h4.input-title {
   font-size: 30px;
   line-height: normal;
   letter-spacing: 0.6px;
+  font-weight: 400;
 }
 
 .wrapper__signup {
@@ -565,31 +627,6 @@ h4.input-title {
   display: flex;
   justify-content: flex-end;
   gap: 20px;
-}
-
-.secondary-btn {
-  display: block;
-  width: 75px;
-  height: 30px;
-  flex-shrink: 0;
-  background-color: #ffffff;
-  border: 1px solid #000000;
-  border-radius: 2px;
-  color: #0c0c0e;
-  text-align: center;
-  font-size: 10px;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: 1px;
-  transition: 0.5s;
-}
-
-.secondary-btn:hover,
-.primary-btn:hover {
-  border: 1px solid #bb945f;
-  color: #bb945f;
-  transition: 0.5s;
-  cursor: pointer;
 }
 
 .signup__lead {
@@ -633,6 +670,16 @@ footer {
   color: #bb945f;
 } */
 
+.social-list {
+  display: flex;
+  gap: 15px;
+  padding-top: 20px;
+}
+
+.social-item {
+  list-style: none;
+}
+
 .social-icon {
   display: inline-block;
   cursor: pointer;
@@ -658,7 +705,7 @@ footer {
 }
 
 .footer-copyright p {
-  flex-basis: 230px;
+  flex-basis: 250px;
 }
 
 .footer-copyright p:nth-child(2) {
@@ -668,13 +715,13 @@ footer {
 
 .footer-copyright p:last-child {
   text-align: right;
+  display: block;
 }
 
 .footer-link:link,
 .footer-link:visited {
   color: #ffffff;
   text-decoration: none;
-  line-height: 50px;
   transition: 0.5s;
 }
 
