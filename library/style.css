@@ -27,7 +27,7 @@ body {
   margin: 0 auto;
 }
 
-.wrapper__section {
+.section-wrapper {
   padding: 0 20px;
 }
 
@@ -68,15 +68,12 @@ h2::after {
 
 /* Header */
 
-.header {
-  background-color: #0c0c0e;
-}
-
 .header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
+  background-color: #0c0c0e;
 }
 
 /* Navigation */
@@ -95,7 +92,7 @@ h2::after {
   letter-spacing: normal;
 }
 
-.nav-icon-wrapper {
+.nav-wrapper {
   display: flex;
   gap: 40px;
   justify-content: flex-end;
@@ -152,7 +149,7 @@ h2::after {
   transition: 0.5s;
 }
 
-.secondary-btn {
+.btn-secondary {
   display: block;
   width: 75px;
   height: 30px;
@@ -169,7 +166,7 @@ h2::after {
   transition: 0.5s;
 }
 
-.secondary-btn:hover,
+.btn-secondary:hover,
 .primary-btn:hover {
   border: 1px solid #bb945f;
   color: #0c0c0e;
@@ -192,7 +189,7 @@ h2::after {
 
 /* Welcome Section */
 
-.welcome {
+.welcome-container {
   height: 600px;
   background: url(assets/img/welcome.jpg),
     linear-gradient(0deg, rgba(7, 6, 25, 0.1) 50%, rgba(12, 12, 14, 1) 100%);
@@ -200,7 +197,7 @@ h2::after {
   position: relative;
 }
 
-.welcome::before {
+.welcome-container::before {
   content: "";
   position: absolute;
   top: 0;
@@ -323,6 +320,7 @@ h2::after {
   padding: 11px 91px 10px 0px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .radio-btn {
@@ -337,6 +335,7 @@ h2::after {
   border: 2px solid #000000;
   border-radius: 50%;
   margin-right: 20px;
+  cursor: pointer;
 }
 
 .radio-check::before {
@@ -373,7 +372,7 @@ h2::after {
   display: none;
 }
 
-.wrapper-picks {
+.picks-wrapper {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -431,7 +430,7 @@ h2::after {
   text-transform: capitalize;
 }
 
-.wrapper__picks-cover {
+.picks-cover-wrapper {
   max-width: 200px;
   position: absolute;
   bottom: 0;
@@ -445,13 +444,13 @@ h2::after {
 
 /* Menu */
 
-.wrapper__menu {
+.menu-wrapper {
   display: flex;
   justify-content: space-between;
   padding: 20px 0 0 0;
 }
 
-h3.menu__title {
+h3.menu-title {
   color: #bb945f;
   font-family: Forum;
   font-size: 40px;
@@ -464,19 +463,19 @@ h3.menu__title {
   font-weight: 400;
 }
 
-.menu__list {
+.menu-list {
   display: flex;
   flex-direction: column;
   gap: 40px;
 }
 
-.menu__item {
+.menu-item {
   list-style: none;
   display: flex;
   justify-content: space-between;
 }
 
-.item__price::before {
+.item-price::before {
   content: "";
   display: inline-block;
   width: 102px;
@@ -485,41 +484,41 @@ h3.menu__title {
   margin: 0 58px 6px;
 }
 
-.item__price {
+.item-price {
   font-family: Forum;
   font-size: 20px;
   line-height: 40px;
   letter-spacing: 2px;
 }
 
-.wrapper__menu-deserts {
+.menu-wrapper-deserts {
   text-align: right;
 }
 
-.wrapper__menu-deserts .menu__list {
+.menu-wrapper-deserts .menu-list {
   align-items: flex-end;
 }
 
 /* Contacts */
 
-.wrapper__contacts {
+.contacts-wrapper {
   display: flex;
   justify-content: space-between;
 }
 
-.contacts__title {
+.contacts-title {
   font-weight: 700;
   text-transform: capitalize;
 }
 
-.contacts__list {
+.contacts-list {
   display: flex;
   flex-direction: column;
   gap: 20px;
   padding: 40px 0;
 }
 
-.contacts__item {
+.contacts-item {
   list-style: none;
   text-transform: capitalize;
 }
@@ -528,13 +527,13 @@ h3.menu__title {
   margin-bottom: 20px;
 }
 
-.contacts__info a:link {
+.contacts-info a:link {
   text-decoration: none;
   color: #000000;
   transition: 0.5s;
 }
 
-.contacts__info a:hover {
+.contacts-info a:hover {
   text-decoration: none;
   color: #bb945f;
   transition: 0.5s;
@@ -600,12 +599,12 @@ input[type="submit"] {
   padding-top: 7px;
 }
 
-.wrapper__cards {
+.cards-wrapper {
   display: flex;
   justify-content: space-between;
 }
 
-h4.signup__title,
+h4.signup-title,
 h4.input-title {
   font-family: Forum;
   font-size: 30px;
@@ -614,7 +613,7 @@ h4.input-title {
   font-weight: 400;
 }
 
-.wrapper__signup {
+.signup-wrapper {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -623,13 +622,13 @@ h4.input-title {
   gap: 35px;
 }
 
-.wrapper__sighnup-buttons {
+.btn-wrapper {
   display: flex;
   justify-content: flex-end;
   gap: 20px;
 }
 
-.signup__lead {
+.signup-lead {
   font-weight: 400;
   line-height: 40px; /* 200% */
   letter-spacing: 0.4px;
@@ -637,9 +636,10 @@ h4.input-title {
 
 /* Footer */
 
-footer {
+.footer-container {
   background: #0c0c0e;
   color: #ffffff;
+  padding: 20px 20px 44px 20px;
 }
 
 .footer-info {
@@ -649,10 +649,6 @@ footer {
   font-size: 15px;
   line-height: 20px;
   letter-spacing: normal;
-}
-
-.footer-section {
-  padding: 20px 20px 44px 20px;
 }
 
 .footer-address {
