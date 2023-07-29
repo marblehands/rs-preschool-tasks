@@ -317,7 +317,7 @@ h2::after {
 .radio-label {
   display: inline-block;
   line-height: 24px;
-  padding: 11px 91px 10px 0px;
+  padding: 11px 0px 10px 0px;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -360,6 +360,23 @@ h2::after {
 .text {
   line-height: 24px;
   letter-spacing: normal;
+}
+
+.radio-btn ~ .text {
+  display: inline-block;
+  width: 80px;
+}
+
+.winter {
+  padding-right: 77px;
+}
+
+.spring {
+  padding-right: 72px;
+}
+
+.summer {
+  padding-right: 89px;
 }
 
 .radio-btn:checked ~ .text {
@@ -679,6 +696,11 @@ h4.input-title {
 .social-icon {
   display: inline-block;
   cursor: pointer;
+  transition: opacity 0.5s;
+}
+
+.social-icon:hover {
+  opacity: 60%;
 }
 
 .schedule-item {
