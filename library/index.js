@@ -40,3 +40,11 @@ console.log(`
 26) Интерактивность элементов согласно макету. +2
 27) Обязательное требование к интерактивности: плавное изменение внешнего вида элемента при наведении и клике не влияет на соседние элементы +2
 `);
+
+const burger = document.querySelector('[data-burger]');
+const nav = document.querySelector('[data-nav]');
+
+burger.addEventListener('click', () => {
+  nav.classList.toggle('nav-visible');
+  burger.classList.toggle('burger-visible');
+})

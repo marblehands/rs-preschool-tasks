@@ -20,6 +20,7 @@ body {
   font-family: Inter, sans-serif;
   font-weight: 400;
   color: #000000;
+  overflow-x: hidden;
 }
 
 .container {
@@ -81,11 +82,7 @@ h2::after {
 /* .nav {
 } */
 
-@media (max-width: 1024px) {
-  .nav {
-    display: none;
-  }
-}
+
 
 .nav-list {
   display: flex;
@@ -142,16 +139,13 @@ h2::after {
 
 .burger {
   position: relative;
-  display: inline-block;
   width: 45px;
   height: 20px;
   display: none;
-}
-
-@media (max-width: 1024px) {
-  .burger {
-    display: inline-block;
-  }
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .burger-line {
@@ -165,24 +159,69 @@ h2::after {
   background-color: #ffffff;
 }
 
-.burger-line:before {
+.burger::before,
+.burger:after {
   content: "";
   position: absolute;
-  top: -10px;
   left: 0;
   width: 100%;
   height: 2px;
   background-color: #ffffff;
 }
 
-.burger-line:after {
-  content: "";
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: #ffffff;
+.burger:before {
+  top: 0;
+}
+
+.burger:after {
+  bottom: 0;
+}
+
+@media (max-width: 1024px) {
+
+  .nav {
+    position: absolute;
+    right: -100%;
+    top: 90px;
+    z-index: 10;
+    padding: 10px 110px 100px;
+    background-color: #0c0c0e;
+    transition: 1s ease-in-out;
+    /* display: none; */
+  }
+
+  .nav-visible {
+    right: 0;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .burger {
+    display: inline-block;
+  }
+
+  .burger-visible {
+    /* transition: transform 0.5s ease-in-out; */
+  }
+
+  .burger-visible span {
+    display: none;
+  }
+
+  .burger-visible::before {
+    transform: rotate(0.125turn);
+    top: calc(50% - 1px);
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .burger-visible::after {
+    transform: rotate(-0.125turn);
+    bottom: calc(50% - 1px);
+    transition: transform 0.5s ease-in-out;
+  }
 }
 
 /* Buttons */
@@ -410,7 +449,7 @@ h2::after {
   }
 
   .item-container {
-    gap: 46px;
+    gap: 58px;
   }
 
   .controls {
@@ -971,7 +1010,7 @@ h4.input-title {
   }
 
   .footer-copyright p:last-child {
-    flex-basis: 120px;
+    flex-basis: 112px;
   }
 }
 
