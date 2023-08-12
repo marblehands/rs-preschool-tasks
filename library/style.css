@@ -137,7 +137,7 @@ h2::after {
 
 /* Burger */
 
-.burger {
+.burger-button {
   position: relative;
   width: 45px;
   height: 20px;
@@ -159,8 +159,8 @@ h2::after {
   background-color: #ffffff;
 }
 
-.burger::before,
-.burger:after {
+.burger-button::before,
+.burger-button:after {
   content: "";
   position: absolute;
   left: 0;
@@ -169,11 +169,11 @@ h2::after {
   background-color: #ffffff;
 }
 
-.burger:before {
+.burger-button:before {
   top: 0;
 }
 
-.burger:after {
+.burger-button:after {
   bottom: 0;
 }
 
@@ -199,7 +199,7 @@ h2::after {
     align-items: center;
   }
 
-  .burger {
+  .burger-button {
     display: inline-block;
   }
 
