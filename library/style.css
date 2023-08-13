@@ -20,7 +20,12 @@ body {
   font-family: Inter, sans-serif;
   font-weight: 400;
   color: #000000;
-  overflow-x: hidden;
+}
+
+.body-wrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
 }
 
 .container {
@@ -187,11 +192,10 @@ h2::after {
     padding: 10px 110px 100px;
     background-color: #0c0c0e;
     transition: 1s ease-in-out;
-    visibility: hidden;
+
   }
 
   .nav-visible {
-    visibility: visible;
     right: 0;
   }
 
