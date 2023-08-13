@@ -187,10 +187,11 @@ h2::after {
     padding: 10px 110px 100px;
     background-color: #0c0c0e;
     transition: 1s ease-in-out;
-    /* display: none; */
+    visibility: hidden;
   }
 
   .nav-visible {
+    visibility: visible;
     right: 0;
   }
 
