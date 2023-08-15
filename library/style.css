@@ -294,6 +294,16 @@ h2::after {
   position: relative;
 }
 
+@media (max-width: 769px) {
+
+  .welcome-container {
+
+    background: url(assets/img/welcome-mobile.jpg),
+      linear-gradient(0deg, rgba(7, 6, 25, 0.1) 50%, rgba(12, 12, 14, 1) 100%);
+    background-size: cover;
+  }
+  }
+
 .welcome-container::before {
   content: "";
   position: absolute;
