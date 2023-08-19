@@ -21,6 +21,8 @@ const burger = document.querySelector('.burger-button');
 const nav = document.querySelector('.nav');
 const body = document.querySelector('.body');
 const navLinks = document.querySelectorAll('.nav-link');
+const profileIcon = document.querySelector('.profile-link');
+const profileMenu = document.querySelector('.profile-menu');
 
 burger.addEventListener('click', () => {
   nav.classList.toggle('nav-visible');
@@ -40,6 +42,70 @@ body.addEventListener('click', function(event) {
   burger.classList.remove('burger-visible');
   }
 });
+
+profileIcon.addEventListener('click',  () => {
+  profileMenu.classList.toggle('profile-menu-visible');
+});
+
+
+// Увы это не сработало попробую еще раз :((((
+
+// const radioButtons = document.querySelectorAll('.radio-btn');
+// const books = document.querySelectorAll('.picks-wrapper');
+
+// radioButtons.forEach((radioButton, index) => {
+
+//   radioButton.addEventListener('click', () => {
+
+//     // Прячу прыдущие книги
+//   books.forEach((book) => {
+//     book.addEventListener('animationend', () => {
+//       book.classList.remove('active');
+//     });
+//   });
+
+//     // Показываю книги в соответствии с выбранным радиобатоном
+//     books[index].addEventListener('animationend', () =>{
+//       books[index].classList.add('active');
+//     });
+
+//   });
+
+// });
+
+// Это скрипт который листает контент по клику на радиобаттоны с анимацией - это жесть но работает
+const radioBtn = document.querySelectorAll('.radio-btn');
+// console.log(radioBtn)
+const radioData = [...document.querySelectorAll('div.picks-wrapper')].reduce((result, element) => {
+  result.push( { id: element.id, display: element.classList.contains('picks-wrapper-active'), elem: element  } )
+  return result
+}, [])
+// console.log(radioData)
+
+radioBtn.forEach(radio => {
+  radio.addEventListener('click', (e) => {
+
+    let currentRadio = radioData.find(radio => radio.display);
+  // console.log(currentRadio.elem);
+
+  let selectedRadio = radioData.find(radio=> radio.id===e.target.dataset.radioId);
+  // console.log(selectedRadio.elem);
+
+  if (selectedRadio.id != currentRadio.id) {
+    currentRadio.elem.addEventListener('transitionend', openSelectedRadio);
+    currentRadio.elem.classList.remove('picks-wrapper-active');
+    currentRadio.display = false;
+  }
+
+  function openSelectedRadio() {
+    currentRadio.elem.removeEventListener('transitionend', openSelectedRadio);
+    selectedRadio.elem.classList.add('picks-wrapper-active');
+    selectedRadio.display = true;
+  }
+
+  })
+})
+
 
 
 

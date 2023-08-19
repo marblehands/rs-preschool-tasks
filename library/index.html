@@ -37,12 +37,19 @@
               </li>
             </ul>
           </nav>
-          <a href="#" class="profile-link">
+          <button class="profile-link">
             <img
               src="assets/svg/icon_profile.svg"
               alt="Profile Icon"
               class="profile-icon">
-          </a>
+          </button>
+          <div class="profile-menu">
+            <p class="profile-menu-title">Profile</p>
+            <ul class="profile-menu-list">
+              <li class="profile-menu-item">Log In</li>
+              <li class="profile-menu-item">Register</li>
+            </ul>
+          </div>
           <button class="burger-button">
             <span class="burger-line"></span>
           </button>
@@ -122,370 +129,427 @@
                 <span class="dot"></span>
               </div>
             </div>
-            
           </div>
         </div>
       </section>
       <section class="section favorites">
+
         <div class="container section-wrapper">
+
           <h2 class="section-title" id="favorites">Favorites</h2>
-          <p class="legend-title">Pick favorites of season</p>
-          <div class="radio-wrapper">
-            <label class="radio-label winter">
-              <input type="radio" class="radio-btn" name="season" checked>
-              <span class="radio-check"></span>
-              <span class="text">Winter</span>
-            </label>
-            <label class="radio-label spring">
-              <input type="radio" class="radio-btn" name="season">
-              <span class="radio-check"></span>
-              <span class="text">Spring</span>
-            </label>
-            <label class="radio-label summer">
-              <input type="radio" class="radio-btn" name="season">
-              <span class="radio-check"></span>
-              <span class="text">Summer</span>
-            </label>
-            <label class="radio-label">
-              <input type="radio" class="radio-btn" name="season">
-              <span class="radio-check"></span>
-              <span class="text">Autumn</span>
-            </label>
+
+          <!-- Это обертка заголовка + радиокнопки - нужна для стики на мобайле-->
+          <div class="radio-controls">
+
+            <p class="legend-title">Pick favorites of season</p>
+
+            <!-- Это обертка радиокнопок -->
+            <div class="radio-wrapper">
+              <label class="radio-label winter">
+                <input type="radio" class="radio-btn" name="season" checked data-radio-id="winter">
+                <span class="radio-check"></span>
+                <span class="text">Winter</span>
+              </label>
+              <label class="radio-label spring">
+                <input type="radio" class="radio-btn" name="season" data-radio-id="spring">
+                <span class="radio-check"></span>
+                <span class="text">Spring</span>
+              </label>
+              <label class="radio-label summer">
+                <input type="radio" class="radio-btn" name="season" data-radio-id="summer">
+                <span class="radio-check"></span>
+                <span class="text">Summer</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" class="radio-btn" name="season" data-radio-id="autumn">
+                <span class="radio-check"></span>
+                <span class="text">Autumn</span>
+              </label>
+            </div>
+          <!-- Закрыли обертку стики контролов -->
           </div>
-          <div class="picks-wrapper">
-            <div class="picks-item">
-              <div class="picks-border">
-                <h5 class="picks-title">Staff Picks</h5>
-                <p class="picks-name">The Book Eaters</p>
-                <p class="picks-author">By Sunyi Dean</p>
-                <p class="picks-info">
-                  An unusual sci-fi story about a book eater woman who tries
-                  desperately to save her dangerous mind-eater son from
-                  tradition and certain death. Complete with dysfunctional
-                  family values, light Sapphic romance, and a strong, complex
-                  protagonist. Not for the faint of heart.
-                </p>
-                <div class="picks-cover-wrapper">
-                  <img
-                    src="assets/img/book-1.jpg"
-                    alt="The Book Eaters By Sunyi Dean Cover"
-                    class="picks-cover"
-                  >
+
+          <!-- Это обертка всех дивов с книгами, у нее фикс высота -->
+          <div class="all-picks-wrapper" id="all-picks">
+
+              <!-- Это обертка книг Winter, у этих оберток позишн абсолют -->
+            <div class="picks-wrapper picks-wrapper-active" id="winter">
+
+              <!-- Книга winter#1 -->
+              <div class="picks-item">
+                <div class="picks-border">
+                  <h5 class="picks-title">Staff Picks</h5>
+                  <p class="picks-name">The Book Eaters</p>
+                  <p class="picks-author">By Sunyi Dean</p>
+                  <p class="picks-info">
+                    An unusual sci-fi story about a book eater woman who tries
+                    desperately to save her dangerous mind-eater son from
+                    tradition and certain death. Complete with dysfunctional
+                    family values, light Sapphic romance, and a strong, complex
+                    protagonist. Not for the faint of heart.
+                  </p>
+                  <div class="picks-cover-wrapper">
+                    <img
+                      src="assets/img/book-1.jpg"
+                      alt="The Book Eaters By Sunyi Dean Cover"
+                      class="picks-cover"
+                    >
+                  </div>
+                  <button class="btn-secondary">Buy</button>
                 </div>
-                <button class="btn-secondary">Buy</button>
               </div>
-            </div>
-            <div class="picks-item">
-              <div class="picks-border">
-                <h5 class="picks-title">Staff Picks</h5>
-                <p class="picks-name">Cackle</p>
-                <p class="picks-author">By Rachel Harrison</p>
-                <p class="picks-info">
-                  Are your Halloween movies of choice The Witches of Eastwick
-                  and Practical Magic? Look no further than here - where a woman
-                  recovering from a breakup moves to a quaint town in upstate
-                  New York and befriends a beautiful witch.
-                </p>
-                <div class="picks-cover-wrapper">
-                  <img
-                    src="assets/img/book-2.jpg"
-                    alt="Cackle By Rachel Harrison"
-                    class="picks-cover"
-                  >
+              <!-- Книга winter#2 -->
+              <div class="picks-item">
+                <div class="picks-border">
+                  <h5 class="picks-title">Staff Picks</h5>
+                  <p class="picks-name">Cackle</p>
+                  <p class="picks-author">By Rachel Harrison</p>
+                  <p class="picks-info">
+                    Are your Halloween movies of choice The Witches of Eastwick
+                    and Practical Magic? Look no further than here - where a woman
+                    recovering from a breakup moves to a quaint town in upstate
+                    New York and befriends a beautiful witch.
+                  </p>
+                  <div class="picks-cover-wrapper">
+                    <img
+                      src="assets/img/book-2.jpg"
+                      alt="Cackle By Rachel Harrison"
+                      class="picks-cover"
+                    >
+                  </div>
+                  <button class="btn-secondary">Buy</button>
                 </div>
-                <button class="btn-secondary">Buy</button>
               </div>
-            </div>
-            <div class="picks-item">
-              <div class="picks-border">
-                <h5 class="picks-title">Staff Picks</h5>
-                <p class="picks-name">Dante: Poet of the Secular World</p>
-                <p class="picks-author">By Erich Auerbach</p>
-                <p class="picks-info">
-                  Auerbach's engaging book places the 'Comedy' within the
-                  tradition of epic, tragedy, and philosophy in general, arguing
-                  for Dante's uniqueness as one who raised the individual and
-                  his drama of soul into something of divine significance—an
-                  inspired introduction to Dante's main themes.
-                </p>
-                <div class="picks-cover-wrapper">
-                  <img
-                    src="assets/img/book-3.jpg"
-                    alt="Dante: Poet of the Secular World By Erich Auerbach"
-                    class="picks-cover"
-                  >
+              <!-- Книга winter#3 -->
+              <div class="picks-item">
+                <div class="picks-border">
+                  <h5 class="picks-title">Staff Picks</h5>
+                  <p class="picks-name">Dante: Poet of the Secular World</p>
+                  <p class="picks-author">By Erich Auerbach</p>
+                  <p class="picks-info">
+                    Auerbach's engaging book places the 'Comedy' within the
+                    tradition of epic, tragedy, and philosophy in general, arguing
+                    for Dante's uniqueness as one who raised the individual and
+                    his drama of soul into something of divine significance—an
+                    inspired introduction to Dante's main themes.
+                  </p>
+                  <div class="picks-cover-wrapper">
+                    <img
+                      src="assets/img/book-3.jpg"
+                      alt="Dante: Poet of the Secular World By Erich Auerbach"
+                      class="picks-cover"
+                    >
+                  </div>
+                  <button class="btn-secondary">Buy</button>
                 </div>
-                <button class="btn-secondary">Buy</button>
               </div>
-            </div>
-            <div class="picks-item">
-              <div class="picks-border">
-                <h5 class="picks-title">Staff Picks</h5>
-                <p class="picks-name">The Last Queen</p>
-                <p class="picks-author">By Clive Irving</p>
-                <p class="picks-info">
-                  A timely and revelatory new biography of Queen Elizabeth (and
-                  her family) exploring how the Windsors have evolved and
-                  thrived as the modern world has changed around them.
-                </p>
-                <div class="picks-cover-wrapper">
-                  <img
-                    src="assets/img/book-4.jpg"
-                    alt="The Last Queen By Clive Irving"
-                    class="picks-cover"
-                  >
+              <!-- Книга winter#4 -->
+              <div class="picks-item">
+                <div class="picks-border">
+                  <h5 class="picks-title">Staff Picks</h5>
+                  <p class="picks-name">The Last Queen</p>
+                  <p class="picks-author">By Clive Irving</p>
+                  <p class="picks-info">
+                    A timely and revelatory new biography of Queen Elizabeth (and
+                    her family) exploring how the Windsors have evolved and
+                    thrived as the modern world has changed around them.
+                  </p>
+                  <div class="picks-cover-wrapper">
+                    <img
+                      src="assets/img/book-4.jpg"
+                      alt="The Last Queen By Clive Irving"
+                      class="picks-cover"
+                    >
+                  </div>
+                  <button class="btn-secondary">Buy</button>
+                  <!-- <button disabled class="btn-secondary disabled">Own</button> -->
                 </div>
-                <button disabled class="btn-secondary disabled">Own</button>
               </div>
-            </div>
-            <div class="picks-item hide">
-              <div class="picks-border">
-                <h5 class="picks-title">Staff Picks</h5>
-                <p class="picks-name">The Body</p>
-                <p class="picks-author">By Stephen King</p>
-                <p class="picks-info">
-                  Powerful novel that takes you back to a nostalgic time,
-                  exploring both the beauty and danger and loss of innocence
-                  that is youth.
-                </p>
-                <div class="picks-cover-wrapper">
-                  <img
-                    src="assets/img/book-5.jpg"
-                    alt="The Body By Stephen King Cover"
-                    class="picks-cover"
-                  >
+
+              <!-- Закрыли обертку книг Winter -->
+              </div>
+
+              <!-- Это обертка книг Spring -->
+              <div class="picks-wrapper" id="spring">
+
+                <!-- Книга Spring#1 -->
+              <div class="picks-item">
+                <div class="picks-border">
+                  <h5 class="picks-title">Staff Picks</h5>
+                  <p class="picks-name">The Body</p>
+                  <p class="picks-author">By Stephen King</p>
+                  <p class="picks-info">
+                    Powerful novel that takes you back to a nostalgic time,
+                    exploring both the beauty and danger and loss of innocence
+                    that is youth.
+                  </p>
+                  <div class="picks-cover-wrapper">
+                    <img
+                      src="assets/img/book-5.jpg"
+                      alt="The Body By Stephen King Cover"
+                      class="picks-cover"
+                    >
+                  </div>
+                  <button class="btn-secondary">Buy</button>
                 </div>
-                <button class="btn-secondary">Buy</button>
               </div>
-            </div>
-            <div class="picks-item hide">
-              <div class="picks-border">
-                <h5 class="picks-title">Staff Picks</h5>
-                <p class="picks-name">
-                  Carry: A Memoir of Survival on Stolen Land
-                </p>
-                <p class="picks-author">By Toni Jenson</p>
-                <p class="picks-info">
-                  This memoir about the author's relationship with gun violence
-                  feels both expansive and intimate, resulting in a lyrical
-                  indictment of the way things are.
-                </p>
-                <div class="picks-cover-wrapper">
-                  <img
-                    src="assets/img/book-6.jpg"
-                    alt="Carry: A Memoir of Survival on Stolen Land By Toni Jenson Cover"
-                    class="picks-cover"
-                  >
+
+              <!-- Книга Spring#2 -->
+              <div class="picks-item">
+                <div class="picks-border">
+                  <h5 class="picks-title">Staff Picks</h5>
+                  <p class="picks-name">
+                    Carry: A Memoir of Survival on Stolen Land
+                  </p>
+                  <p class="picks-author">By Toni Jenson</p>
+                  <p class="picks-info">
+                    This memoir about the author's relationship with gun violence
+                    feels both expansive and intimate, resulting in a lyrical
+                    indictment of the way things are.
+                  </p>
+                  <div class="picks-cover-wrapper">
+                    <img
+                      src="assets/img/book-6.jpg"
+                      alt="Carry: A Memoir of Survival on Stolen Land By Toni Jenson Cover"
+                      class="picks-cover"
+                    >
+                  </div>
+                  <button class="btn-secondary">Buy</button>
                 </div>
-                <button class="btn-secondary">Buy</button>
               </div>
-            </div>
-            <div class="picks-item hide">
-              <div class="picks-border">
-                <h5 class="picks-title">Staff Picks</h5>
-                <p class="picks-name">Days of Distraction</p>
-                <p class="picks-author">By Alexandra Chang</p>
-                <p class="picks-info">
-                  A sardonic view of Silicon Valley culture, a meditation on
-                  race, and a journal of displacement and belonging, all in one
-                  form-defying package of spare prose.
-                </p>
-                <div class="picks-cover-wrapper">
-                  <img
-                    src="assets/img/book-7.jpg"
-                    alt="Days of Distraction By Alexandra Chang Cover"
-                    class="picks-cover"
-                  >
+              <!-- Книга Spring#3 -->
+              <div class="picks-item">
+                <div class="picks-border">
+                  <h5 class="picks-title">Staff Picks</h5>
+                  <p class="picks-name">Days of Distraction</p>
+                  <p class="picks-author">By Alexandra Chang</p>
+                  <p class="picks-info">
+                    A sardonic view of Silicon Valley culture, a meditation on
+                    race, and a journal of displacement and belonging, all in one
+                    form-defying package of spare prose.
+                  </p>
+                  <div class="picks-cover-wrapper">
+                    <img
+                      src="assets/img/book-7.jpg"
+                      alt="Days of Distraction By Alexandra Chang Cover"
+                      class="picks-cover"
+                    >
+                  </div>
+                  <button class="btn-secondary">Buy</button>
                 </div>
-                <button class="btn-secondary">Buy</button>
               </div>
-            </div>
-            <div class="picks-item hide">
-              <div class="picks-border">
-                <h5 class="picks-title">Staff Picks</h5>
-                <p class="picks-name">Dominicana</p>
-                <p class="picks-author">By Angie Cruz</p>
-                <p class="picks-info">
-                  A fascinating story of a teenage girl who marries a man twice
-                  her age with the promise to bring her to America. Her marriage
-                  is an opportunity for her family to eventually immigrate. For
-                  fans of Isabel Allende and Julia Alvarez.
-                </p>
-                <div class="picks-cover-wrapper">
-                  <img
-                    src="assets/img/book-8.jpg"
-                    alt="Dominicana By Angie Cruz Cover"
-                    class="picks-cover"
-                  >
+              <!-- Книга Spring#4 -->
+              <div class="picks-item">
+                <div class="picks-border">
+                  <h5 class="picks-title">Staff Picks</h5>
+                  <p class="picks-name">Dominicana</p>
+                  <p class="picks-author">By Angie Cruz</p>
+                  <p class="picks-info">
+                    A fascinating story of a teenage girl who marries a man twice
+                    her age with the promise to bring her to America. Her marriage
+                    is an opportunity for her family to eventually immigrate. For
+                    fans of Isabel Allende and Julia Alvarez.
+                  </p>
+                  <div class="picks-cover-wrapper">
+                    <img
+                      src="assets/img/book-8.jpg"
+                      alt="Dominicana By Angie Cruz Cover"
+                      class="picks-cover"
+                    >
+                  </div>
+                  <button class="btn-secondary">Buy</button>
                 </div>
-                <button class="btn-secondary">Buy</button>
               </div>
-            </div>
-            <div class="picks-item hide">
-              <div class="picks-border">
-                <h5 class="picks-title">Staff Picks</h5>
-                <p class="picks-name">Crude: A Memoir</p>
-                <p class="picks-author">
-                  By Pablo Fajardo &amp; Sophie Tardy-Joubert
-                </p>
-                <p class="picks-info">
-                  Drawing and color by Damien Roudeau | This book illustrates
-                  the struggles of a group of indigenous Ecuadoreans as they try
-                  to sue the ChevronTexaco company for damage their oil fields
-                  did to the Amazon and her people.
-                </p>
-                <div class="picks-cover-wrapper">
-                  <img
-                    src="assets/img/book-9.jpg"
-                    alt="Crude: A Memoir Cover"
-                    class="picks-cover">
+              <!-- Закрыли обертку книг Sprimg -->
+              </div>
+
+              <!-- Это обертка книг Summer -->
+              <div class="picks-wrapper" id="summer">
+
+                <!-- Книга Summer#1 -->
+              <div class="picks-item">
+                <div class="picks-border">
+                  <h5 class="picks-title">Staff Picks</h5>
+                  <p class="picks-name">Crude: A Memoir</p>
+                  <p class="picks-author">
+                    By Pablo Fajardo &amp; Sophie Tardy-Joubert
+                  </p>
+                  <p class="picks-info">
+                    Drawing and color by Damien Roudeau | This book illustrates
+                    the struggles of a group of indigenous Ecuadoreans as they try
+                    to sue the ChevronTexaco company for damage their oil fields
+                    did to the Amazon and her people.
+                  </p>
+                  <div class="picks-cover-wrapper">
+                    <img
+                      src="assets/img/book-9.jpg"
+                      alt="Crude: A Memoir Cover"
+                      class="picks-cover">
+                  </div>
+                  <button class="btn-secondary">Buy</button>
                 </div>
-                <button class="btn-secondary">Buy</button>
               </div>
-            </div>
-            <div class="picks-item hide">
-              <div class="picks-border">
-                <h5 class="picks-title">Staff Picks</h5>
-                <p class="picks-name">Let My People Go Surfing</p>
-                <p class="picks-author">By Yvon Chouinard</p>
-                <p class="picks-info">
-                  Chouinard—climber, businessman, environmentalist—shares tales
-                  of courage and persistence from his experience of founding and
-                  leading Patagonia, Inc. Full title: Let My People Go Surfing:
-                  The Education of a Reluctant Businessman, Including 10 More
-                  Years of Business Unusual.
-                </p>
-                <div class="picks-cover-wrapper">
-                  <img
-                    src="assets/img/book-10.jpg"
-                    alt="Let My People Go Surfing By Yvon Chouinard"
-                    class="picks-cover">
+              <!-- Книга Summer#2 -->
+              <div class="picks-item">
+                <div class="picks-border">
+                  <h5 class="picks-title">Staff Picks</h5>
+                  <p class="picks-name">Let My People Go Surfing</p>
+                  <p class="picks-author">By Yvon Chouinard</p>
+                  <p class="picks-info">
+                    Chouinard—climber, businessman, environmentalist—shares tales
+                    of courage and persistence from his experience of founding and
+                    leading Patagonia, Inc. Full title: Let My People Go Surfing:
+                    The Education of a Reluctant Businessman, Including 10 More
+                    Years of Business Unusual.
+                  </p>
+                  <div class="picks-cover-wrapper">
+                    <img
+                      src="assets/img/book-10.jpg"
+                      alt="Let My People Go Surfing By Yvon Chouinard"
+                      class="picks-cover">
+                  </div>
+                  <button class="btn-secondary">Buy</button>
                 </div>
-                <button class="btn-secondary">Buy</button>
               </div>
-            </div>
-            <div class="picks-item hide">
-              <div class="picks-border">
-                <h5 class="picks-title">Staff Picks</h5>
-                <p class="picks-name">The Octopus Museum: Poems</p>
-                <p class="picks-author">By Brenda Shaughnessy</p>
-                <p class="picks-info">
-                  This collection of bold and scathingly beautiful feminist
-                  poems imagines what comes after our current age of
-                  environmental destruction, racism, sexism, and divisive
-                  politics.
-                </p>
-                <div class="picks-cover-wrapper">
-                  <img
-                    src="assets/img/book-11.jpg"
-                    alt="The Octopus Museum: Poems By Brenda Shaughnessy"
-                    class="picks-cover">
+              <!-- Книга Summer#3 -->
+              <div class="picks-item">
+                <div class="picks-border">
+                  <h5 class="picks-title">Staff Picks</h5>
+                  <p class="picks-name">The Octopus Museum: Poems</p>
+                  <p class="picks-author">By Brenda Shaughnessy</p>
+                  <p class="picks-info">
+                    This collection of bold and scathingly beautiful feminist
+                    poems imagines what comes after our current age of
+                    environmental destruction, racism, sexism, and divisive
+                    politics.
+                  </p>
+                  <div class="picks-cover-wrapper">
+                    <img
+                      src="assets/img/book-11.jpg"
+                      alt="The Octopus Museum: Poems By Brenda Shaughnessy"
+                      class="picks-cover">
+                  </div>
+                  <button class="btn-secondary">Buy</button>
                 </div>
-                <button class="btn-secondary">Buy</button>
               </div>
-            </div>
-            <div class="picks-item hide">
-              <div class="picks-border">
-                <h5 class="picks-title">Staff Picks</h5>
-                <p class="picks-name">Shark Dialogues: A Novel</p>
-                <p class="picks-author">By Kiana Davenport</p>
-                <p class="picks-info">
-                  An epic saga of seven generations of one family encompasses
-                  the tumultuous history of Hawaii as a Hawaiian woman gathers
-                  her four granddaughters together in an erotic tale of villains
-                  and dreamers, queens and revolutionaries, lepers and healers.
-                </p>
-                <div class="picks-cover-wrapper">
-                  <img
-                    src="assets/img/book-12.jpg"
-                    alt="Shark Dialogues: A Novel By Kiana Davenport"
-                    class="picks-cover">
+              <!-- Книга Summer#4 -->
+              <div class="picks-item">
+                <div class="picks-border">
+                  <h5 class="picks-title">Staff Picks</h5>
+                  <p class="picks-name">Shark Dialogues: A Novel</p>
+                  <p class="picks-author">By Kiana Davenport</p>
+                  <p class="picks-info">
+                    An epic saga of seven generations of one family encompasses
+                    the tumultuous history of Hawaii as a Hawaiian woman gathers
+                    her four granddaughters together in an erotic tale of villains
+                    and dreamers, queens and revolutionaries, lepers and healers.
+                  </p>
+                  <div class="picks-cover-wrapper">
+                    <img
+                      src="assets/img/book-12.jpg"
+                      alt="Shark Dialogues: A Novel By Kiana Davenport"
+                      class="picks-cover">
+                  </div>
+                  <button class="btn-secondary">Buy</button>
                 </div>
-                <button class="btn-secondary">Buy</button>
               </div>
+              <!-- Закрыли обертку книг Summer -->
             </div>
-            <div class="picks-item hide">
-              <div class="picks-border">
-                <h5 class="picks-title">Staff Picks</h5>
-                <p class="picks-name">Casual Conversation</p>
-                <p class="picks-author">By Renia White</p>
-                <p class="picks-info">
-                  White's impressive debut collection takes readers through and
-                  beyond the concepts of conversation and the casual - both what
-                  we say to each other and what we don't, examining the
-                  possibilities around how we construct and communicate
-                  identity.
-                </p>
-                <div class="picks-cover-wrapper">
-                  <img
-                    src="assets/img/book-13.jpg"
-                    alt="Casual Conversation By Renia White"
-                    class="picks-cover">
+
+            <!-- Это обертка книг Autumn -->
+            <div class="picks-wrapper" id="autumn">
+              <!-- Книга Autumn#1 -->
+              <div class="picks-item">
+                <div class="picks-border">
+                  <h5 class="picks-title">Staff Picks</h5>
+                  <p class="picks-name">Casual Conversation</p>
+                  <p class="picks-author">By Renia White</p>
+                  <p class="picks-info">
+                    White's impressive debut collection takes readers through and
+                    beyond the concepts of conversation and the casual - both what
+                    we say to each other and what we don't, examining the
+                    possibilities around how we construct and communicate
+                    identity.
+                  </p>
+                  <div class="picks-cover-wrapper">
+                    <img
+                      src="assets/img/book-13.jpg"
+                      alt="Casual Conversation By Renia White"
+                      class="picks-cover">
+                  </div>
+                  <button class="btn-secondary">Buy</button>
                 </div>
-                <button class="btn-secondary">Buy</button>
               </div>
-            </div>
-            <div class="picks-item hide">
-              <div class="picks-border">
-                <h5 class="picks-title">Staff Picks</h5>
-                <p class="picks-name">The Great Fire</p>
-                <p class="picks-author">By Lou Ureneck</p>
-                <p class="picks-info">
-                  The harrowing story of an ordinary American and a principled
-                  Naval officer who, horrified by the burning of Smyrna, led an
-                  extraordinary rescue effort that saved a quarter of a million
-                  refugees from the Armenian Genocide.
-                </p>
-                <div class="picks-cover-wrapper">
-                  <img
-                    src="assets/img/book-14.jpg"
-                    alt="The Great Fire By Lou Ureneck"
-                    class="picks-cover">
+              <!-- Книга Autumn#2 -->
+              <div class="picks-item">
+                <div class="picks-border">
+                  <h5 class="picks-title">Staff Picks</h5>
+                  <p class="picks-name">The Great Fire</p>
+                  <p class="picks-author">By Lou Ureneck</p>
+                  <p class="picks-info">
+                    The harrowing story of an ordinary American and a principled
+                    Naval officer who, horrified by the burning of Smyrna, led an
+                    extraordinary rescue effort that saved a quarter of a million
+                    refugees from the Armenian Genocide.
+                  </p>
+                  <div class="picks-cover-wrapper">
+                    <img
+                      src="assets/img/book-14.jpg"
+                      alt="The Great Fire By Lou Ureneck"
+                      class="picks-cover">
+                  </div>
+                  <button class="btn-secondary">Buy</button>
                 </div>
-                <button class="btn-secondary">Buy</button>
               </div>
-            </div>
-            <div class="picks-item hide">
-              <div class="picks-border">
-                <h5 class="picks-title">Staff Picks</h5>
-                <p class="picks-name">Rickey: The Life and Legend</p>
-                <p class="picks-author">By Howard Bryant</p>
-                <p class="picks-info">
-                  With the fall rolling around, one can't help but think of
-                  baseball's postseason coming up! And what better way to
-                  prepare for it than reading the biography of one of the game's
-                  all-time greatest performers, the Man of Steal, Rickey
-                  Henderson?
-                </p>
-                <div class="picks-cover-wrapper">
-                  <img
-                    src="assets/img/book-15.jpg"
-                    alt="Rickey: The Life and Legend By Howard Bryant"
-                    class="picks-cover">
+              <!-- Книга Autumn#3 -->
+              <div class="picks-item">
+                <div class="picks-border">
+                  <h5 class="picks-title">Staff Picks</h5>
+                  <p class="picks-name">Rickey: The Life and Legend</p>
+                  <p class="picks-author">By Howard Bryant</p>
+                  <p class="picks-info">
+                    With the fall rolling around, one can't help but think of
+                    baseball's postseason coming up! And what better way to
+                    prepare for it than reading the biography of one of the game's
+                    all-time greatest performers, the Man of Steal, Rickey
+                    Henderson?
+                  </p>
+                  <div class="picks-cover-wrapper">
+                    <img
+                      src="assets/img/book-15.jpg"
+                      alt="Rickey: The Life and Legend By Howard Bryant"
+                      class="picks-cover">
+                  </div>
+                  <button class="btn-secondary">Buy</button>
                 </div>
-                <button class="btn-secondary">Buy</button>
               </div>
-            </div>
-            <div class="picks-item hide">
-              <div class="picks-border">
-                <h5 class="picks-title">Staff Picks</h5>
-                <p class="picks-name">Slug: And Other Stories</p>
-                <p class="picks-author">By Megan Milks</p>
-                <p class="picks-info">
-                  Exes Tegan and Sara find themselves chained together by
-                  hairballs of codependency. A father and child experience the
-                  shared trauma of giving birth to gods from their wounds.
-                </p>
-                <div class="picks-cover-wrapper">
-                  <img
-                    src="assets/img/book-16.jpg"
-                    alt="Slug: And Other Stories By Megan Milks"
-                    class="picks-cover">
+              <!-- Книга Autumn#4 -->
+              <div class="picks-item">
+                <div class="picks-border">
+                  <h5 class="picks-title">Staff Picks</h5>
+                  <p class="picks-name">Slug: And Other Stories</p>
+                  <p class="picks-author">By Megan Milks</p>
+                  <p class="picks-info">
+                    Exes Tegan and Sara find themselves chained together by
+                    hairballs of codependency. A father and child experience the
+                    shared trauma of giving birth to gods from their wounds.
+                  </p>
+                  <div class="picks-cover-wrapper">
+                    <img
+                      src="assets/img/book-16.jpg"
+                      alt="Slug: And Other Stories By Megan Milks"
+                      class="picks-cover">
+                  </div>
+                  <button class="btn-secondary">Buy</button>
                 </div>
-                <button class="btn-secondary">Buy</button>
               </div>
+              <!-- Закрыли обертку книг Autumn -->
             </div>
+
+          <!-- Закрыли обертку всех дивов с книгами all-picks-wrapper -->
           </div>
+
+          <!-- Закрыли обертку дива container -->
         </div>
       </section>
       <section class="section coffee-shop">

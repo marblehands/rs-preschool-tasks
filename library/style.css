@@ -22,6 +22,15 @@ body {
   color: #000000;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
 .body-wrapper {
   overflow: hidden;
   width: 100%;
@@ -34,6 +43,7 @@ body {
 }
 
 .section-wrapper {
+  position: relative;
   padding: 0 20px;
 }
 
@@ -126,7 +136,10 @@ h2::after {
 }
 
 .profile-link {
-  line-height: 18px;
+  display: flex;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .profile-icon {
@@ -138,6 +151,60 @@ h2::after {
   filter: invert(63%) sepia(9%) saturate(1867%) hue-rotate(355deg)
     brightness(95%) contrast(88%);
   transition: 0.2s;
+}
+
+/* Profile Menu Dropdown */
+
+.profile-menu {
+  position: absolute;
+  top: 70px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 5px 10px 20px;
+  z-index: 10;
+  font-size: 15px;
+  line-height: 20px;
+  letter-spacing: normal;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.profile-menu-visible {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.profile-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile-menu-title  {
+  font-weight: 700;
+}
+
+.profile-menu-title::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 1px;
+  background-color:#bb945f;
+  margin: 5px auto 0px;
+}
+
+.profile-menu-item {
+  text-align: center;
+  font-weight: 400;
+}
+
+@media (max-width: 1024px) {
+  .profile-menu {
+    right: 105px;
+  }
 }
 
 /* Burger */
@@ -380,10 +447,6 @@ h2::after {
   object-fit: cover;
 }
 
-.hide {
-  display: none;
-}
-
 .controls {
   display: flex;
   justify-content: center;
@@ -581,17 +644,41 @@ h2::after {
 
 /* Season Cards */
 
-.hide {
-  display: none;
+.all-picks-wrapper {
+  position: relative;
+  width: 100%;
+  height: 1150px;
+}
+
+@media (max-width: 1274px) {
+
+  .all-picks-wrapper {
+    height: 2340px;
+  }
 }
 
 .picks-wrapper {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  transition: opacity 0.3s linear;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 40px;
   padding-top: 29px;
 }
+
+/* .picks-position {
+  position: absolute;
+} */
+
+.picks-wrapper-active {
+  opacity: 1;
+}
+
+
 
 @media (max-width: 1274px) {
 
@@ -660,6 +747,24 @@ h2::after {
 .picks-cover {
   display: block;
   width: 100%;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 /* Menu */
