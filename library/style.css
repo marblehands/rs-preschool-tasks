@@ -31,6 +31,13 @@ li {
   list-style: none;
 }
 
+a {
+  margin: 0;
+  padding: 0;
+  color: #000000;
+  text-decoration: none;
+}
+
 .body-wrapper {
   /* overflow: hidden; */
   width: 100%;
@@ -93,11 +100,6 @@ h2::after {
 }
 
 /* Navigation */
-
-/* .nav {
-} */
-
-
 
 .nav-list {
   display: flex;
@@ -169,12 +171,15 @@ h2::after {
   line-height: 20px;
   letter-spacing: normal;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .profile-menu-visible {
   opacity: 1;
-  transition: opacity 0.3s ease;
+  transform: scaleY(1);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .profile-menu-list {
@@ -280,10 +285,6 @@ h2::after {
 
   .burger-button {
     display: inline-block;
-  }
-
-  .burger-visible {
-    /* transition: transform 0.5s ease-in-out; */
   }
 
   .burger-visible span {

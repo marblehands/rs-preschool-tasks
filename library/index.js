@@ -17,35 +17,119 @@
 // 3) На ширине экрана 768рх реализовано адаптивное меню +12
 // `);
 
+
+// // Burger Menu
+
+// const burger = document.querySelector('.burger-button');
+// const nav = document.querySelector('.nav');
+// const body = document.querySelector('.body');
+// const navLinks = document.querySelectorAll('.nav-link');
+// let burgerMenu = false;
+
+// burger.addEventListener('click', () => {
+//   burgerMenu = !burgerMenu;
+//   nav.classList.toggle('nav-visible');
+//   burger.classList.toggle('burger-visible');
+// });
+
+// navLinks.forEach (link => {
+//   link.addEventListener('click', function() {
+//   nav.classList.remove('nav-visible');
+//   burger.classList.remove('burger-visible');
+//   })
+// });
+
+// body.addEventListener('click', function(event) {
+//   if (event.target !== nav && event.target !== burger) {
+//   nav.classList.remove('nav-visible');
+//   burger.classList.remove('burger-visible');
+//   }
+// });
+
+// // Profile Menu
+
+
+//   const profileIcon = document.querySelector('.profile-link');
+//   const profileMenu = document.querySelector('.profile-menu');
+//   let menuDisplay = false;
+
+//   profileIcon.addEventListener('click', (event) => {
+//     event.stopPropagation();
+//     menuDisplay = !menuDisplay;
+//     profileMenu.classList.toggle('profile-menu-visible');
+//   });
+
+//   document.addEventListener('click', (event) => {
+//     if (menuDisplay) {
+//       const target = event.target;
+//       if (!profileMenu.contains(target) && (target !== profileIcon || burgerMenu)) {
+//         menuDisplay = false;
+//         burgerMenu = false;
+//         profileMenu.classList.remove('profile-menu-visible');
+//         nav.classList.remove('nav-visible');
+//         burger.classList.remove('burger-visible');
+//       }
+//     }
+//   });
+
 const burger = document.querySelector('.burger-button');
 const nav = document.querySelector('.nav');
 const body = document.querySelector('.body');
 const navLinks = document.querySelectorAll('.nav-link');
-const profileIcon = document.querySelector('.profile-link');
-const profileMenu = document.querySelector('.profile-menu');
+let burgerMenu = false;
+let menuDisplay = false;  // Переменная объявлена здесь
 
 burger.addEventListener('click', () => {
+  burgerMenu = !burgerMenu;
   nav.classList.toggle('nav-visible');
   burger.classList.toggle('burger-visible');
+
+  // Закрываем профайл-меню при открытии бургер-меню
+  menuDisplay = false;
+  profileMenu.classList.remove('profile-menu-visible');
 });
 
-navLinks.forEach (link => {
+navLinks.forEach(link => {
   link.addEventListener('click', function() {
-  nav.classList.remove('nav-visible');
-  burger.classList.remove('burger-visible');
-  })
+    nav.classList.remove('nav-visible');
+    burger.classList.remove('burger-visible');
+  });
 });
 
 body.addEventListener('click', function(event) {
   if (event.target !== nav && event.target !== burger) {
-  nav.classList.remove('nav-visible');
-  burger.classList.remove('burger-visible');
+    nav.classList.remove('nav-visible');
+    burger.classList.remove('burger-visible');
   }
 });
 
-profileIcon.addEventListener('click',  () => {
+// Profile Menu
+
+const profileIcon = document.querySelector('.profile-link');
+const profileMenu = document.querySelector('.profile-menu');
+
+profileIcon.addEventListener('click', (event) => {
+  event.stopPropagation();
+  menuDisplay = !menuDisplay;
   profileMenu.classList.toggle('profile-menu-visible');
+
+  // Закрываем бургер-меню при открытии профайл-меню
+  burgerMenu = false;
+  nav.classList.remove('nav-visible');
+  burger.classList.remove('burger-visible');
 });
+
+document.addEventListener('click', (event) => {
+  if (menuDisplay) {
+    const target = event.target;
+    if (!profileMenu.contains(target) && target !== profileIcon) {
+      menuDisplay = false;
+      profileMenu.classList.remove('profile-menu-visible');
+    }
+  }
+});
+
+
 
 
 // Увы это не сработало попробую еще раз :((((
