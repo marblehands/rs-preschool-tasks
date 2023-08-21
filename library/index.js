@@ -1,21 +1,21 @@
-console.log(`
-1. Task: https://github.com/rolling-scopes-school/tasks/blob/master/tasks/library/library-part2.md
-\n
-2. Deploy: https://rolling-scopes-school.github.io/marblehands-JSFEPRESCHOOL2023Q2/library/
-\n
-3. Done 13.08.2023 / deadline 14.08.2023
-\n
-4. Score: 50 / 50
-\n
-Моя оценка после самопроверки: 50 баллов
-\n
-Привет, мой Ревьюер :) Если у тебя есть комментарии, любые советы или вопросы по моей работе, пожалуйста напиши мне RS дискорде: Ania @marblehands Спасибо за твою проверку <3
-\n
-Выполненные пункты:
-1) Вёрстка соответствует макету. Ширина экрана 768px +26
-2) Ни на одном из разрешений до 640px включительно не появляется горизонтальная полоса прокрутки. Весь контент страницы при этом сохраняется: не обрезается и не удаляется +12
-3) На ширине экрана 768рх реализовано адаптивное меню +12
-`);
+// console.log(`
+// 1. Task: https://github.com/rolling-scopes-school/tasks/blob/master/tasks/library/library-part2.md
+// \n
+// 2. Deploy: https://rolling-scopes-school.github.io/marblehands-JSFEPRESCHOOL2023Q2/library/
+// \n
+// 3. Done 13.08.2023 / deadline 14.08.2023
+// \n
+// 4. Score: 50 / 50
+// \n
+// Моя оценка после самопроверки: 50 баллов
+// \n
+// Привет, мой Ревьюер :) Если у тебя есть комментарии, любые советы или вопросы по моей работе, пожалуйста напиши мне RS дискорде: Ania @marblehands Спасибо за твою проверку <3
+// \n
+// Выполненные пункты:
+// 1) Вёрстка соответствует макету. Ширина экрана 768px +26
+// 2) Ни на одном из разрешений до 640px включительно не появляется горизонтальная полоса прокрутки. Весь контент страницы при этом сохраняется: не обрезается и не удаляется +12
+// 3) На ширине экрана 768рх реализовано адаптивное меню +12
+// `);
 
 const burger = document.querySelector('.burger-button');
 const nav = document.querySelector('.nav');
@@ -105,6 +105,151 @@ radioBtn.forEach(radio => {
 
   })
 })
+
+// Carousel
+
+const list = document.querySelector('.carousel-list'); //ul с картинками
+const slides = document.querySelectorAll('.carousel-item'); //дивы с картинками
+const leftArrow = document.querySelector('.carousel-arrow-left'); //левая стрелка
+const rightArrow = document.querySelector('.carousel-arrow-right'); // правая стрелка
+const dotControls = document.querySelector('.controls'); // обертка с дивами в которых точки
+const controls = document.querySelectorAll('.control'); // дивы с точками
+const dots = document.querySelectorAll('.dot'); //точки (это спаны)
+const actControl = document.querySelector('.active-control'); //активная точка-спан
+
+
+// это функция которая листает слайдер по клику на кнопки пагинации
+function dotClickMove () {
+
+  controls.forEach((control, index)=>{ //перебираю дивы с точками
+    control.addEventListener('click', (e)=> { //слушаю клик по диву с точкой
+      let targetIndex = index;
+
+      dots.forEach((dot, index) => { // теперь перебираю точки и меняю активный класс
+        if (index === targetIndex) {
+          dot.classList.add('active-dot');
+        } else {
+          dot.classList.remove('active-dot');
+        }
+      });
+
+      let distance = 475 * index; // это вычисляем отступ насколько надо подвинуть список
+      list.style.transform = `translateX(${-distance}px)` // меняю параметр translateX в css
+    })
+  });
+}
+
+
+function arrowClickMove() {
+  leftArrow.addEventListener('click', () => {
+    moveSlides('left');
+  });
+
+  rightArrow.addEventListener('click', () => {
+    moveSlides('right');
+  });
+}
+
+function moveSlides(direction) {
+  let i = null;
+
+  // // Обнуление свойств стрелок крайнего положения
+  // leftArrow.style.opacity = 1;
+  // rightArrow.style.opacity = 1;
+  // leftArrow.style.cursor = 'pointer';
+  // rightArrow.style.cursor = 'pointer';
+
+  dots.forEach((dot, index) => {
+    if (dot.classList.contains('active-dot')) {
+      i = index;
+    }
+  });
+
+  const distance = 475;
+  if (i !== null && (direction === 'left' && i !== 0) || (direction === 'right' && i !== dots.length - 1)) {
+    i += direction === 'left' ? -1 : 1;
+    list.style.transform = `translateX(${-distance * i}px)`;
+  }
+  dots.forEach((dot, index) => {
+  dot.classList.remove('active-dot');
+  });
+  dots[i].classList.add('active-dot');
+
+}
+
+dotClickMove();
+arrowClickMove();
+
+    // if (direction === 'left' && i === 0) {
+    //   leftArrow.style.opacity = 0.3;
+    //   leftArrow.style.cursor='not-allowed';
+    // }
+    // if (direction === 'right' && i === dots.length - 1) {
+    //   rightArrow.style.opacity = 0.3;
+    //   rightArrow.style.cursor='not-allowed';
+    // }
+
+
+
+//   controls.addEventListener('click', () => {
+//       console.log(checkCurrentIndex());
+//     })
+
+
+
+// // это фукнция определяет значения параметра translateX для list (ul cо слайдами)
+// function checkListPosition () {
+//   const styles = window.getComputedStyle(list);
+//   const transformValue = styles.getPropertyValue('transform');
+//   const matrix = new DOMMatrix(transformValue);
+//   // console.log(matrix);
+//   const currentTranslateX = matrix.m41;
+//   // console.log(currentTranslateX);
+//   return currentTranslateX;
+// }
+
+
+// function arrowClickMove () {
+//   leftArrow.addEventListener('click', () =>{
+//     let position = checkListPosition();
+//     console.log(position);
+//     let checkPosition = position % 475;
+//     if (position !== 0 && checkPosition === 0 ) {
+//     list.style.transform = `translateX(${position + 475}px)`;
+//   }
+
+
+//   });
+//   rightArrow.addEventListener('click', () => {
+//     let position = checkListPosition();
+//     console.log(position);
+//     let checkPosition = position % 475;
+//     if (position !== -1900 && checkPosition === 0) {
+//     list.style.transform = `translateX(${position - 475}px)`;
+//   }
+// });
+// }
+
+
+// arrowClickMove()
+// checkListPosition ()
+
+
+
+//  когда я кликаю на правую стрелку, слайдер сдвигается на один слайд вправо
+//  если это не крайнее значение
+
+//  когда я кликаю на левую стрелку, слайдер сдвигается на один слайд влево
+//  если это не крайнее значение
+
+// когда я кликаю на кнопку пагинации, слайдер показывает соответствующую картинку по счету
+
+
+
+
+
+
+
 
 
 

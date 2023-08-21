@@ -32,7 +32,7 @@ li {
 }
 
 .body-wrapper {
-  overflow: hidden;
+  /* overflow: hidden; */
   width: 100%;
   position: relative;
 }
@@ -251,8 +251,15 @@ h2::after {
 
 @media (max-width: 1024px) {
 
+  header {
+    position: fixed;
+    top:0;
+    width: 100%;
+    z-index: 2;
+  }
+
   .nav {
-    position: absolute;
+    position: fixed;
     right: -100%;
     top: 90px;
     z-index: 10;
@@ -361,6 +368,13 @@ h2::after {
   position: relative;
 }
 
+@media (max-width: 1024px) {
+
+  .welcome-container {
+    height: 690px;
+  }
+  }
+
 @media (max-width: 769px) {
 
   .welcome-container {
@@ -395,7 +409,7 @@ h2::after {
   background-color: #0c0c0e;
   width: 600px;
   height: 220px;
-  top: 220px;
+  top: 120px;
   padding: 35px 40px;
   color: #ffffff;
   font-family: Forum, serif;
@@ -405,6 +419,13 @@ h2::after {
   text-transform: uppercase;
   text-align: center;
 }
+
+@media (max-width: 768px) {
+
+  .welcome-title {
+    top: 210px;
+  }
+  }
 
 /* Sections */
 
@@ -419,6 +440,7 @@ h2::after {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 auto;
 }
 
 .about {
@@ -429,13 +451,28 @@ h2::after {
   letter-spacing: normal;
 }
 
-.item-container {
+.carousel-container {
+  max-width: 1400px;
+  height: 560px;
+  overflow: hidden;
+}
+
+
+
+.carousel-wrapper {
   display: flex;
   justify-content: center;
+  align-items:center;
   gap: 25px;
 }
 
-.item {
+.carousel-list {
+  display: flex;
+  gap: 25px;
+  transition: transform 0.5s ease;
+}
+
+.carousel-item {
   max-width: 450px;
   max-height: 560px;
   flex-shrink: 0;
@@ -481,20 +518,19 @@ h2::after {
 
 @media (max-width: 1920px) {
 
-.item-4,
-.item-5 {
-  display: none;
-}
+  .item-4,
+  .item-5 {
+    display: none;
+  }
 
-.control-4,
-.control-5 {
-  display: none;
-}
+  .control-4,
+  .control-5 {
+    display: none;
+  }
 
-.arrow {
-  display: none;
-}
-
+  .carousel-arrow {
+    display: none;
+  }
 }
 
 @media (max-width: 1440px) {
@@ -512,7 +548,30 @@ h2::after {
     width: calc( 80% / 2 - 20px);
     flex-shrink: 1;
   }
+}
 
+@media (max-width: 1425px) {
+
+  .carousel-container{
+    width: 925px;
+  }
+
+  .control-4 {
+    display: flex;
+  }
+}
+
+@media (max-width: 975px) {
+
+  .carousel-container{
+    width: 450px;
+  }
+
+  .control-5,
+  .control-4,
+  .control-6 {
+    display: flex;
+  }
 }
 
 @media (max-width: 768px) {
@@ -526,7 +585,7 @@ h2::after {
     flex-shrink: 1;
   }
 
-  .item-container {
+  .carousel-wrapper {
     gap: 58px;
   }
 
@@ -534,17 +593,21 @@ h2::after {
     padding-top: 20px;
   }
 
-  .control-3,
   .control-4,
   .control-5 {
-  display: flex;
-}
+    display: flex;
+  }
 
-.arrow {
-  display: flex;
-  margin-top: 40px;
-}
-
+.carousel-arrow {
+    display: flex;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    border: none;
+    margin-top: 40px;
+    cursor: pointer;
+  }
 }
 
 @media (max-width: 640px) {
@@ -647,32 +710,30 @@ h2::after {
 .all-picks-wrapper {
   position: relative;
   width: 100%;
-  height: 1150px;
+  height: 1180px;
+  /* padding-top: 29px; */
 }
 
 @media (max-width: 1274px) {
 
   .all-picks-wrapper {
-    height: 2340px;
+    height: 2370px;
+
   }
 }
 
 .picks-wrapper {
   position: absolute;
   opacity: 0;
-  top: 0;
+  top: 29px;
   left: 0;
   transition: opacity 0.3s linear;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 40px;
-  padding-top: 29px;
-}
 
-/* .picks-position {
-  position: absolute;
-} */
+}
 
 .picks-wrapper-active {
   opacity: 1;
@@ -749,23 +810,64 @@ h2::after {
   width: 100%;
 }
 
-@keyframes fadein {
-  from {
-    opacity: 0;
+.wrapper-sticky {
+  position: relative;
+}
+
+/* Sticky panel for radiobuttons */
+
+@media (max-width: 1259px) {
+
+  .wrapper-sticky {
+    position: relative;
   }
-  to {
-    opacity: 1;
+
+  .radio-controls {
+    background-color: #bb945f;
+    padding: 14px;
+    position: -webkit-sticky; /* Для поддержки Safari */
+    position: sticky;
+    top: 0px;
+   width: 100%;
+   z-index: 1;
+  }
+
+  .legend-title {
+    font-size: 18px;
+    line-height: 20px;
+    margin-bottom: 6px;
   }
 }
 
-@keyframes fadeout {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
+@media (max-width: 1024px) {
+
+  .radio-controls {
+    top: 90px;
   }
 }
+
+@media (max-width: 790px) {
+
+  .winter,
+  .spring,
+  .summer {
+    padding-right: 40px;
+  }
+}
+
+@media (max-width: 670px) {
+
+  .winter,
+  .spring,
+  .summer {
+    padding-right: 30px;
+  }
+
+  .radio-check {
+    margin-right: 15px;
+  }
+}
+
 
 /* Menu */
 
@@ -960,14 +1062,7 @@ input[type="submit"] {
 /* Digital Library Cards / Get in touch */
 
 .library-cards {
-  padding-top: 7px;
-}
-
-@media (max-width: 768px) {
-
-  .library-cards {
-    padding-top: 20px;
-  }
+  padding-top: 20px;
 }
 
 .cards-wrapper {

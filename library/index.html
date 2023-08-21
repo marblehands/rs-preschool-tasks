@@ -73,47 +73,58 @@
             and a cozy coffee shop inside
           </p>
           <div class="carousel">
-            <div class="item-container">
-              <div class="arrow"><img src="assets/svg/arrow-left.svg" alt="Left Arrow Slider Navigation"></div>
-              <div class="item item-1">
-                <img
-                  src="assets/img/image-1.jpg"
-                  alt="First carousel slide"
-                  class="item-img"
-                >
+
+            <div class="carousel-wrapper">
+
+              <button class="carousel-arrow carousel-arrow-left">
+                <img src="assets/svg/arrow-left.svg" alt="Left Arrow Slider Navigation">
+              </button>
+
+              <div class="carousel-container">
+                <ul class="carousel-list">
+                  <li class="carousel-item item1">
+                    <img
+                    src="assets/img/image-1.jpg"
+                    alt="First carousel slide"
+                    class="item-img">
+                  </li>
+                  <li class="carousel-item item2">
+                    <img
+                    src="assets/img/image-2.jpg"
+                    alt="Second carousel slide"
+                    class="item-img">
+                  </li>
+                  <li class="carousel-item item3">
+                    <img
+                    src="assets/img/image-3.jpg"
+                    alt="Third carousel slide"
+                    class="item-img">
+                  </li>
+                  <li class="carousel-item item4">
+                    <img
+                    src="assets/img/image-4.jpg"
+                    alt="Fourth carousel slide"
+                    class="item-img">
+                  </li>
+                  <li class="carousel-item item5">
+                    <img
+                    src="assets/img/image-5.jpg"
+                    alt="Fifth carousel slide"
+                    class="item-img">
+                  </li>
+                </ul>
               </div>
-              <div class="item item-2">
-                <img
-                  src="assets/img/image-2.jpg"
-                  alt="Second carousel slide"
-                  class="item-img"
-                >
-              </div>
-              <div class="item item-3">
-                <img
-                  src="assets/img/image-3.jpg"
-                  alt="Third carousel slide"
-                  class="item-img"
-                >
-              </div>
-              <div class="item item-4">
-                <img
-                  src="assets/img/image-4.jpg"
-                  alt="Fourth carousel slide"
-                  class="item-img"
-                >
-              </div>
-              <div class="item item-5">
-                <img
-                  src="assets/img/image-5.jpg"
-                  alt="Fifth carousel slide"
-                  class="item-img"
-                >
-              </div>
-              <div class="arrow"><img src="assets/svg/arrow-right.svg" alt="Right Arrow Slider Navigation"></div>
+
+              <button class="carousel-arrow carousel-arrow-right">
+                <img src="assets/svg/arrow-right.svg" alt="Right Arrow Slider Navigation">
+              </button>
+
             </div>
+
+            </div>
+
             <div class="controls">
-              <div class="control control-1">
+              <div class="control control-1 active-control">
                 <span class="dot active-dot"></span>
               </div>
               <div class="control control-2">
@@ -129,14 +140,19 @@
                 <span class="dot"></span>
               </div>
             </div>
-          </div>
+
         </div>
+
       </section>
       <section class="section favorites">
 
         <div class="container section-wrapper">
 
           <h2 class="section-title" id="favorites">Favorites</h2>
+
+          <div class="parent-sticky">
+
+          <div class="wrapper-sticky">
 
           <!-- Это обертка заголовка + радиокнопки - нужна для стики на мобайле-->
           <div class="radio-controls">
@@ -166,6 +182,7 @@
                 <span class="text">Autumn</span>
               </label>
             </div>
+
           <!-- Закрыли обертку стики контролов -->
           </div>
 
@@ -548,6 +565,11 @@
 
           <!-- Закрыли обертку всех дивов с книгами all-picks-wrapper -->
           </div>
+
+        <!-- Закрыли обертку wrapper-sticky -->
+        </div>
+
+      </div>
 
           <!-- Закрыли обертку дива container -->
         </div>
