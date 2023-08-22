@@ -204,6 +204,8 @@ h2::after {
 .profile-menu-item {
   text-align: center;
   font-weight: 400;
+  font-size: 15px;
+  line-height: 20px; /* 133.333% */
 }
 
 @media (max-width: 1024px) {
