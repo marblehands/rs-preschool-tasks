@@ -77,7 +77,8 @@ const nav = document.querySelector('.nav');
 const body = document.querySelector('.body');
 const navLinks = document.querySelectorAll('.nav-link');
 let burgerMenu = false;
-let menuDisplay = false;  // Переменная объявлена здесь
+let menuDisplay = false;
+let modalReg = false;
 
 burger.addEventListener('click', () => {
   burgerMenu = !burgerMenu;
@@ -329,8 +330,132 @@ arrowClickMove();
 // когда я кликаю на кнопку пагинации, слайдер показывает соответствующую картинку по счету
 
 
+// Modal REGISTER
+
+const modalButtonsRegister = document.querySelectorAll('[data-modal-btn="register"]'); // все кнопки которые открывают модальное окно REGISTER
 
 
+// console.log(modalButtonsRegister)
+
+modalButtonsRegister.forEach((e)=>{
+  e.addEventListener('click', function() {
+
+    const modalRegister = this.dataset.modalBtn;
+    // console.log(modalRegister)
+
+    const modalWidowRegister = document.querySelector('#' + modalRegister);
+    // console.log(modalWidowRegister);
+
+    modalReg = !modalReg;
+    modalWidowRegister.classList.remove('hide');
+
+    if (menuDisplay) {
+      menuDisplay = false;
+      profileMenu.classList.remove('profile-menu-visible');
+    }
+  });
+});
+
+
+
+  const modalButtonsClose = document.querySelectorAll('[data-close-modal]'); // все кнопки которые закрывают модалки
+  // console.log(modalButtonsClose)
+  modalButtonsClose.forEach((e)=>{
+  e.addEventListener('click', function (){
+    const currentModal = this.closest('[data-modal-window]');
+    // console.log(currentModal)
+    // if (currentModal.dataset.register){
+    //   modalReg = false;
+    // }
+    modalReg = false; // как понять какая именно модалка this?
+    // console.log(modalReg)
+    currentModal.classList.add('hide');
+  })
+})
+
+
+// Local Storage Study
+
+// //Добавляем или изменяем значение:
+// localStorage.setItem('myKey', 'myValue'); //теперь у вас в localStorage хранится ключ "myKey" cо значением "myValue"
+
+// //Выводим его в консоль:
+// var localValue = localStorage.getItem('myKey');
+// console.log(localValue); //"myValue"
+
+// // //удаляем:
+// localStorage.removeItem("myKey");
+
+// // //очищаем все хранилище
+// localStorage.clear()
+
+// // То же самое, только с квадратными скобками:
+
+// localStorage["Ключ"] = "Значение" //установка значения
+// localStorage["Ключ"] // Получение значения
+// delete localStorage["Ключ"] // Удаление значения
+
+// localStorage.user = JSON.stringify({name: "John"});
+
+// let user = JSON.parse( localStorage.user );
+// alert( user.name ); // John
+
+// Modal register
+
+const registerForm = document.getElementById('register');
+const firstNameInput = document.getElementById('first-name');
+const lastNameInput = document.getElementById('last-name');
+const emailInput = document.getElementById('reg-email');
+const passwordReg = document.getElementById('reg-pass');
+let counter = JSON.parse(localStorage.getItem('counter')) || 0;
+
+function generateUniqUserId () {
+  return counter++;
+}
+
+function createNewUser () {
+  let existingUsers = JSON.parse(localStorage.getItem('allLibraryUsers')) || [];
+  const userUniqCounter = generateUniqUserId ();
+
+  let newLibraryUser = {
+    counter: userUniqCounter,
+    firstName: firstNameInput.value,
+    lastName: lastNameInput.value,
+    email: emailInput.value,
+    password: passwordReg.value,
+  };
+
+  existingUsers.push(newLibraryUser);
+
+  localStorage.setItem('allLibraryUsers', JSON.stringify(existingUsers));
+
+}
+
+registerForm.addEventListener('submit', (e)=>{
+  e.preventDefault();
+
+  createNewUser ();
+
+  if (modalReg) {
+    modalReg = false;
+    registerForm.classList.add('hide');
+  }
+
+  location.reload();
+});
+
+// function changeAvatar () {
+
+//   const userDataJSON = localStorage.getItem('userData');
+
+//   if (userDataJSON) {
+//   const userData = JSON.parse(userDataJSON);
+
+//   const userLetters = userData.firstName[0] + userData.lastName[0];
+//   console.log(userLetters)
+//   }
+
+//   }
 
 
 

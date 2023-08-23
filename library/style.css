@@ -9,6 +9,7 @@ html {
 }
 
 body {
+  position: relative;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
@@ -36,6 +37,17 @@ a {
   padding: 0;
   color: #000000;
   text-decoration: none;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+}
+
+
+
+.hide {
+  display: none;
 }
 
 .body-wrapper {
@@ -185,6 +197,7 @@ h2::after {
 .profile-menu-list {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 10px;
 }
 
@@ -201,11 +214,18 @@ h2::after {
   margin: 5px auto 0px;
 }
 
-.profile-menu-item {
+.profile-menu-item button {
+  border:none;
+  background-color: transparent;
   text-align: center;
   font-weight: 400;
   font-size: 15px;
   line-height: 20px; /* 133.333% */
+  cursor: pointer;
+}
+
+.profile-menu-item button:hover {
+  text-decoration: underline;
 }
 
 @media (max-width: 1024px) {
@@ -412,7 +432,7 @@ h2::after {
   background-color: #0c0c0e;
   width: 600px;
   height: 220px;
-  top: 120px;
+  top: 220px;
   padding: 35px 40px;
   color: #ffffff;
   font-family: Forum, serif;
@@ -426,7 +446,7 @@ h2::after {
 @media (max-width: 768px) {
 
   .welcome-title {
-    top: 210px;
+    top: 310px;
   }
   }
 
@@ -519,6 +539,10 @@ h2::after {
   background-color: #bb945f;
 }
 
+.carousel-arrow {
+  display: none;
+}
+
 @media (max-width: 1920px) {
 
   .item-4,
@@ -528,10 +552,6 @@ h2::after {
 
   .control-4,
   .control-5 {
-    display: none;
-  }
-
-  .carousel-arrow {
     display: none;
   }
 }
@@ -1018,13 +1038,13 @@ h3.menu-title {
   margin-bottom: 30px;
 }
 
-form {
+form.cards {
   background: #fff;
   width: 600px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-fieldset {
+form.cards fieldset {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -1042,7 +1062,7 @@ fieldset {
   width: 100%;
 }
 
-input[type="text"] {
+input.form-input-check[type="text"] {
   display: block;
   border: 0;
   border-radius: 10px;
@@ -1057,7 +1077,7 @@ input[type="text"] {
   padding: 8px 20px;
 }
 
-input[type="submit"] {
+input.form-input-check[type="submit"] {
   display: block;
   width: fit-content;
 }
@@ -1230,6 +1250,162 @@ h4.input-title {
   .footer-copyright p:last-child {
     flex-basis: 112px;
   }
+}
+
+/* Modals */
+
+.modal-overlay {
+  position: fixed;
+  overflow: auto;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  background-color: rgba(12, 12, 14, 0.70);
+}
+
+.modal-window {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  z-index: 20;
+  background-color: #ffffff;
+}
+
+.modal-icon-close {
+  position:absolute;
+  display: flex;
+  right: 14px;
+  top: 14px;
+}
+
+.modal-title {
+  text-align: center;
+  font-family: Forum;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 100% */
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.modal-window-register,
+.modal-window-login {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 20px;
+  padding: 20px 25px;
+
+}
+
+.modal-window-register {
+  width: 250px;
+  height: 382px;
+}
+
+.modal-window-login {
+  width: 250px;
+  height: 262px;
+}
+
+.modal-from {
+  display: flex;
+  width: 100%;
+}
+
+.modal-form fieldset {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.modal-form label {
+  width: 100%;
+  font-family: Inter;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 133.333% */
+  letter-spacing: 0.3px;
+}
+
+.modal-form input {
+  width: 100%;
+  padding: 2px;
+  font-size: 12px;
+  min-height: 20px;
+  flex-grow: 1;
+  border: 1px solid #BB945F;
+}
+
+input:focus-visible {
+  outline: none;
+  border: 1px solid #BB945F;
+}
+
+input:invalid,
+input:invalid:required {
+  border: 1px solid #BB945F;
+}
+
+input:valid {
+  border: 1px solid rgb(27, 170, 82);
+}
+
+.modal-form input:focus-visible {
+  outline: none;
+}
+
+.modal-form input[type=submit] {
+  border: 1px solid #0C0C0E;
+  max-width: 75px;
+  margin-top: 10px;
+}
+
+.modal-form input[type=submit]:hover {
+  border: 1px solid #BB945F;
+}
+
+/* Modal REGISTER Caption */
+
+.caption-wrapper {
+  display: flex;
+  gap: 10px;
+
+}
+
+.caption-text {
+  color: #000;
+  text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.16);
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: normal;
+}
+
+.caption-link {
+  color: #0C0C0E;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1px;
+  text-decoration-line: underline;
+  cursor: pointer;
+}
+
+.error-message {
+  
 }
 
 
