@@ -107,6 +107,7 @@ body.addEventListener('click', function(event) {
 // Profile Menu
 
 const profileIcon = document.querySelector('.profile-link');
+const profileAuthorized = document.querySelector('.profile-link-authorized');
 const profileMenu = document.querySelector('.profile-menu');
 
 profileIcon.addEventListener('click', (event) => {
@@ -119,6 +120,19 @@ profileIcon.addEventListener('click', (event) => {
   nav.classList.remove('nav-visible');
   burger.classList.remove('burger-visible');
 });
+
+profileAuthorized.addEventListener('click', (event) =>{
+  event.stopPropagation();
+  menuDisplay = !menuDisplay;
+
+  profileMenu.classList.toggle('profile-menu-visible');
+
+
+  // Закрываем бургер-меню при открытии профайл-меню
+  burgerMenu = false;
+  nav.classList.remove('nav-visible');
+  burger.classList.remove('burger-visible');
+})
 
 document.addEventListener('click', (event) => {
   if (menuDisplay) {
@@ -330,12 +344,12 @@ arrowClickMove();
 // когда я кликаю на кнопку пагинации, слайдер показывает соответствующую картинку по счету
 
 
-// Modal REGISTER
+// Открываю Modal REGISTER
 
 const modalButtonsRegister = document.querySelectorAll('[data-modal-btn="register"]'); // все кнопки которые открывают модальное окно REGISTER
-
-
 // console.log(modalButtonsRegister)
+
+
 
 modalButtonsRegister.forEach((e)=>{
   e.addEventListener('click', function() {
@@ -349,6 +363,7 @@ modalButtonsRegister.forEach((e)=>{
     modalReg = !modalReg;
     modalWidowRegister.classList.remove('hide');
 
+      // При открытом профайл меню закрываю его
     if (menuDisplay) {
       menuDisplay = false;
       profileMenu.classList.remove('profile-menu-visible');
@@ -371,6 +386,23 @@ modalButtonsRegister.forEach((e)=>{
     // console.log(modalReg)
     currentModal.classList.add('hide');
   })
+})
+
+// Закрываю по оверлею
+const modalOverlay = document.querySelector('[data-modal-window]');
+
+modalOverlay.addEventListener('click', (e)=>{
+  // console.log(e.target)
+  const isMenuRegister = document.querySelector('.modal-window-register')
+  const modalWindowRegister = document.querySelector('.modal-window-register')
+
+  if (modalReg &&
+    e.target === modalOverlay &&
+    e.target !== modalButtonsClose &&
+    !modalWindowRegister.contains(e.target)) {
+    modalReg = false;
+    modalOverlay.classList.add('hide');
+  }
 })
 
 
@@ -409,7 +441,7 @@ const emailInput = document.getElementById('reg-email');
 const passwordReg = document.getElementById('reg-pass');
 
 function generateUniqUserId () {
-  let existingUsers = JSON.parse(localStorage.getItem('allLibraryUsers')) || null;
+  let existingUsers = JSON.parse(localStorage.getItem('allLibraryUsers'));
   if (existingUsers) {
     const lastUser = existingUsers[existingUsers.length - 1];
     let lastUserCounter = lastUser.counter;
@@ -417,12 +449,75 @@ function generateUniqUserId () {
   }
   lastUserCounter = 0;
   return ++lastUserCounter;
+}
+
+// function userVisitsCount () {
+//  let existingUsers = JSON.parse(localStorage.getItem('allLibraryUsers'));
+//  existingUsers.forEach((e, index)=>{
+
+//  })
+//  if (existingUsers) {
+//   const currentUser =
+//   let currentUserVisits = currentUser.visits;
+
+//  }
+//  return ++
+// }
+
+function profileMenuAvatarChange (user) {
+  const userLetters = user.firstName[0].toUpperCase() + user.lastName[0].toUpperCase();
+  const profileAvatarBtn = document.querySelector('.profile-link')
+  const profileAvatar = document.querySelector('.profile-icon')
+  const userProfileAvatar = document.querySelector('.profile-link-authorized')
+  let userProfileName = document.querySelector('.profile-avatar-name')
+  let profileTitle = document.querySelector('.profile-menu-title');
+  let firstLink = document.querySelector('.login-link')
+  let secondLink = document.querySelector('.register-link')
+  const cardStr = user.card;
+
+  profileTitle.classList.add('authorized');
+  profileTitle.innerHTML  = cardStr;
+
+  profileAvatar.classList.add('hide');
+  profileAvatarBtn.classList.add('hide');
+  userProfileAvatar.classList.remove('hide');
+  userProfileName.innerHTML = userLetters;
+
+  firstLink.classList.remove('login-link');
+  firstLink.classList.add('my-profile-link');
+  firstLink.dataset.modalBtn = 'my-profile';
+  secondLink.classList.remove('login-link');
+  secondLink.classList.add('logout-link');
+  secondLink.setAttribute('data-modal-btn', 'logout')
+  firstLink.innerHTML = 'My Profile';
+  secondLink.innerHTML = 'Log Out';
 
 }
+
+// 1. беру длину карточки 9 символов
+// 2. беру строку с символами 0123456789ABCDEF
+// 3. беру пустую строку result
+// 4. запускаю цикл от 0 до длины строки с символами
+// 5. генерирую рандомный индекс этой строки Math.floor(Math.random() * letters.length)
+// 6. записываю в результат рандомный символ из строки
+
+function readerCardGenerate () {
+  const cardLength = 9;
+  const symbols = '1234567890ABCDEF';
+  let result = '';
+
+  for (let i = 0; i < cardLength; i++) {
+    const index = Math.floor(Math.random() * symbols.length);
+    result += symbols[index];
+  }
+  return result;
+}
+
 
 function createNewUser () {
   let existingUsers = JSON.parse(localStorage.getItem('allLibraryUsers')) || [];
   const userUniqCounter = generateUniqUserId ();
+  const userReaderCard = readerCardGenerate ();
 
   let newLibraryUser = {
     counter: userUniqCounter,
@@ -430,11 +525,15 @@ function createNewUser () {
     lastName: lastNameInput.value,
     email: emailInput.value,
     password: passwordReg.value,
+    card: userReaderCard,
+    visits: 1,
   };
 
   existingUsers.push(newLibraryUser);
 
   localStorage.setItem('allLibraryUsers', JSON.stringify(existingUsers));
+
+  profileMenuAvatarChange(newLibraryUser);
 
 }
 
@@ -448,21 +547,11 @@ registerForm.addEventListener('submit', (e)=>{
     registerForm.classList.add('hide');
   }
 
-  location.reload();
+  // location.reload();
 });
 
-// function changeAvatar () {
 
-//   const userDataJSON = localStorage.getItem('userData');
 
-//   if (userDataJSON) {
-//   const userData = JSON.parse(userDataJSON);
-
-//   const userLetters = userData.firstName[0] + userData.lastName[0];
-//   console.log(userLetters)
-//   }
-
-//   }
 
 
 

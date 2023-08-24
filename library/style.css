@@ -46,9 +46,7 @@ button {
 
 
 
-.hide {
-  display: none;
-}
+
 
 .body-wrapper {
   /* overflow: hidden; */
@@ -156,6 +154,21 @@ h2::after {
   cursor: pointer;
 }
 
+.profile-link-authorized {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 20px;
+  width: 28px;
+  height: 28px;
+  color: #BB945F;
+  font-size: 15px;
+  line-height: 20px; /* 133.333% */
+  border: none;
+  cursor: pointer;
+}
+
 .profile-icon {
   width: 28px;
   height: 28px;
@@ -171,7 +184,7 @@ h2::after {
 
 .profile-menu {
   position: absolute;
-  top: 70px;
+  top: 90px;
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -203,6 +216,10 @@ h2::after {
 
 .profile-menu-title  {
   font-weight: 700;
+}
+
+.authorized {
+  font-size: 10px;
 }
 
 .profile-menu-title::after {
@@ -1404,8 +1421,6 @@ input:valid {
   cursor: pointer;
 }
 
-.error-message {
-  
+.hide {
+  display: none;
 }
-
-
