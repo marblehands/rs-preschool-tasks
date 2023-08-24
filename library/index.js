@@ -407,10 +407,17 @@ const firstNameInput = document.getElementById('first-name');
 const lastNameInput = document.getElementById('last-name');
 const emailInput = document.getElementById('reg-email');
 const passwordReg = document.getElementById('reg-pass');
-let counter = JSON.parse(localStorage.getItem('counter')) || 0;
 
 function generateUniqUserId () {
-  return counter++;
+  let existingUsers = JSON.parse(localStorage.getItem('allLibraryUsers')) || null;
+  if (existingUsers) {
+    const lastUser = existingUsers[existingUsers.length - 1];
+    let lastUserCounter = lastUser.counter;
+    return ++lastUserCounter;
+  }
+  lastUserCounter = 0;
+  return ++lastUserCounter;
+
 }
 
 function createNewUser () {
