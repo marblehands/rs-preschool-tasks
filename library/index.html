@@ -49,7 +49,7 @@
           <div class="profile-menu">
             <p class="profile-menu-title">Profile</p>
             <ul class="profile-menu-list">
-              <li class="profile-menu-item"><button class="login-link">Log In</button></li>
+              <li class="profile-menu-item"><button class="login-link" data-modal-btn="login">Log In</button></li>
               <li class="profile-menu-item"><button class="register-link" data-modal-btn="register">Register</button></li>
             </ul>
           </div>
@@ -720,7 +720,7 @@
                 </fieldset>
               </form>
             </div>
-            <div class="signup-wrapper">
+            <div class="signup-wrapper signup-not-auth">
               <h4 class="signup-title">Get a reader card</h4>
               <p class="signup-lead">
                 You will be able to see a reader card after logging into account
@@ -728,7 +728,16 @@
               </p>
               <div class="btn-wrapper">
                 <button data-modal-btn="register" class="btn-secondary">Sign Up</button>
-                <button class="btn-secondary">Log In</button>
+                <button data-modal-btn="login" class="btn-secondary">Log In</button>
+              </div>
+            </div>
+            <div class="signup-wrapper signup-loggedin hide">
+              <h4 class="signup-title">Visit your profile</h4>
+              <p class="signup-lead">
+                With a digital library card you get free access to the Library’s wide array of digital resources including e-books, databases, educational resources, and more.
+              </p>
+              <div class="btn-wrapper">
+                <button data-modal-btn="profile" class="btn-secondary">Profile</button>
               </div>
             </div>
           </div>
@@ -861,7 +870,7 @@
     </div>
   </div>
   <!-- Modal REGISTER closed -->
-
+  <div class="hide"></div>
   <!-- Modal LOGIN -->
   <div class="modal-overlay hide" id="login" data-modal-window>
     <div class="modal-window modal-window-login">
@@ -881,7 +890,6 @@
               required
               minlength="8"
               >
-          <!-- data-close-modal> -->
           <input
           type="submit"
           value="Log In"
@@ -895,6 +903,51 @@
   </form>
 </div>
 </div>
+<!-- Modal LOGIN closed -->
+<div class="hide"></div>
+<!-- Modal PROFILE start -->
+<div class="modal-overlay hide" id="profile" data-modal-window>
+  <div class="modal-window modal-window-profile">
+    <button class="modal-icon-close" data-close-modal><img src="assets/svg/close-modal-icon.svg" alt=""></button>
+    <div class="modal-sidebar">
+      <div class="user-avatar profile-avatar-name"></div>
+      <div class="user-name"></div>
+    </div>
+    <div class="modal-content">
+      <p class="modal-title modal-title-profile">My Profile</p>
+      <div class="user-stat">
+        <div class="visits-wrapper">
+          <p class="visits-title">Visits</p>
+          <img src="assets/svg/icon_user.svg" alt="Icon for user's visits statistics" class="visits-icon">
+          <span class="visits-count">1</span>
+        </div>
+        <div class="bonuses-wrapper">
+          <p class="bonuses-title">Bonuses</p>
+          <img src="assets/svg/icon_star.svg" alt="Icon for user's bonuses statistics" class="bonuses-icon">
+          <span class="bonuses-count">1240</span>
+        </div>
+        <div class="books-wrapper">
+          <p class="books-title">Books</p>
+          <img src="assets/svg/icon_book.svg" alt="Icon for user's books statistics" class="books-icon">
+          <span class="books-count">0</span>
+        </div>
+      </div>
+      <div class="rented-books">
+        <p class="rented-books-title">Rented books</p>
+        <ul class="rented-list">
+          <li class="rented-item">The Last Queen, Clive Irving</li>
+          <li class="rented-item">Dominicana, Angie Cruz</li>
+        </ul>
+      </div>
+      <div class="user-card-wrapper">
+        <p class="card-title">Card number</p>
+        <p class="card-number"></p>
+        <img src="assets/svg/icon_copy.svg" alt="Icon for copying card number" class="copy-icon">
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 

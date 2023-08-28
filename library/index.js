@@ -72,6 +72,8 @@
 //     }
 //   });
 
+
+
 const burger = document.querySelector('.burger-button');
 const nav = document.querySelector('.nav');
 const body = document.querySelector('.body');
@@ -79,6 +81,26 @@ const navLinks = document.querySelectorAll('.nav-link');
 let burgerMenu = false;
 let menuDisplay = false;
 let modalReg = false;
+let activeUser = 0; //это переменная которая мониторит активного юзера
+
+
+
+// функция которая проверяет есть ли активный юзер и если да то меняет страницу
+function activeUserCheck () {
+  let existingUsers = JSON.parse(localStorage.getItem('allLibraryUsers'));
+  console.log(existingUsers)
+  activeUser = parseInt(localStorage.getItem('activeUser')) || 0;
+  console.log(activeUser)
+  if (activeUser !== 0) {
+    let currentUser = existingUsers[activeUser - 1];
+    changePage(currentUser)
+  }
+  return
+}
+
+activeUserCheck ();
+
+
 
 burger.addEventListener('click', () => {
   burgerMenu = !burgerMenu;
@@ -252,12 +274,6 @@ function arrowClickMove() {
 function moveSlides(direction) {
   let i = null;
 
-  // // Обнуление свойств стрелок крайнего положения
-  // leftArrow.style.opacity = 1;
-  // rightArrow.style.opacity = 1;
-  // leftArrow.style.cursor = 'pointer';
-  // rightArrow.style.cursor = 'pointer';
-
   dots.forEach((dot, index) => {
     if (dot.classList.contains('active-dot')) {
       i = index;
@@ -346,22 +362,24 @@ arrowClickMove();
 
 // Открываю Modal REGISTER
 
-const modalButtonsRegister = document.querySelectorAll('[data-modal-btn="register"]'); // все кнопки которые открывают модальное окно REGISTER
+const modalButtonsRegister = document.querySelectorAll('[data-modal-btn]'); // все кнопки которые открывают модальное окно REGISTER
 // console.log(modalButtonsRegister)
 
-
-
 modalButtonsRegister.forEach((e)=>{
-  e.addEventListener('click', function() {
+  e.addEventListener('click', function(el) {
+    el.stopPropagation();
 
     const modalRegister = this.dataset.modalBtn;
     // console.log(modalRegister)
 
     const modalWidowRegister = document.querySelector('#' + modalRegister);
+    console.log(modalWidowRegister)
     // console.log(modalWidowRegister);
-
-    modalReg = !modalReg;
+    if (modalWidowRegister !== null){
+      modalReg = !modalReg;
     modalWidowRegister.classList.remove('hide');
+
+    }
 
       // При открытом профайл меню закрываю его
     if (menuDisplay) {
@@ -389,21 +407,22 @@ modalButtonsRegister.forEach((e)=>{
 })
 
 // Закрываю по оверлею
-const modalOverlay = document.querySelector('[data-modal-window]');
+const modalOverlay = document.querySelectorAll('.modal-overlay'); // выбираю все overlay
 
-modalOverlay.addEventListener('click', (e)=>{
-  // console.log(e.target)
-  const isMenuRegister = document.querySelector('.modal-window-register')
-  const modalWindowRegister = document.querySelector('.modal-window-register')
+modalOverlay.forEach((element)=>{ //перебираю overlay
+  element.addEventListener('click', (ev)=>{ //вешаю слушатель клика на overlay
+    const modalWindow = ev.target.querySelector('.modal-window') //выбираю модалку которую содержит оверлей по к-ому кликнули
 
-  if (modalReg &&
-    e.target === modalOverlay &&
-    e.target !== modalButtonsClose &&
-    !modalWindowRegister.contains(e.target)) {
-    modalReg = false;
-    modalOverlay.classList.add('hide');
-  }
+      if (modalReg && //условия закрытия по клику на оверлей
+        ev.target === element && // цель клика содержит оверлей
+        ev.target !== modalButtonsClose && //цель клика не содержит кнопки по которым закрывается модалка
+        !modalWindow.contains(ev.target)) { //цель клика не по модалке
+        modalReg = false; //флаг закрытой модалки
+        element.classList.add('hide'); //добавляем класс который скрывает оверлей
+      }
+  })
 })
+
 
 
 // Local Storage Study
@@ -440,6 +459,7 @@ const lastNameInput = document.getElementById('last-name');
 const emailInput = document.getElementById('reg-email');
 const passwordReg = document.getElementById('reg-pass');
 
+// Эта функция генерит номер юзера (counter) по порядку начиная с 1
 function generateUniqUserId () {
   let existingUsers = JSON.parse(localStorage.getItem('allLibraryUsers'));
   if (existingUsers) {
@@ -464,34 +484,46 @@ function generateUniqUserId () {
 //  return ++
 // }
 
-function profileMenuAvatarChange (user) {
-  const userLetters = user.firstName[0].toUpperCase() + user.lastName[0].toUpperCase();
-  const profileAvatarBtn = document.querySelector('.profile-link')
-  const profileAvatar = document.querySelector('.profile-icon')
-  const userProfileAvatar = document.querySelector('.profile-link-authorized')
+//Функция меняет аватар и меню, принимает на вход нового юзера
+function changePage (user) {
+  const userLetters = user.firstName[0].toUpperCase() + user.lastName[0].toUpperCase(); // две буквы имени
+  const profileAvatarBtn = document.querySelector('.profile-link') //кнопка с иконкой
+  const profileAvatar = document.querySelector('.profile-icon') // иконка svg
+  const userProfileAvatar = document.querySelector('.profile-link-authorized') //пустой див для аватарки с буквами
   let userProfileName = document.querySelector('.profile-avatar-name')
-  let profileTitle = document.querySelector('.profile-menu-title');
-  let firstLink = document.querySelector('.login-link')
-  let secondLink = document.querySelector('.register-link')
-  const cardStr = user.card;
+  let profileTitle = document.querySelector('.profile-menu-title'); // надпись Profile
+  let firstLink = document.querySelector('.login-link') // первая ссылка меню Login -> My Profile
+  let secondLink = document.querySelector('.register-link') // вторая ссылка меню register -> Logout
+  const cardStr = user.card; //номер карты юзера
+  const username = user.firstName + ' ' + user.lastName; // полное имя пользователя нужно для добавления атрибута title
 
+  // Меняю надпись Profile на номер карты
   profileTitle.classList.add('authorized');
   profileTitle.innerHTML  = cardStr;
 
+  // Меняю аватар
   profileAvatar.classList.add('hide');
   profileAvatarBtn.classList.add('hide');
   userProfileAvatar.classList.remove('hide');
+  userProfileName.setAttribute('title', username);
   userProfileName.innerHTML = userLetters;
 
+  // Меняю ссылки в меню
   firstLink.classList.remove('login-link');
   firstLink.classList.add('my-profile-link');
-  firstLink.dataset.modalBtn = 'my-profile';
-  secondLink.classList.remove('login-link');
+  firstLink.dataset.modalBtn = 'profile';
+  secondLink.classList.remove('register-link');
   secondLink.classList.add('logout-link');
-  secondLink.setAttribute('data-modal-btn', 'logout')
+  delete secondLink.dataset.modalBtn;
+  secondLink.dataset.logOut;
   firstLink.innerHTML = 'My Profile';
   secondLink.innerHTML = 'Log Out';
 
+  //Меняю правую секция в Library Cards
+  const signupNotAuth = document.querySelector('.signup-not-auth');
+  const signupLoggedIn = document.querySelector('.signup-loggedin');
+  signupLoggedIn.classList.remove('hide');
+  signupNotAuth.classList.add('hide');
 }
 
 // 1. беру длину карточки 9 символов
@@ -501,6 +533,7 @@ function profileMenuAvatarChange (user) {
 // 5. генерирую рандомный индекс этой строки Math.floor(Math.random() * letters.length)
 // 6. записываю в результат рандомный символ из строки
 
+// Функция генерит рандомный номер карты
 function readerCardGenerate () {
   const cardLength = 9;
   const symbols = '1234567890ABCDEF';
@@ -514,6 +547,8 @@ function readerCardGenerate () {
 }
 
 
+
+// Функция создания нового пользователя
 function createNewUser () {
   let existingUsers = JSON.parse(localStorage.getItem('allLibraryUsers')) || [];
   const userUniqCounter = generateUniqUserId ();
@@ -533,7 +568,12 @@ function createNewUser () {
 
   localStorage.setItem('allLibraryUsers', JSON.stringify(existingUsers));
 
-  profileMenuAvatarChange(newLibraryUser);
+  changePage(newLibraryUser);
+
+  activeUser = newLibraryUser.counter;
+  localStorage.setItem('activeUser', activeUser);
+
+  location.reload();
 
 }
 
@@ -549,6 +589,30 @@ registerForm.addEventListener('submit', (e)=>{
 
   // location.reload();
 });
+
+const logOutBtn = document.querySelector('.logout-link');
+if (logOutBtn) {
+
+  logOutBtn.addEventListener('click', (e)=>{
+    e.stopPropagation();
+    logOut ();
+  })
+}
+
+
+function logOut () {
+  if (logOutBtn) {
+      activeUser = 0;
+      localStorage.setItem('activeUser', activeUser);
+      location.reload();
+  }
+  return
+}
+
+
+
+
+
 
 
 
