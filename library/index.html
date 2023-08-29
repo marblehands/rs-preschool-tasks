@@ -705,18 +705,38 @@
                       name="name"
                       placeholder="Reader's name"
                       id="name"
-                      class="form-input form-input-check">
+                      class="form-input form-input-check"
+                      data-user-name>
                     <input
                       type="text"
                       name="number"
                       placeholder="Card number"
                       id="number"
-                      class="form-input form-input-check">
+                      class="form-input form-input-check"
+                      data-user-number>
                   </div>
-                  <input
-                    type="submit"
-                    value="Check the card"
-                    class="primary-btn">
+                    <input
+                      type="submit"
+                      value="Check the card"
+                      class="primary-btn"
+                      data-check-btn>
+                    <div class="user-stat hide" data-stats>
+                      <div class="stat-wrapper">
+                        <p class="stat-title">Visits</p>
+                        <img src="assets/svg/icon_user.svg" alt="Icon for user's visits statistics" class="stat-icon">
+                        <span class="stat-number" data-visits>1</span>
+                      </div>
+                      <div class="stat-wrapper">
+                        <p class="stat-title">Bonuses</p>
+                        <img src="assets/svg/icon_star.svg" alt="Icon for user's bonuses statistics" class="stat-icon">
+                        <span class="stat-number">1240</span>
+                      </div>
+                      <div class="stat-wrapper">
+                        <p class="stat-title">Books</p>
+                        <img src="assets/svg/icon_book.svg" alt="Icon for user's books statistics" class="stat-icon">
+                        <span class="stat-number" data-books>0</span>
+                      </div>
+                    </div>
                 </fieldset>
               </form>
             </div>
@@ -905,31 +925,32 @@
 </div>
 <!-- Modal LOGIN closed -->
 <div class="hide"></div>
+
 <!-- Modal PROFILE start -->
 <div class="modal-overlay hide" id="profile" data-modal-window>
   <div class="modal-window modal-window-profile">
-    <button class="modal-icon-close" data-close-modal><img src="assets/svg/close-modal-icon.svg" alt=""></button>
+    <button class="modal-icon-close modal-icon-close-l" data-close-modal><img src="assets/svg/close-modal-icon.svg" alt=""></button>
     <div class="modal-sidebar">
-      <div class="user-avatar profile-avatar-name"></div>
-      <div class="user-name"></div>
+      <div class="user-avatar profile-avatar-name">JD</div>
+      <div class="user-name">John Doe</div>
     </div>
     <div class="modal-content">
-      <p class="modal-title modal-title-profile">My Profile</p>
+      <p class="modal-title-l">My Profile</p>
       <div class="user-stat">
-        <div class="visits-wrapper">
-          <p class="visits-title">Visits</p>
+        <div class="stat-wrapper">
+          <p class="stat-title">Visits</p>
           <img src="assets/svg/icon_user.svg" alt="Icon for user's visits statistics" class="visits-icon">
-          <span class="visits-count">1</span>
+          <span class="stat-number">1</span>
         </div>
-        <div class="bonuses-wrapper">
-          <p class="bonuses-title">Bonuses</p>
+        <div class="stat-wrapper">
+          <p class="stat-title">Bonuses</p>
           <img src="assets/svg/icon_star.svg" alt="Icon for user's bonuses statistics" class="bonuses-icon">
-          <span class="bonuses-count">1240</span>
+          <span class="stat-number">1240</span>
         </div>
-        <div class="books-wrapper">
-          <p class="books-title">Books</p>
+        <div class="stat-wrapper">
+          <p class="stat-title">Books</p>
           <img src="assets/svg/icon_book.svg" alt="Icon for user's books statistics" class="books-icon">
-          <span class="books-count">0</span>
+          <span class="stat-number">0</span>
         </div>
       </div>
       <div class="rented-books">
@@ -941,12 +962,93 @@
       </div>
       <div class="user-card-wrapper">
         <p class="card-title">Card number</p>
-        <p class="card-number"></p>
+        <p class="card-number">F00234030</p>
         <img src="assets/svg/icon_copy.svg" alt="Icon for copying card number" class="copy-icon">
       </div>
     </div>
   </div>
 </div>
+<!-- Modal PROFILE ends here -->
+
+<!-- Modal BUY A LIBRARY CARD starts here -->
+<div class="modal-overlay" id="library" data-modal-window>
+  <div class="modal-window modal-window-library">
+    <button class="modal-icon-close modal-icon-close-l modal-icon-close-l-library" data-close-modal><img src="assets/svg/close-modal-icon.svg" alt=""></button>
+    <div class="modal-header">
+      <p class="modal-title-l modal-title-l-library">Buy a library card</p>
+    </div>
+
+    <div class="modal-content-library">
+      <div class="modal-libary-form">
+        <form action="#" class="modal-form modal-form-libary">
+          <fieldset class="fieldset-library-card">
+            <label for="bank-card-number">Bank card number</label>
+            <input
+              type="text"
+              name="bank-card-number"
+              required
+              maxlength="16"
+              minlength="16">
+            <label for="expiration">Expiration code</label>
+            <div class="input-row">
+              <input
+              type="text"
+              name="expiration"
+              required
+              maxlength="2"
+              minlength="2">
+              <input
+              type="text"
+              name="expiration"
+              required
+              maxlength="2"
+              minlength="2">
+            </div>
+            <label for="cvc">CVC</label>
+            <input
+              type="text"
+              name="cvc"
+              required
+              maxlength="3"
+              minlength="3">
+          </fieldset>
+          <fieldset class="fieldset-library-user">
+            <label for="cardholder-name">Cardholder name</label>
+            <input
+              type="text"
+              name="cardholder-name"
+              required>
+            <label for="postal-code">Postal code</label>
+            <input
+              type="text"
+              name="postal-code"
+              required>
+            <label for="city">City / Town</label>
+            <input
+              type="text"
+              name="city"
+              required>
+
+          </fieldset>
+          <div class="btn-buy">
+            <input type="submit" value="Buy" class="btn-secondary">
+            <span class="price">$ 25.00</span>
+          </div>
+
+        </form>
+
+      </div>
+      <div class="modal-library-info">
+        <p class="library-info">If you are live, work, attend school, or pay property taxes in New York State, you can get a $25 digital
+          library card right now using this online form. Visitors to New York State can also use this form to apply for a temporary card.</p>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+<!-- Modal LIBRARY ends here -->
+
 
 
 

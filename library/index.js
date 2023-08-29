@@ -82,10 +82,11 @@ let burgerMenu = false;
 let menuDisplay = false;
 let modalReg = false;
 let activeUser = 0; //это переменная которая мониторит активного юзера
+let currentUserData = { }; //это объект активного юзера
 
 
 
-// функция которая проверяет есть ли активный юзер и если да то меняет страницу
+// функция которая проверяет есть ли активный юзер и если да то меняет страницу, записывает активного юзера в объект
 function activeUserCheck () {
   let existingUsers = JSON.parse(localStorage.getItem('allLibraryUsers'));
   console.log(existingUsers)
@@ -93,13 +94,13 @@ function activeUserCheck () {
   console.log(activeUser)
   if (activeUser !== 0) {
     let currentUser = existingUsers[activeUser - 1];
-    changePage(currentUser)
+    changePage(currentUser);
+    currentUserData = currentUser;
   }
   return
 }
 
 activeUserCheck ();
-
 
 
 burger.addEventListener('click', () => {
@@ -524,6 +525,25 @@ function changePage (user) {
   const signupLoggedIn = document.querySelector('.signup-loggedin');
   signupLoggedIn.classList.remove('hide');
   signupNotAuth.classList.add('hide');
+
+  //Меняю форму Your Library card
+  const inputs = document.querySelectorAll('[data-user-name], [data-user-number]'); //выбираю два инпута
+
+  inputs.forEach((input)=>{ //перебираю инпуты
+    input.value = input.hasAttribute('data-user-name') ? username : cardStr; //закидываю данные юзеры в инпуты
+    input.setAttribute('readonly', 'readonly'); // лочу ввод данных в инпуты
+    input.style.color = '#bb945f'; //меняю цвет текста в инпутах
+    input.style.cursor = 'not-allowed'; //выключаю курсор на инпутах
+  });
+
+  //Показываю блок со статистикой
+  const stats = document.querySelector('[data-stats]');//Получить блок со статой
+  const checkBtn = document.querySelector('[data-check-btn]');//получить кнопку Check card
+
+  checkBtn.classList.add('hide');//Выключить кнопку
+  stats.classList.remove('hide');//Включить стату
+
+
 }
 
 // 1. беру длину карточки 9 символов
@@ -604,6 +624,7 @@ function logOut () {
   if (logOutBtn) {
       activeUser = 0;
       localStorage.setItem('activeUser', activeUser);
+      currentUserData = { };
       location.reload();
   }
   return
