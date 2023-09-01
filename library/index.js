@@ -95,6 +95,7 @@ function activeUserCheck () {
   if (activeUser !== 0) {
     let currentUser = existingUsers[activeUser - 1];
     changePage(currentUser);
+    openLibraryModal ();
     currentUserData = currentUser;
   }
   return
@@ -167,33 +168,6 @@ document.addEventListener('click', (event) => {
   }
 });
 
-
-
-
-// Увы это не сработало попробую еще раз :((((
-
-// const radioButtons = document.querySelectorAll('.radio-btn');
-// const books = document.querySelectorAll('.picks-wrapper');
-
-// radioButtons.forEach((radioButton, index) => {
-
-//   radioButton.addEventListener('click', () => {
-
-//     // Прячу прыдущие книги
-//   books.forEach((book) => {
-//     book.addEventListener('animationend', () => {
-//       book.classList.remove('active');
-//     });
-//   });
-
-//     // Показываю книги в соответствии с выбранным радиобатоном
-//     books[index].addEventListener('animationend', () =>{
-//       books[index].classList.add('active');
-//     });
-
-//   });
-
-// });
 
 // Это скрипт который листает контент по клику на радиобаттоны с анимацией - это жесть но работает
 const radioBtn = document.querySelectorAll('.radio-btn');
@@ -313,43 +287,6 @@ arrowClickMove();
 
 
 
-// // это фукнция определяет значения параметра translateX для list (ul cо слайдами)
-// function checkListPosition () {
-//   const styles = window.getComputedStyle(list);
-//   const transformValue = styles.getPropertyValue('transform');
-//   const matrix = new DOMMatrix(transformValue);
-//   // console.log(matrix);
-//   const currentTranslateX = matrix.m41;
-//   // console.log(currentTranslateX);
-//   return currentTranslateX;
-// }
-
-
-// function arrowClickMove () {
-//   leftArrow.addEventListener('click', () =>{
-//     let position = checkListPosition();
-//     console.log(position);
-//     let checkPosition = position % 475;
-//     if (position !== 0 && checkPosition === 0 ) {
-//     list.style.transform = `translateX(${position + 475}px)`;
-//   }
-
-
-//   });
-//   rightArrow.addEventListener('click', () => {
-//     let position = checkListPosition();
-//     console.log(position);
-//     let checkPosition = position % 475;
-//     if (position !== -1900 && checkPosition === 0) {
-//     list.style.transform = `translateX(${position - 475}px)`;
-//   }
-// });
-// }
-
-
-// arrowClickMove()
-// checkListPosition ()
-
 
 
 //  когда я кликаю на правую стрелку, слайдер сдвигается на один слайд вправо
@@ -374,7 +311,7 @@ modalButtonsRegister.forEach((e)=>{
     // console.log(modalRegister)
 
     const modalWidowRegister = document.querySelector('#' + modalRegister);
-    console.log(modalWidowRegister)
+    // console.log(modalWidowRegister)
     // console.log(modalWidowRegister);
     if (modalWidowRegister !== null){
       modalReg = !modalReg;
@@ -391,19 +328,19 @@ modalButtonsRegister.forEach((e)=>{
 });
 
 
-
-  const modalButtonsClose = document.querySelectorAll('[data-close-modal]'); // все кнопки которые закрывают модалки
-  // console.log(modalButtonsClose)
-  modalButtonsClose.forEach((e)=>{
-  e.addEventListener('click', function (){
-    const currentModal = this.closest('[data-modal-window]');
-    // console.log(currentModal)
-    // if (currentModal.dataset.register){
-    //   modalReg = false;
-    // }
-    modalReg = false; // как понять какая именно модалка this?
-    // console.log(modalReg)
-    currentModal.classList.add('hide');
+// Закрываю все модалки по всем кнопкам
+const modalButtonsClose = document.querySelectorAll('[data-close-modal]'); // все кнопки которые закрывают модалки
+// console.log(modalButtonsClose)
+modalButtonsClose.forEach((e)=>{
+e.addEventListener('click', function (){
+  const currentModal = this.closest('[data-modal-window]');
+  // console.log(currentModal)
+  // if (currentModal.dataset.register){
+  //   modalReg = false;
+  // }
+  modalReg = false; // как понять какая именно модалка this?
+  // console.log(modalReg)
+  currentModal.classList.add('hide');
   })
 })
 
@@ -413,6 +350,8 @@ const modalOverlay = document.querySelectorAll('.modal-overlay'); // выбир�
 modalOverlay.forEach((element)=>{ //перебираю overlay
   element.addEventListener('click', (ev)=>{ //вешаю слушатель клика на overlay
     const modalWindow = ev.target.querySelector('.modal-window') //выбираю модалку которую содержит оверлей по к-ому кликнули
+    // console.log(modalWindow)
+    // console.log(modalReg) //модалка library не закрывается потому что переменная modalReg = false при клике на кнопки Buy надо менять эту переменную
 
       if (modalReg && //условия закрытия по клику на оверлей
         ev.target === element && // цель клика содержит оверлей
@@ -452,8 +391,8 @@ modalOverlay.forEach((element)=>{ //перебираю overlay
 // let user = JSON.parse( localStorage.user );
 // alert( user.name ); // John
 
-// Modal register
 
+// Modal register
 const registerForm = document.getElementById('register');
 const firstNameInput = document.getElementById('first-name');
 const lastNameInput = document.getElementById('last-name');
@@ -472,26 +411,13 @@ function generateUniqUserId () {
   return ++lastUserCounter;
 }
 
-// function userVisitsCount () {
-//  let existingUsers = JSON.parse(localStorage.getItem('allLibraryUsers'));
-//  existingUsers.forEach((e, index)=>{
-
-//  })
-//  if (existingUsers) {
-//   const currentUser =
-//   let currentUserVisits = currentUser.visits;
-
-//  }
-//  return ++
-// }
-
 //Функция меняет аватар и меню, принимает на вход нового юзера
 function changePage (user) {
   const userLetters = user.firstName[0].toUpperCase() + user.lastName[0].toUpperCase(); // две буквы имени
   const profileAvatarBtn = document.querySelector('.profile-link') //кнопка с иконкой
   const profileAvatar = document.querySelector('.profile-icon') // иконка svg
   const userProfileAvatar = document.querySelector('.profile-link-authorized') //пустой див для аватарки с буквами
-  let userProfileName = document.querySelector('.profile-avatar-name')
+  let userProfileName = document.querySelectorAll('.profile-avatar-name')
   let profileTitle = document.querySelector('.profile-menu-title'); // надпись Profile
   let firstLink = document.querySelector('.login-link') // первая ссылка меню Login -> My Profile
   let secondLink = document.querySelector('.register-link') // вторая ссылка меню register -> Logout
@@ -506,8 +432,13 @@ function changePage (user) {
   profileAvatar.classList.add('hide');
   profileAvatarBtn.classList.add('hide');
   userProfileAvatar.classList.remove('hide');
-  userProfileName.setAttribute('title', username);
-  userProfileName.innerHTML = userLetters;
+
+  userProfileName.forEach((text)=>{
+    text.setAttribute('title', username);
+    text.innerHTML = userLetters;
+  })
+  // userProfileName.setAttribute('title', username);
+  // userProfileName.innerHTML = userLetters;
 
   // Меняю ссылки в меню
   firstLink.classList.remove('login-link');
@@ -543,7 +474,23 @@ function changePage (user) {
   checkBtn.classList.add('hide');//Выключить кнопку
   stats.classList.remove('hide');//Включить стату
 
+  //Подставляю данные юзера в модалку MY PROFILE
+  const cardNumberSpan = document.querySelector('.card-number'); //получаю надпись номера карты в модалке
+  const userNameInModal = document.querySelector('.user-name');
+  cardNumberSpan.innerHTML = cardStr; //меняю на номер карты
+  userNameInModal.innerHTML = username;
 
+  //Подставляю данные Visits
+  const visitsCount = document.querySelectorAll('[data-visits]');
+  visitsCount.forEach((e)=>{
+    e.innerHTML = user.visits;
+  });
+
+  //Подставляю данные Books
+  const booksCount = document.querySelectorAll('[data-books]');
+  booksCount.forEach((e)=>{
+    e.innerHTML = user.books || 0;
+  });
 }
 
 // 1. беру длину карточки 9 символов
@@ -566,8 +513,6 @@ function readerCardGenerate () {
   return result;
 }
 
-
-
 // Функция создания нового пользователя
 function createNewUser () {
   let existingUsers = JSON.parse(localStorage.getItem('allLibraryUsers')) || [];
@@ -582,6 +527,7 @@ function createNewUser () {
     password: passwordReg.value,
     card: userReaderCard,
     visits: 1,
+    books: 0,
   };
 
   existingUsers.push(newLibraryUser);
@@ -629,6 +575,77 @@ function logOut () {
   }
   return
 }
+
+// После регистрации вешаю на кнопки Buy открытие модалки с покупкой карты
+function openLibraryModal () {
+  const allBuyBtn = document.querySelectorAll('.btn-abonement');
+  let existingUsers = JSON.parse(localStorage.getItem('allLibraryUsers'));
+  if (existingUsers) {
+    allBuyBtn.forEach(function(button) {
+      button.setAttribute('data-modal-btn', 'library');
+    });
+  }
+}
+
+//Копирование кода в буфер обмена
+const cardNumberSpan = document.querySelector('.card-number');
+const copyCardNumberIcon = document.querySelector('.copy-icon');
+
+copyCardNumberIcon.addEventListener('click', ()=>{
+  const cardNumber = cardNumberSpan.textContent;
+  navigator.clipboard.writeText(cardNumber)
+  .then(()=>{
+    alert('Номер карты скопирован в буфер обмена.');
+  })
+  .catch(err=>{
+    console.error('Ошибка при копировании: ', err);
+  })
+})
+
+//эта функция проверяет пользователя на входе
+const loginForm = document.getElementById('login');
+
+loginForm.addEventListener('submit', (e)=>{
+  e.preventDefault();
+
+  login();
+
+  if (modalReg) {
+    modalReg = false;
+    loginForm.classList.add('hide');
+  }
+})
+
+
+function login () {
+  const emailOrCardInput = document.getElementById('user-id').value;
+  const passwordInput = document.getElementById('login-pass').value;
+
+  let allUsers = JSON.parse(localStorage.getItem('allLibraryUsers')) || [];
+  let user = allUsers.find((item)=>{
+    return item.email === emailOrCardInput || item.card === emailOrCardInput;
+  });
+
+  if (user && user.password === passwordInput) {
+    user.visits += 1; //как перезаписвать юзера в локалсторадж?
+
+    const userIndex = user.counter - 1;
+    allUsers[userIndex] = user;
+
+    localStorage.setItem('allLibraryUsers', JSON.stringify(allUsers));
+
+    changePage(user); // меняем страницу под юзера
+    activeUser = user.counter; //меняем переменную активного юзера на номер бзера
+    localStorage.setItem('activeUser', activeUser); //записываем активного юзера в локалсторадж
+    location.reload();
+    return true;
+  } else{
+    alert('Данные для авторизации неверные. Попробуйте еще раз');
+    return false;
+  }
+}
+
+
 
 
 
