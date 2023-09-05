@@ -580,13 +580,25 @@ function logOut () {
 // После регистрации вешаю на кнопки Buy открытие модалки с покупкой карты
 function openLibraryModal () {
   const allBuyBtn = document.querySelectorAll('.btn-abonement');
-  let existingUsers = JSON.parse(localStorage.getItem('allLibraryUsers'));
-  if (existingUsers) {
+  let user = activeUserDefine ();
+  if (user && user.abonement === false) {
     allBuyBtn.forEach(function(button) {
       button.setAttribute('data-modal-btn', 'library');
     });
+  } else if (user && user.abonement){
+    allBuyBtn.forEach(function(button) {
+      button.setAttribute('data-modal-btn', 'none');
+    });
   }
 }
+
+const allBuyBtnWithAbonement = document.querySelectorAll('[data-modal-btn=none]');
+allBuyBtnWithAbonement.forEach((button)=>{
+  button.addEventListener('click', (e) => {
+    e.target.classList.add('disabled');
+    e.target.textContent = 'Own';
+    })
+})
 
 //Копирование кода в буфер обмена
 const cardNumberSpan = document.querySelector('.card-number');
@@ -774,8 +786,11 @@ function buyAbonement (user) {
     console.log('success')
     console.log(modalReg)
     alert('Абонемент успешно куплен! Теперь можно добавлять книги в профиль.')
+    location.reload();
   }
 }
+
+//собираю все кнопки buy
 
 
 
