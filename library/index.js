@@ -528,6 +528,7 @@ function createNewUser () {
     card: userReaderCard,
     visits: 1,
     books: 0,
+    abonement: false,
   };
 
   existingUsers.push(newLibraryUser);
@@ -639,14 +640,97 @@ function login () {
     localStorage.setItem('activeUser', activeUser); //записываем активного юзера в локалсторадж
     location.reload();
     return true;
+    cancelFindYourLibraryCardFormChange();
   } else{
     alert('Данные для авторизации неверные. Попробуйте еще раз');
     return false;
   }
 }
 
+let timeoutId;
 
+// функиция которая проверяет и ищет пользователя в форме Check readers card
+function checkUser () {
+  const userNameInput = document.getElementById('name').value || null; //получаю значение инпута с именем
+  const userCardInput = document.getElementById('number').value || null; //инпут с номером
+  let allUsers = JSON.parse(localStorage.getItem('allLibraryUsers')); //скачиваю пользователей с локалсторадж
 
+  if (userNameInput && userCardInput) { //если инпуты не пустые
+    let user = allUsers.find((item)=>{ //ищем пользователя по номеру карты
+      return item.card === userCardInput
+    });
+
+    //если нашли юзера по карте проверяем по имени + фамилии, просто по имени и по фамилии + имя
+  if (user && userNameInput === user.firstName || userNameInput === user.firstName + ' ' + user.lastName || userNameInput === user.lastName + ' ' + user.firstName) {
+    findYourLibraryCardFormChange (user, userNameInput, userCardInput);
+  }
+  }
+}
+
+function findYourLibraryCardFormChange (user, userNameInput, userCardInput) {
+//показываем статистику этого пользователя
+console.log('test')
+//Меняю форму Your Library card
+const inputs = document.querySelectorAll('[data-user-name], [data-user-number]'); //выбираю два инпута
+
+inputs.forEach((input)=>{ //перебираю инпуты
+input.value = input.hasAttribute('data-user-name') ? userNameInput : userCardInput; //закидываю данные юзеры в инпуты
+input.setAttribute('readonly', 'readonly'); // лочу ввод данных в инпуты
+input.style.color = '#bb945f'; //меняю цвет текста в инпутах //РАЗОБРАТЬСЯ ПОЧЕМУ НЕ КРАСИТ!!!
+// input.style.cursor = 'not-allowed'; //выключаю курсор на инпутах
+});
+
+//Показываю блок со статистикой
+const stats = document.querySelector('[data-stats]');//Получить блок со статой
+const checkBtn = document.querySelector('[data-check-btn]');//получить кнопку Check card
+
+checkBtn.classList.add('hide');//Выключить кнопку
+stats.classList.remove('hide');//Включить стату
+
+//Подставляю данные Visits
+const visitsCount = document.querySelector('[data-visits]');
+visitsCount.innerHTML = user.visits;
+
+//Подставляю данные Books
+const booksCount = document.querySelector('[data-books]');
+booksCount.innerHTML = user.books || 0;
+
+// После 10 секунд отменяю все
+timeoutId = setTimeout(function () {
+      // скрываю статистику и показаю кнопку
+      const inputs = document.querySelectorAll('[data-user-name], [data-user-number]');
+      inputs.forEach((input) => {
+          input.removeAttribute('readonly');
+          input.style.color = '';
+          input.value = '';
+      });
+
+      const stats = document.querySelector('[data-stats]');
+      const checkBtn = document.querySelector('[data-check-btn]');
+
+      checkBtn.classList.remove('hide');
+      stats.classList.add('hide');
+  }, 10000);
+}
+
+function cancelFindYourLibraryCardFormChange() {
+  clearTimeout(timeoutId);
+}
+
+const checkCardBtn = document.querySelector('[data-check-btn]'); // кнопка Check the card
+const cardCheckForm = document.querySelector('.cards') //форма Find your Library card
+
+//слушатель на сабмит формы Find your Library card
+cardCheckForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  activeUser = parseInt(localStorage.getItem('activeUser')) || 0;
+  let allUsers = JSON.parse(localStorage.getItem('allLibraryUsers')) || null;
+
+  if (activeUser === 0 && allUsers) { //если нет активного юзера и есть юзеры в локалсторадж
+    checkUser () //проверка и поиск юзера
+  }
+
+})
 
 
 

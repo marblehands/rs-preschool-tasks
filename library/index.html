@@ -991,8 +991,7 @@
               type="text"
               name="bank-card-number"
               required
-              maxlength="16"
-              minlength="16">
+              pattern="^(?:\d\s*){16}$">
             <label for="expiration">Expiration code</label>
             <div class="input-row">
               <input
@@ -1000,13 +999,15 @@
               name="expiration"
               required
               maxlength="2"
-              minlength="2">
+              minlength="2"
+              pattern="^\d{2}$">
               <input
               type="text"
               name="expiration"
               required
               maxlength="2"
-              minlength="2">
+              minlength="2"
+              pattern="^\d{2}$">
             </div>
             <label for="cvc">CVC</label>
             <input
@@ -1014,24 +1015,28 @@
               name="cvc"
               required
               maxlength="3"
-              minlength="3">
+              minlength="3"
+              pattern="^\d{3}$">
           </fieldset>
           <fieldset class="fieldset-library-user">
             <label for="cardholder-name">Cardholder name</label>
             <input
               type="text"
               name="cardholder-name"
-              required>
+              required
+              pattern="^[a-zA-Zа-яА-Я]+$">
             <label for="postal-code">Postal code</label>
             <input
               type="text"
               name="postal-code"
-              required>
+              required
+              pattern="^\d+$">
             <label for="city">City / Town</label>
             <input
               type="text"
               name="city"
-              required>
+              required
+              pattern="^[a-zA-Zа-яА-Я]+$">
 
           </fieldset>
           <div class="btn-buy">

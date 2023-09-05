@@ -1621,6 +1621,7 @@ text-transform: capitalize;
 
 .modal-window-library {
   background-color: transparent;
+  width: 640px;
 }
 
 .modal-header {
