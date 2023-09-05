@@ -729,8 +729,53 @@ cardCheckForm.addEventListener('submit', (e) => {
   if (activeUser === 0 && allUsers) { //если нет активного юзера и есть юзеры в локалсторадж
     checkUser () //проверка и поиск юзера
   }
-
 })
+
+// Логика покупки книг тут
+
+const buyAbonementForm = document.querySelector('.modal-form-libary'); //это форма покупки абонемента
+
+//слушаю сабмит формы
+buyAbonementForm.addEventListener('submit', (e)=>{
+  e.preventDefault();
+
+  buyAbonement (activeUserDefine ()); //вызываю функцию покупки абонемента передаю в нее вызов функции оперделения активного юзера
+
+  buyAbonementForm.reset();
+
+  if (modalReg) {
+    modalReg = false;
+    const modalWindow = document.getElementById('library');
+    modalWindow.classList.add('hide');
+  }
+})
+
+//эта функция нужна для  того чтобы вернуть объект активного юзера в данный момент
+function activeUserDefine () {
+  let allUsers = JSON.parse(localStorage.getItem('allLibraryUsers'));
+  let activeUser = JSON.parse(localStorage.getItem('activeUser'));
+
+  let user = allUsers.find((item)=>{
+    return item.counter === activeUser
+  });
+  return user
+}
+
+//эта функция принимает на вход объект активного юзера,
+//скачивает всех юзеров с локала
+//перезаписывает флаг абонемента на true и перезаписывает юзеров в локал
+function buyAbonement (user) {
+  if (user) {
+    const userIndex = user.counter - 1;
+    let allUsers = JSON.parse(localStorage.getItem('allLibraryUsers'));
+    user.abonement = true;
+    allUsers[userIndex] = user;
+    localStorage.setItem('allLibraryUsers', JSON.stringify(allUsers));
+    console.log('success')
+    console.log(modalReg)
+    alert('Абонемент успешно куплен! Теперь можно добавлять книги в профиль.')
+  }
+}
 
 
 
