@@ -489,7 +489,7 @@ function changePage (user) {
   //Подставляю данные Books
   const booksCount = document.querySelectorAll('[data-books]');
   booksCount.forEach((e)=>{
-    e.innerHTML = user.books || 0;
+    e.innerHTML = user.books.length;
   });
 }
 
@@ -527,7 +527,7 @@ function createNewUser () {
     password: passwordReg.value,
     card: userReaderCard,
     visits: 1,
-    books: 0,
+    books: [],
     abonement: false,
   };
 
@@ -585,20 +585,101 @@ function openLibraryModal () {
     allBuyBtn.forEach(function(button) {
       button.setAttribute('data-modal-btn', 'library');
     });
-  } else if (user && user.abonement){
+  // } else if (user && user.abonement){
+  //   allBuyBtn.forEach(function(button) {
+  //     button.setAttribute('data-modal-btn', 'none');
+  //   });
+  } else if (user && user.abonement) {
     allBuyBtn.forEach(function(button) {
-      button.setAttribute('data-modal-btn', 'none');
+      button.setAttribute('data-modal-btn', 'abonement');
     });
   }
 }
 
-const allBuyBtnWithAbonement = document.querySelectorAll('[data-modal-btn=none]');
-allBuyBtnWithAbonement.forEach((button)=>{
+const allBuyBtnWithAbonement = document.querySelectorAll('[data-modal-btn=abonement]');
+
+allBuyBtnWithAbonement.forEach((button, index)=>{
   button.addEventListener('click', (e) => {
+    const bookCard = e.target.closest('.picks-item');
+    const title = bookCard.querySelector('.picks-name').textContent;
+    const author = bookCard.querySelector('.picks-author').textContent.substring(3);
+    let btnIndex = index;
+    // console.log(title, author)
+    const book = {
+      btnIndex,
+      title,
+      author,
+    };
+
+    // console.log(book)
+
     e.target.classList.add('disabled');
     e.target.textContent = 'Own';
+    e.target.disabled = true;
+
+    let user = activeUserDefine ()
+    // console.log(user)
+
+    addBookList(user, book)
+    addBookToUserProfile (book)
+    location.reload();
     })
 })
+
+function addBookToUserProfile (book) {
+  const rentedBooksList = document.querySelector('.rented-list')
+  console.log('успех')
+  const liBook = document.createElement('li');
+  liBook.textContent = `${book.title}, ${book.author}`;
+  rentedBooksList.appendChild(liBook);
+  }
+
+function addBookList (user, book) {
+  user.books.push(book);
+  let allUsers = JSON.parse(localStorage.getItem('allLibraryUsers'));
+  allUsers[user.counter - 1] = user;
+  localStorage.setItem('allLibraryUsers', JSON.stringify(allUsers));
+}
+
+function checkBooksRenderButtons (user) {
+  if (!user) {
+    return
+  }
+  console.log('test')
+  const allBuyBtn = document.querySelectorAll('.btn-abonement');
+  console.log(allBuyBtn)
+  const arrBook = user.books;
+  console.log(arrBook)
+  const btnIndexArray = arrBook.map(obj => obj.btnIndex);
+  console.log(btnIndexArray)
+  btnIndexArray.forEach((index) => {
+    let btn = []
+    btn.push(allBuyBtn[index]);
+    console.log(btn)
+
+    btn.forEach((b)=>{
+      b.classList.add('disabled');
+      b.textContent = 'Own';
+      b.disabled = true;
+
+    })
+})
+
+if(user.books.length > 0) {
+  let books = user.books;
+
+  books.forEach((item)=>{
+  const rentedBooksList = document.querySelector('.rented-list')
+  console.log('успех')
+  const liBook = document.createElement('li');
+  liBook.textContent = `${item.title}, ${item.author}`;
+  rentedBooksList.appendChild(liBook);
+})
+
+}
+
+}
+checkBooksRenderButtons (activeUserDefine ())
 
 //Копирование кода в буфер обмена
 const cardNumberSpan = document.querySelector('.card-number');
@@ -650,6 +731,7 @@ function login () {
     changePage(user); // меняем страницу под юзера
     activeUser = user.counter; //меняем переменную активного юзера на номер бзера
     localStorage.setItem('activeUser', activeUser); //записываем активного юзера в локалсторадж
+    checkBooksRenderButtons (user); //проверяю есть ли у него книги и меняю кнопки buy на own
     location.reload();
     return true;
     cancelFindYourLibraryCardFormChange();
@@ -744,8 +826,7 @@ cardCheckForm.addEventListener('submit', (e) => {
 })
 
 // Логика покупки книг тут
-
-const buyAbonementForm = document.querySelector('.modal-form-libary'); //это форма покупки абонемента
+const buyAbonementForm = document.querySelector('.modal-form-libary'); //это форма покупки абонемента BUY A LIBRARY CARD
 
 //слушаю сабмит формы
 buyAbonementForm.addEventListener('submit', (e)=>{
@@ -753,9 +834,9 @@ buyAbonementForm.addEventListener('submit', (e)=>{
 
   buyAbonement (activeUserDefine ()); //вызываю функцию покупки абонемента передаю в нее вызов функции оперделения активного юзера
 
-  buyAbonementForm.reset();
+  buyAbonementForm.reset(); //очищаю форму
 
-  if (modalReg) {
+  if (modalReg) { //закрываю модалку
     modalReg = false;
     const modalWindow = document.getElementById('library');
     modalWindow.classList.add('hide');
@@ -775,7 +856,7 @@ function activeUserDefine () {
 
 //эта функция принимает на вход объект активного юзера,
 //скачивает всех юзеров с локала
-//перезаписывает флаг абонемента на true и перезаписывает юзеров в локал
+//перезаписывает флаг абонемента на true и перезаписывает юзера в локал
 function buyAbonement (user) {
   if (user) {
     const userIndex = user.counter - 1;

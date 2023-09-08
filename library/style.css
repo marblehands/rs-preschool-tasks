@@ -1559,6 +1559,23 @@ text-transform: capitalize;
   letter-spacing: normal;
 }
 
+.rented-list-wrapper {
+  width: 390px;
+  height: 70px;
+  overflow-x: scroll;
+  overflow-y: scroll;
+  white-space: nowrap;
+}
+
+div.rented-list-wrapper::-webkit-scrollbar-thumb {
+  background-color: #bbb;
+  border-radius: 6px;
+}
+
+div.rented-list-wrapper::-webkit-scrollbar-track {
+  background-color: #eee;
+}
+
 .rented-list {
   list-style: circle;
   color: #000;
@@ -1574,6 +1591,7 @@ text-transform: capitalize;
 .rented-list li {
   margin-left: 30px;
   position: relative;
+  display: block;
 }
 
 .rented-list li::before {
@@ -1589,7 +1607,7 @@ text-transform: capitalize;
 }
 
 .rented-books {
-  margin-bottom: 39px;
+  margin-bottom: 19px;
 }
 
 .user-card-wrapper {
@@ -1661,7 +1679,7 @@ text-transform: capitalize;
   display: flex;
   gap: 10px;
 }
-.input-row input{
+.input-short{
   max-width: 45px;
 }
 .modal-form-libary {

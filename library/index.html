@@ -957,10 +957,10 @@
       </div>
       <div class="rented-books">
         <p class="rented-books-title">Rented books</p>
-        <ul class="rented-list">
-          <li class="rented-item">The Last Queen, Clive Irving</li>
-          <li class="rented-item">Dominicana, Angie Cruz</li>
-        </ul>
+        <div class="rented-list-wrapper">
+          <ul class="rented-list">
+          </ul>
+        </div>
       </div>
       <div class="user-card-wrapper">
         <p class="card-title">Card number</p>
@@ -1000,14 +1000,16 @@
               required
               maxlength="2"
               minlength="2"
-              pattern="^\d{2}$">
+              pattern="^\d{2}$"
+              class="input-short">
               <input
               type="text"
               name="expiration"
               required
               maxlength="2"
               minlength="2"
-              pattern="^\d{2}$">
+              pattern="^\d{2}$"
+              class="input-short">
             </div>
             <label for="cvc">CVC</label>
             <input
@@ -1016,7 +1018,8 @@
               required
               maxlength="3"
               minlength="3"
-              pattern="^\d{3}$">
+              pattern="^\d{3}$"
+              class="input-short">
           </fieldset>
           <fieldset class="fieldset-library-user">
             <label for="cardholder-name">Cardholder name</label>
