@@ -747,12 +747,13 @@ function login () {
   }
 }
 
-let timeoutId;
+
 
 // функиция которая проверяет и ищет пользователя в форме Check readers card
 function checkUser () {
   const userNameInput = document.getElementById('name').value || null; //получаю значение инпута с именем
   const userCardInput = document.getElementById('number').value || null; //инпут с номером
+
   let allUsers = JSON.parse(localStorage.getItem('allLibraryUsers')); //скачиваю пользователей с локалсторадж
 
   if (userNameInput && userCardInput) { //если инпуты не пустые
@@ -761,7 +762,7 @@ function checkUser () {
     });
 
     //если нашли юзера по карте проверяем по имени + фамилии, просто по имени и по фамилии + имя
-  if (user && userNameInput === user.firstName || userNameInput === user.firstName + ' ' + user.lastName || userNameInput === user.lastName + ' ' + user.firstName) {
+    if (user && (userNameInput === user.firstName || userNameInput === user.firstName + ' ' + user.lastName || userNameInput === user.lastName + ' ' + user.firstName)) {
     findYourLibraryCardFormChange (user, userNameInput, userCardInput);
   } else {
     alert('Пользователь и номер читательской карты не найдены.')
