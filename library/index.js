@@ -1,21 +1,21 @@
-// console.log(`
-// 1. Task: https://github.com/rolling-scopes-school/tasks/blob/master/tasks/library/library-part2.md
-// \n
-// 2. Deploy: https://rolling-scopes-school.github.io/marblehands-JSFEPRESCHOOL2023Q2/library/
-// \n
-// 3. Done 13.08.2023 / deadline 14.08.2023
-// \n
-// 4. Score: 50 / 50
-// \n
-// Моя оценка после самопроверки: 50 баллов
-// \n
-// Привет, мой Ревьюер :) Если у тебя есть комментарии, любые советы или вопросы по моей работе, пожалуйста напиши мне RS дискорде: Ania @marblehands Спасибо за твою проверку <3
-// \n
-// Выполненные пункты:
-// 1) Вёрстка соответствует макету. Ширина экрана 768px +26
-// 2) Ни на одном из разрешений до 640px включительно не появляется горизонтальная полоса прокрутки. Весь контент страницы при этом сохраняется: не обрезается и не удаляется +12
-// 3) На ширине экрана 768рх реализовано адаптивное меню +12
-// `);
+console.log(`
+1. Task: https://github.com/rolling-scopes-school/tasks/blob/master/tasks/library/library-part2.md
+\n
+2. Deploy: https://rolling-scopes-school.github.io/marblehands-JSFEPRESCHOOL2023Q2/library/
+\n
+3. Done 13.08.2023 / deadline 14.08.2023
+\n
+4. Score: 50 / 50
+\n
+Моя оценка после самопроверки: 50 баллов
+\n
+Привет, мой Ревьюер :) Если у тебя есть комментарии, любые советы или вопросы по моей работе, пожалуйста напиши мне RS дискорде: Ania @marblehands Спасибо за твою проверку <3
+\n
+Выполненные пункты:
+1) Вёрстка соответствует макету. Ширина экрана 768px +26
+2) Ни на одном из разрешений до 640px включительно не появляется горизонтальная полоса прокрутки. Весь контент страницы при этом сохраняется: не обрезается и не удаляется +12
+3) На ширине экрана 768рх реализовано адаптивное меню +12
+`);
 
 
 // // Burger Menu
@@ -411,7 +411,7 @@ function generateUniqUserId () {
   return ++lastUserCounter;
 }
 
-//Функция меняет аватар и меню, принимает на вход нового юзера
+//Функция меняет аватар и меню, принимает на вход нового юзера, меняет секцию Library Card
 function changePage (user) {
   const userLetters = user.firstName[0].toUpperCase() + user.lastName[0].toUpperCase(); // две буквы имени
   const profileAvatarBtn = document.querySelector('.profile-link') //кнопка с иконкой
@@ -458,7 +458,10 @@ function changePage (user) {
   signupNotAuth.classList.add('hide');
 
   //Меняю форму Your Library card
+  const formCardsTitle = document.querySelector('.form-cards-title'); //это заголовок формы
   const inputs = document.querySelectorAll('[data-user-name], [data-user-number]'); //выбираю два инпута
+
+  formCardsTitle.textContent = 'Your Library card'; //поменяла тайтл формы
 
   inputs.forEach((input)=>{ //перебираю инпуты
     input.value = input.hasAttribute('data-user-name') ? username : cardStr; //закидываю данные юзеры в инпуты
@@ -628,7 +631,7 @@ allBuyBtnWithAbonement.forEach((button, index)=>{
 
 function addBookToUserProfile (book) {
   const rentedBooksList = document.querySelector('.rented-list')
-  console.log('успех')
+  // console.log('успех')
   const liBook = document.createElement('li');
   liBook.textContent = `${book.title}, ${book.author}`;
   rentedBooksList.appendChild(liBook);
@@ -645,17 +648,17 @@ function checkBooksRenderButtons (user) {
   if (!user) {
     return
   }
-  console.log('test')
+  // console.log('test')
   const allBuyBtn = document.querySelectorAll('.btn-abonement');
-  console.log(allBuyBtn)
+  // console.log(allBuyBtn)
   const arrBook = user.books;
-  console.log(arrBook)
+  // console.log(arrBook)
   const btnIndexArray = arrBook.map(obj => obj.btnIndex);
-  console.log(btnIndexArray)
+  // console.log(btnIndexArray)
   btnIndexArray.forEach((index) => {
     let btn = []
     btn.push(allBuyBtn[index]);
-    console.log(btn)
+    // console.log(btn)
 
     btn.forEach((b)=>{
       b.classList.add('disabled');
@@ -670,7 +673,7 @@ if(user.books.length > 0) {
 
   books.forEach((item)=>{
   const rentedBooksList = document.querySelector('.rented-list')
-  console.log('успех')
+  // console.log('успех')
   const liBook = document.createElement('li');
   liBook.textContent = `${item.title}, ${item.author}`;
   rentedBooksList.appendChild(liBook);
@@ -710,7 +713,7 @@ loginForm.addEventListener('submit', (e)=>{
   }
 })
 
-
+//функиция логина
 function login () {
   const emailOrCardInput = document.getElementById('user-id').value;
   const passwordInput = document.getElementById('login-pass').value;
@@ -729,7 +732,7 @@ function login () {
     localStorage.setItem('allLibraryUsers', JSON.stringify(allUsers));
 
     changePage(user); // меняем страницу под юзера
-    activeUser = user.counter; //меняем переменную активного юзера на номер бзера
+    activeUser = user.counter; //меняем переменную активного юзера на номер юзера
     localStorage.setItem('activeUser', activeUser); //записываем активного юзера в локалсторадж
     checkBooksRenderButtons (user); //проверяю есть ли у него книги и меняю кнопки buy на own
     location.reload();
@@ -757,21 +760,27 @@ function checkUser () {
     //если нашли юзера по карте проверяем по имени + фамилии, просто по имени и по фамилии + имя
   if (user && userNameInput === user.firstName || userNameInput === user.firstName + ' ' + user.lastName || userNameInput === user.lastName + ' ' + user.firstName) {
     findYourLibraryCardFormChange (user, userNameInput, userCardInput);
+  } else {
+    alert('Пользователь и номер читательской карты не найдены.')
   }
   }
 }
 
+//функция которая показывает статистику если нашелся пользователь в локале
 function findYourLibraryCardFormChange (user, userNameInput, userCardInput) {
 //показываем статистику этого пользователя
-console.log('test')
+// console.log('test')
 //Меняю форму Your Library card
 const inputs = document.querySelectorAll('[data-user-name], [data-user-number]'); //выбираю два инпута
+const formTitle = document.querySelector('.form-cards-title');
+
+formTitle.textContent = 'Your Library card';
 
 inputs.forEach((input)=>{ //перебираю инпуты
-input.value = input.hasAttribute('data-user-name') ? userNameInput : userCardInput; //закидываю данные юзеры в инпуты
-input.setAttribute('readonly', 'readonly'); // лочу ввод данных в инпуты
-input.style.color = '#bb945f'; //меняю цвет текста в инпутах //РАЗОБРАТЬСЯ ПОЧЕМУ НЕ КРАСИТ!!!
-// input.style.cursor = 'not-allowed'; //выключаю курсор на инпутах
+  input.value = input.hasAttribute('data-user-name') ? userNameInput : userCardInput; //закидываю данные юзеры в инпуты
+  input.setAttribute('readonly', 'readonly'); // лочу ввод данных в инпуты
+  input.style.color = '#bb945f'; //меняю цвет текста в инпутах //РАЗОБРАТЬСЯ ПОЧЕМУ НЕ КРАСИТ!!!
+  // input.style.cursor = 'not-allowed'; //выключаю курсор на инпутах
 });
 
 //Показываю блок со статистикой
@@ -787,10 +796,13 @@ visitsCount.innerHTML = user.visits;
 
 //Подставляю данные Books
 const booksCount = document.querySelector('[data-books]');
-booksCount.innerHTML = user.books || 0;
+booksCount.innerHTML = user.books.length || 0;
 
 // После 10 секунд отменяю все
 timeoutId = setTimeout(function () {
+      //возвращаюсь заголовок
+      const formTitle = document.querySelector('.form-cards-title');
+      formTitle.textContent = 'Find your Library card';
       // скрываю статистику и показаю кнопку
       const inputs = document.querySelectorAll('[data-user-name], [data-user-number]');
       inputs.forEach((input) => {
@@ -825,6 +837,171 @@ cardCheckForm.addEventListener('submit', (e) => {
   }
 })
 
+//валидации инпута с кредитной картой
+document.getElementById('credit-card').addEventListener('input', function(e) {
+  const input = e.target;
+  const value = input.value.replace(/\D/g, ''); // удаляет все символы, кроме цифр
+  const formattedValue = value.replace(/(\d{4})(?=\d)/g, '$1 '); // добавляет пробел после каждых 4 цифр
+  input.value = formattedValue;
+});
+
+//валидации инпутов срока карты
+const expiration1Input = document.getElementById('exp1');
+const expiration2Input = document.getElementById('exp2');
+
+expiration1Input.addEventListener('input', function() {
+  validateExpiration(expiration1Input);
+});
+
+expiration2Input.addEventListener('input', function() {
+  validateExpiration(expiration2Input);
+});
+
+function validateExpiration(input) {
+  const value = input.value;
+  const numericValue = value.replace(/\D/g, '');
+
+  if (numericValue !== '00' && numericValue.length <= 2) {
+    input.value = numericValue;
+  } else {
+    input.value = '';
+  }
+}
+
+//валидация инпута поля ccv
+const cvcInput = document.getElementById('cvc');
+
+cvcInput.addEventListener('input', function() {
+  validateCvc(cvcInput);
+});
+
+function validateCvc(input) {
+  const value = input.value;
+  const numericValue = value.replace(/\D/g, '');
+
+  if (numericValue !== '000' && numericValue.length <= 3) {
+    input.value = numericValue;
+  } else {
+    input.value = '';
+  }
+};
+
+// Валидация email при регистрации
+const emailRegInput = document.getElementById('reg-email');
+const regForm = document.querySelector('.modal-form-register'); 
+
+emailRegInput.addEventListener('input', function () {
+  validateRegEmail();
+});
+
+regForm.addEventListener('submit', function (e) {
+  if (!validateRegEmail()) {
+    e.preventDefault(); // Отменяю отправку формы, если email невалиден
+  }
+});
+
+function validateRegEmail() {
+  const emailValue = emailRegInput.value.trim();
+
+  if (emailValue === '') {
+    // Пустое поле
+    emailRegInput.setCustomValidity('Пожалуйста, введите email. Поле не может быть пустым.');
+    return false; // Email невалиден
+  } else {
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z.]{2,}$/;
+
+    if (emailPattern.test(emailValue)) {
+      // Email валиден
+      emailRegInput.setCustomValidity('');
+      return emailExistCheck(emailValue); // Проверяю на существование такого же email
+    } else {
+      // Email невалиден
+      emailRegInput.setCustomValidity('Некорректный email. Пример валидного email: example@example.com');
+      return false; // Email невалиден
+    }
+  }
+}
+
+// Функция, которая проверяет, что пользователь уже зарегистрирован с таким email
+function emailExistCheck(email) {
+  let allUsers = JSON.parse(localStorage.getItem('allLibraryUsers')) || []; // Все пользователи
+  let allEmails = []; // Массив для email
+  let emailExists = false;
+
+  for (const user of allUsers) { // Перебираю циклом все объекты и собираю email
+    allEmails.push(user.email);
+  }
+  // Все email собраны в массиве allEmails
+
+  for (const item of allEmails) {
+    if (email === item) {
+      emailExists = true;
+      break;
+    }
+  }
+
+  if (emailExists) {
+    emailRegInput.setCustomValidity('На этот email адрес уже зарегистрирован пользователь. Выберите другой email.');
+    return false; // Email уже существует
+  } else {
+    emailRegInput.setCustomValidity('');
+    return true; // Email уникален
+  }
+}
+
+
+
+//валидация имени при регистрации
+firstNameInput.addEventListener('input', function(){
+  validateName (firstNameInput);
+});
+
+lastNameInput.addEventListener('input', function(){
+  validateName (lastNameInput);
+});
+
+
+function validateName(input) {
+  const inputValueTrimmed = input.value.trim();
+
+
+  const regex = /^[a-zA-Zа-яА-Я]*$/;
+
+  if (!regex.test(inputValueTrimmed)) {
+    input.setCustomValidity('Имя может содержать только буквы');
+  } else {
+    input.value = inputValueTrimmed;
+    input.setCustomValidity('');
+  }
+}
+
+//валидация email при логине
+const emailLogInput = document.getElementById('user-id');
+
+emailLogInput.addEventListener('input', function(){
+  validateLogEmail(emailLogInput);
+})
+
+function validateLogEmail(input) {
+  const emailValue = input.value.trim();
+
+  if (emailValue === '') {
+    // пустое поле
+    input.setCustomValidity('Пожалуйста, введите email. Поле не может быть пустым.');
+  } else {
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z.]{2,}$/;
+
+    if (emailPattern.test(emailValue)) {
+      //email валиден
+      emailInput.setCustomValidity('');
+    } else {
+      // email невалиден
+      emailInput.setCustomValidity('Некорректный email. Пример валидного email: example@example.com');
+    }
+}
+}
+
+
 // Логика покупки книг тут
 const buyAbonementForm = document.querySelector('.modal-form-libary'); //это форма покупки абонемента BUY A LIBRARY CARD
 
@@ -832,7 +1009,7 @@ const buyAbonementForm = document.querySelector('.modal-form-libary'); //это 
 buyAbonementForm.addEventListener('submit', (e)=>{
   e.preventDefault();
 
-  buyAbonement (activeUserDefine ()); //вызываю функцию покупки абонемента передаю в нее вызов функции оперделения активного юзера
+  buyAbonement (activeUserDefine ()); //вызываю функцию покупки абонемента передаю в нее вызов функции опрeделения активного юзера
 
   buyAbonementForm.reset(); //очищаю форму
 
@@ -864,14 +1041,12 @@ function buyAbonement (user) {
     user.abonement = true;
     allUsers[userIndex] = user;
     localStorage.setItem('allLibraryUsers', JSON.stringify(allUsers));
-    console.log('success')
-    console.log(modalReg)
+    // console.log('success')
+    // console.log(modalReg)
     alert('Абонемент успешно куплен! Теперь можно добавлять книги в профиль.')
     location.reload();
   }
 }
-
-//собираю все кнопки buy
 
 
 
