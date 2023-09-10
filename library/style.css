@@ -1733,8 +1733,6 @@ text-transform: capitalize;
   display: flex;
   gap: 25px;
   align-items: center;
-  opacity: 0.8;
-  cursor: auto;
 }
 .price {
   color: #0C0C0E;
@@ -1748,6 +1746,7 @@ text-transform: capitalize;
 
 .btn-buy input[type=submit] {
   margin: 0;
+  pointer-events: none;
 }
 
 

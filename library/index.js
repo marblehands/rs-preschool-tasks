@@ -859,6 +859,8 @@ cardCheckForm.addEventListener('submit', (e) => {
   }
 })
 
+
+
 //валидации инпута с кредитной картой
 document.getElementById('credit-card').addEventListener('input', function(e) {
   const input = e.target;
@@ -1027,6 +1029,29 @@ function validateLogEmail(input) {
 // Логика покупки книг тут
 const buyAbonementForm = document.querySelector('.modal-form-libary'); //это форма покупки абонемента BUY A LIBRARY CARD
 
+
+//кнопка Buy и валидация что инпуты непустые
+const buyBtn = document.getElementById('btnbuy');
+
+function checkInputsEmpty () {
+  let inputs = buyAbonementForm.querySelectorAll('input[type="text"]');
+  for (let i = 0; i < inputs.length; i++) {
+    if (inputs[i].value.trim() === '') {
+      return false;
+    }
+  }
+  return true;
+}
+
+function btnBuyChange () {
+  if (checkInputsEmpty ()) {
+    buyBtn.style.pointerEvents = 'auto';
+    buyBtn.style.cursor = 'pointer';
+  }
+}
+
+buyAbonementForm.addEventListener('input', btnBuyChange);
+
 //слушаю сабмит формы
 buyAbonementForm.addEventListener('submit', (e)=>{
   e.preventDefault();
@@ -1053,7 +1078,6 @@ function activeUserDefine () {
     });
     return user
   }
-  
 }
 
 //эта функция принимает на вход объект активного юзера,
