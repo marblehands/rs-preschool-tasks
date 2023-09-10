@@ -534,30 +534,43 @@ h2::after {
   height: 26px;
   display: flex;
   align-items: center;
-  cursor: pointer;
+  justify-content: center;
 }
 
+/* .active-control {
+  pointer-events: none;
+} */
+
 .dot {
+  box-sizing: content-box;
+  display: block;
   width: 16px;
   height: 16px;
+  margin: 5px;
   background-color: #0c0c0e;
   border-radius: 50%;
-  display: block;
-  margin: 0 auto;
   transition: background-color 0.2s;
+  cursor: pointer;
 }
 
 .dot:hover {
   background-color: #bb945f;
+  cursor: pointer;
 }
 
 .active-dot {
   background-color: #bb945f;
+  pointer-events: none;
 }
 
 .carousel-arrow {
   display: none;
 }
+
+/* .active-control {
+  pointer-events: none;
+} */
+
 
 @media (max-width: 1920px) {
 
@@ -611,6 +624,17 @@ h2::after {
   .control-6 {
     display: flex;
   }
+
+  .carousel-arrow {
+    display: flex;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    border: none;
+    margin-top: 40px;
+    cursor: pointer;
+  }
 }
 
 @media (max-width: 768px) {
@@ -637,16 +661,6 @@ h2::after {
     display: flex;
   }
 
-.carousel-arrow {
-    display: flex;
-    align-items: center;
-    width: 24px;
-    height: 24px;
-    background-color: transparent;
-    border: none;
-    margin-top: 40px;
-    cursor: pointer;
-  }
 }
 
 @media (max-width: 640px) {
