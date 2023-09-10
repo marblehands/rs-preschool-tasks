@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -45,7 +46,31 @@ button {
 }
 
 
+/* Scroll */
 
+.rented-list-wrapper::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  border-radius: 0;
+}
+
+.rented-list-wrapper::-webkit-scrollbar-track {
+  background-color: #BB945F;
+  border-radius: 0;
+}
+
+.rented-list-wrapper::-webkit-scrollbar-thumb {
+  
+  background-color: #0C0C0E;
+  border-radius: 0;
+}
+
+@media (max-width: 1024px) {
+  .rented-list-wrapper::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+}
 
 
 .body-wrapper {
@@ -533,30 +558,43 @@ h2::after {
   height: 26px;
   display: flex;
   align-items: center;
-  cursor: pointer;
+  justify-content: center;
 }
 
+/* .active-control {
+  pointer-events: none;
+} */
+
 .dot {
+  box-sizing: content-box;
+  display: block;
   width: 16px;
   height: 16px;
+  margin: 5px;
   background-color: #0c0c0e;
   border-radius: 50%;
-  display: block;
-  margin: 0 auto;
   transition: background-color 0.2s;
+  cursor: pointer;
 }
 
 .dot:hover {
   background-color: #bb945f;
+  cursor: pointer;
 }
 
 .active-dot {
   background-color: #bb945f;
+  pointer-events: none;
 }
 
 .carousel-arrow {
   display: none;
 }
+
+/* .active-control {
+  pointer-events: none;
+} */
+
 
 @media (max-width: 1920px) {
 
@@ -610,6 +648,17 @@ h2::after {
   .control-6 {
     display: flex;
   }
+
+  .carousel-arrow {
+    display: flex;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    border: none;
+    margin-top: 40px;
+    cursor: pointer;
+  }
 }
 
 @media (max-width: 768px) {
@@ -636,16 +685,6 @@ h2::after {
     display: flex;
   }
 
-.carousel-arrow {
-    display: flex;
-    align-items: center;
-    width: 24px;
-    height: 24px;
-    background-color: transparent;
-    border: none;
-    margin-top: 40px;
-    cursor: pointer;
-  }
 }
 
 @media (max-width: 640px) {
@@ -1045,7 +1084,7 @@ h3.menu-title {
 
 /* Digital Library Cards / Form */
 
-.form-title {
+.form-cards-title {
   text-align: center;
   font-size: 30px;
   line-height: normal;
@@ -1565,15 +1604,6 @@ text-transform: capitalize;
   overflow-x: scroll;
   overflow-y: scroll;
   white-space: nowrap;
-}
-
-div.rented-list-wrapper::-webkit-scrollbar-thumb {
-  background-color: #bbb;
-  border-radius: 6px;
-}
-
-div.rented-list-wrapper::-webkit-scrollbar-track {
-  background-color: #eee;
 }
 
 .rented-list {
