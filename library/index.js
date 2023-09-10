@@ -1025,10 +1025,13 @@ function activeUserDefine () {
   let allUsers = JSON.parse(localStorage.getItem('allLibraryUsers'));
   let activeUser = JSON.parse(localStorage.getItem('activeUser'));
 
-  let user = allUsers.find((item)=>{
-    return item.counter === activeUser
-  });
-  return user
+  if (allUsers) {
+    let user = allUsers.find((item)=>{
+      return item.counter === activeUser
+    });
+    return user
+  }
+  
 }
 
 //эта функция принимает на вход объект активного юзера,
