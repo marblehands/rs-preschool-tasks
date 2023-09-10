@@ -49,6 +49,7 @@ activeUserCheck ();
 
 
 burger.addEventListener('click', () => {
+  console.log('test')
   burgerMenu = !burgerMenu;
   nav.classList.toggle('nav-visible');
   burger.classList.toggle('burger-visible');
@@ -805,7 +806,7 @@ formTitle.textContent = 'Your Library card';
 inputs.forEach((input)=>{ //перебираю инпуты
   input.value = input.hasAttribute('data-user-name') ? userNameInput : userCardInput; //закидываю данные юзеры в инпуты
   input.setAttribute('readonly', 'readonly'); // лочу ввод данных в инпуты
-  input.style.color = '#bb945f'; //меняю цвет текста в инпутах //РАЗОБРАТЬСЯ ПОЧЕМУ НЕ КРАСИТ!!!
+  input.style.webkitTextFillColor =  '#bb945f'; //меняю цвет текста в инпутах //РАЗОБРАТЬСЯ ПОЧЕМУ НЕ КРАСИТ!!!
   // input.style.cursor = 'not-allowed'; //выключаю курсор на инпутах
 });
 
@@ -833,7 +834,7 @@ timeoutId = setTimeout(function () {
       const inputs = document.querySelectorAll('[data-user-name], [data-user-number]');
       inputs.forEach((input) => {
           input.removeAttribute('readonly');
-          input.style.color = '';
+          input.style.webkitTextFillColor = '';
           input.value = '';
       });
 
