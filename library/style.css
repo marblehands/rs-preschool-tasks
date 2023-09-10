@@ -1601,8 +1601,9 @@ text-transform: capitalize;
 .rented-list-wrapper {
   width: 390px;
   height: 70px;
-  overflow-x: scroll;
-  overflow-y: scroll;
+  overflow: auto;
+  /* overflow-x: scroll;
+  overflow-y: scroll; */
   white-space: nowrap;
 }
 
