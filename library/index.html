@@ -706,14 +706,19 @@
                       placeholder="Reader's name"
                       id="name"
                       class="form-input form-input-check"
-                      data-user-name>
+                      data-user-name
+                      autocomplete="off"
+                      >
                     <input
                       type="text"
                       name="number"
                       placeholder="Card number"
                       id="number"
                       class="form-input form-input-check"
-                      data-user-number>
+                      data-user-number
+                      autocomplete="off"
+                      >
+                      <!-- autocomplete="off" -->
                   </div>
                     <input
                       type="submit"
@@ -883,7 +888,7 @@
               >
               <div class="caption-wrapper">
                 <p class="caption-text">Already have an account?</p>
-                <span class="caption-link" >Login</span>
+                <span class="caption-link caption-link-login" >Login</span>
               </div>
         </fieldset>
       </form>
@@ -919,7 +924,7 @@
           >
           <div class="caption-wrapper">
             <p class="caption-text">Don’t have an account?</p>
-            <span class="caption-link" >Register</span>
+            <span class="caption-link caption-link-reg" >Register</span>
           </div>
     </fieldset>
   </form>
