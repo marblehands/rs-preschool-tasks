@@ -1,21 +1,16 @@
-// console.log(`
-// 1. Task: https://github.com/rolling-scopes-school/tasks/blob/master/tasks/library/library-part2.md
-// \n
-// 2. Deploy: https://rolling-scopes-school.github.io/marblehands-JSFEPRESCHOOL2023Q2/library/
-// \n
-// 3. Done 13.08.2023 / deadline 14.08.2023
-// \n
-// 4. Score: 50 / 50
-// \n
-// Моя оценка после самопроверки: 50 баллов
-// \n
-// Привет, мой Ревьюер :) Если у тебя есть комментарии, любые советы или вопросы по моей работе, пожалуйста напиши мне RS дискорде: Ania @marblehands Спасибо за твою проверку <3
-// \n
-// Выполненные пункты:
-// 1) Вёрстка соответствует макету. Ширина экрана 768px +26
-// 2) Ни на одном из разрешений до 640px включительно не появляется горизонтальная полоса прокрутки. Весь контент страницы при этом сохраняется: не обрезается и не удаляется +12
-// 3) На ширине экрана 768рх реализовано адаптивное меню +12
-// `);
+console.log(`
+1. Task: https://github.com/rolling-scopes-school/tasks/blob/master/tasks/library/library-part3.md
+\n
+2. Deploy: https://rolling-scopes-school.github.io/marblehands-JSFEPRESCHOOL2023Q2/library/
+\n
+3. Done 10.09.2023 / deadline 11.09.2023
+\n
+4. Score: 200 / 200
+\n
+Моя оценка после самопроверки: 200 баллов
+\n
+Привет, мой Ревьюер :) Если у тебя есть комментарии, любые советы или вопросы по моей работе, пожалуйста напиши мне RS дискорде: Ania @marblehands Спасибо за твою проверку!
+`);
 
 const burger = document.querySelector('.burger-button');
 const nav = document.querySelector('.nav');
@@ -49,6 +44,7 @@ activeUserCheck ();
 
 
 burger.addEventListener('click', () => {
+  console.log('test')
   burgerMenu = !burgerMenu;
   nav.classList.toggle('nav-visible');
   burger.classList.toggle('burger-visible');
@@ -366,6 +362,26 @@ modalOverlay.forEach((element)=>{ //перебираю overlay
   })
 })
 
+//Открываю и закрываю модальные окна LOGIN и REGISTER по соответствующим ссылкам
+const linkToOpenLogin = document.querySelector('.caption-link-login');
+const linkToOpenReg = document.querySelector('.caption-link-reg');
+const modalWindowReg = document.getElementById('register');
+const modalWindowLogin = document.getElementById('login');
+
+linkToOpenLogin.addEventListener('click', function(){
+  if (modalReg) {
+    modalWindowReg.classList.add('hide');
+    modalWindowLogin.classList.remove('hide');
+  }
+})
+
+linkToOpenReg.addEventListener('click', function(){
+  if (modalReg) {
+    modalWindowLogin.classList.add('hide');
+    modalWindowReg.classList.remove('hide');
+  }
+})
+
 
 
 // Local Storage Study
@@ -413,6 +429,8 @@ function generateUniqUserId () {
   lastUserCounter = 0;
   return ++lastUserCounter;
 }
+
+
 
 //Функция меняет аватар и меню, принимает на вход нового юзера, меняет секцию Library Card
 function changePage (user) {
@@ -783,7 +801,7 @@ formTitle.textContent = 'Your Library card';
 inputs.forEach((input)=>{ //перебираю инпуты
   input.value = input.hasAttribute('data-user-name') ? userNameInput : userCardInput; //закидываю данные юзеры в инпуты
   input.setAttribute('readonly', 'readonly'); // лочу ввод данных в инпуты
-  input.style.color = '#bb945f'; //меняю цвет текста в инпутах //РАЗОБРАТЬСЯ ПОЧЕМУ НЕ КРАСИТ!!!
+  input.style.webkitTextFillColor =  '#bb945f'; //меняю цвет текста в инпутах //РАЗОБРАТЬСЯ ПОЧЕМУ НЕ КРАСИТ!!!
   // input.style.cursor = 'not-allowed'; //выключаю курсор на инпутах
 });
 
@@ -811,7 +829,7 @@ timeoutId = setTimeout(function () {
       const inputs = document.querySelectorAll('[data-user-name], [data-user-number]');
       inputs.forEach((input) => {
           input.removeAttribute('readonly');
-          input.style.color = '';
+          input.style.webkitTextFillColor = '';
           input.value = '';
       });
 
