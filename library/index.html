@@ -694,8 +694,8 @@
           <h2 class="section-title" id="card">Digital Library Cards</h2>
           <div class="cards-wrapper">
             <div class="form-wrapper">
-              <p class="form-title">Find your Library card</p>
-              <form action="#" class="cards">
+              <p class="form-cards-title">Find your Library card</p>
+              <form action="" class="cards">
                 <fieldset>
                   <legend></legend>
                   <div class="input-bg">
@@ -883,7 +883,7 @@
               >
               <div class="caption-wrapper">
                 <p class="caption-text">Already have an account?</p>
-                <span class="caption-link">Login</span>
+                <span class="caption-link" >Login</span>
               </div>
         </fieldset>
       </form>
@@ -919,7 +919,7 @@
           >
           <div class="caption-wrapper">
             <p class="caption-text">Don’t have an account?</p>
-            <span class="caption-link">Register</span>
+            <span class="caption-link" >Register</span>
           </div>
     </fieldset>
   </form>
@@ -991,7 +991,9 @@
               type="text"
               name="bank-card-number"
               required
-              pattern="^(?:\d\s*){16}$">
+              id="credit-card"
+              maxlength="19"
+              >
             <label for="expiration">Expiration code</label>
             <div class="input-row">
               <input
@@ -1001,7 +1003,8 @@
               maxlength="2"
               minlength="2"
               pattern="^\d{2}$"
-              class="input-short">
+              class="input-short"
+              id="exp1">
               <input
               type="text"
               name="expiration"
@@ -1009,7 +1012,8 @@
               maxlength="2"
               minlength="2"
               pattern="^\d{2}$"
-              class="input-short">
+              class="input-short"
+              id="exp2">
             </div>
             <label for="cvc">CVC</label>
             <input
@@ -1019,7 +1023,8 @@
               maxlength="3"
               minlength="3"
               pattern="^\d{3}$"
-              class="input-short">
+              class="input-short"
+              id="cvc">
           </fieldset>
           <fieldset class="fieldset-library-user">
             <label for="cardholder-name">Cardholder name</label>

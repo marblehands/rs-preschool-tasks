@@ -17,67 +17,11 @@
 // 3) На ширине экрана 768рх реализовано адаптивное меню +12
 // `);
 
-
-// // Burger Menu
-
-// const burger = document.querySelector('.burger-button');
-// const nav = document.querySelector('.nav');
-// const body = document.querySelector('.body');
-// const navLinks = document.querySelectorAll('.nav-link');
-// let burgerMenu = false;
-
-// burger.addEventListener('click', () => {
-//   burgerMenu = !burgerMenu;
-//   nav.classList.toggle('nav-visible');
-//   burger.classList.toggle('burger-visible');
-// });
-
-// navLinks.forEach (link => {
-//   link.addEventListener('click', function() {
-//   nav.classList.remove('nav-visible');
-//   burger.classList.remove('burger-visible');
-//   })
-// });
-
-// body.addEventListener('click', function(event) {
-//   if (event.target !== nav && event.target !== burger) {
-//   nav.classList.remove('nav-visible');
-//   burger.classList.remove('burger-visible');
-//   }
-// });
-
-// // Profile Menu
-
-
-//   const profileIcon = document.querySelector('.profile-link');
-//   const profileMenu = document.querySelector('.profile-menu');
-//   let menuDisplay = false;
-
-//   profileIcon.addEventListener('click', (event) => {
-//     event.stopPropagation();
-//     menuDisplay = !menuDisplay;
-//     profileMenu.classList.toggle('profile-menu-visible');
-//   });
-
-//   document.addEventListener('click', (event) => {
-//     if (menuDisplay) {
-//       const target = event.target;
-//       if (!profileMenu.contains(target) && (target !== profileIcon || burgerMenu)) {
-//         menuDisplay = false;
-//         burgerMenu = false;
-//         profileMenu.classList.remove('profile-menu-visible');
-//         nav.classList.remove('nav-visible');
-//         burger.classList.remove('burger-visible');
-//       }
-//     }
-//   });
-
-
-
 const burger = document.querySelector('.burger-button');
 const nav = document.querySelector('.nav');
 const body = document.querySelector('.body');
 const navLinks = document.querySelectorAll('.nav-link');
+
 let burgerMenu = false;
 let menuDisplay = false;
 let modalReg = false;
@@ -202,90 +146,149 @@ radioBtn.forEach(radio => {
   })
 })
 
-// Carousel
+// // Carousel
 
-const list = document.querySelector('.carousel-list'); //ul с картинками
-const slides = document.querySelectorAll('.carousel-item'); //дивы с картинками
-const leftArrow = document.querySelector('.carousel-arrow-left'); //левая стрелка
-const rightArrow = document.querySelector('.carousel-arrow-right'); // правая стрелка
-const dotControls = document.querySelector('.controls'); // обертка с дивами в которых точки
-const controls = document.querySelectorAll('.control'); // дивы с точками
-const dots = document.querySelectorAll('.dot'); //точки (это спаны)
-const actControl = document.querySelector('.active-control'); //активная точка-спан
+// const list = document.querySelector('.carousel-list'); //ul с картинками
+// const slides = document.querySelectorAll('.carousel-item'); //дивы с картинками
+// const leftArrow = document.querySelector('.carousel-arrow-left'); //левая стрелка
+// const rightArrow = document.querySelector('.carousel-arrow-right'); // правая стрелка
+// const dotControls = document.querySelector('.controls'); // обертка с дивами в которых точки
+// const controls = document.querySelectorAll('.control'); // дивы с точками
+// const dots = document.querySelectorAll('.dot'); //точки (это спаны)
+// const actControl = document.querySelector('.active-control'); //активная точка-спан
 
 
-// это функция которая листает слайдер по клику на кнопки пагинации
-function dotClickMove () {
+// // это функция которая листает слайдер по клику на кнопки пагинации
+// function dotClickMove () {
 
-  controls.forEach((control, index)=>{ //перебираю дивы с точками
-    control.addEventListener('click', (e)=> { //слушаю клик по диву с точкой
-      let targetIndex = index;
+//   controls.forEach((control, index)=>{ //перебираю дивы с точками
+//     control.addEventListener('click', (e)=> { //слушаю клик по диву с точкой
+//       let targetIndex = index;
+//       // e.target.style.cursor = "auto";
 
-      dots.forEach((dot, index) => { // теперь перебираю точки и меняю активный класс
-        if (index === targetIndex) {
-          dot.classList.add('active-dot');
-        } else {
-          dot.classList.remove('active-dot');
-        }
-      });
+//       // let childElement = e.target.getElementsByClassName('dot');
+//       // for (let i = 0; i < childElement.length; i++) {
+//       //   childElement[i].style.cursor = "auto";
+//       // }
 
-      let distance = 475 * index; // это вычисляем отступ насколько надо подвинуть список
-      list.style.transform = `translateX(${-distance}px)` // меняю параметр translateX в css
-    })
+//       dots.forEach((dot, index) => { // теперь перебираю точки и меняю активный класс
+//         if (index === targetIndex) {
+//           dot.classList.add('active-dot');
+//         } else {
+//           dot.classList.remove('active-dot');
+//         }
+//       });
+
+//       let distance = 475 * index; // это вычисляем отступ насколько надо подвинуть список
+//       list.style.transform = `translateX(${-distance}px)` // меняю параметр translateX в css
+//     })
+//   });
+// }
+
+
+// function arrowClickMove() {
+//   leftArrow.addEventListener('click', () => {
+//     moveSlides('left');
+//   });
+
+//   rightArrow.addEventListener('click', () => {
+//     moveSlides('right');
+//   });
+// }
+
+// function moveSlides(direction) {
+//   let i = null;
+
+//   dots.forEach((dot, index) => {
+//     if (dot.classList.contains('active-dot')) {
+//       i = index;
+//     }
+//   });
+
+//   const distance = 475;
+//   if (i !== null && (direction === 'left' && i !== 0) || (direction === 'right' && i !== dots.length - 1)) {
+//     i += direction === 'left' ? -1 : 1;
+//     list.style.transform = `translateX(${-distance * i}px)`;
+//   }
+//   dots.forEach((dot, index) => {
+//   dot.classList.remove('active-dot');
+//   });
+//   dots[i].classList.add('active-dot');
+
+// }
+
+// dotClickMove();
+// arrowClickMove();
+
+//Carousel Refactoring
+
+const carouselList = document.querySelector('.carousel-list');
+const slides = document.querySelectorAll('.carousel-item');
+const leftArrow = document.querySelector('.carousel-arrow-left');
+const rightArrow = document.querySelector('.carousel-arrow-right');
+const controls = document.querySelectorAll('.control');
+const dots = document.querySelectorAll('.dot');
+let activeIndex = 0; //активный слайд
+const slideWidth = 475; //ширина шага
+
+function setActiveDot(index) {
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active-dot', i === index);
   });
 }
 
+function moveCarousel(index) {
+  const distance = -slideWidth * index;
+  carouselList.style.transform = `translateX(${distance}px)`;
+  setActiveDot(index);
+
+  // неактивные стрелки по краям
+  if (index === 0) {
+    leftArrow.style.opacity = 0.5;
+    leftArrow.style.cursor = 'default';
+  } else {
+    leftArrow.style.opacity = 1;
+    leftArrow.style.cursor = 'pointer';
+  }
+
+  if (index === slides.length - 1) {
+    rightArrow.style.opacity = 0.5;
+    rightArrow.style.cursor = 'default';
+  } else {
+    rightArrow.style.opacity = 1;
+    rightArrow.style.cursor = 'pointer';
+  }
+}
+
+function dotClickMove() {
+  controls.forEach((control, index) => {
+    control.addEventListener('click', () => {
+      if (activeIndex !== index) {
+        activeIndex = index;
+        moveCarousel(index);
+      }
+    });
+  });
+}
 
 function arrowClickMove() {
   leftArrow.addEventListener('click', () => {
-    moveSlides('left');
-  });
-
-  rightArrow.addEventListener('click', () => {
-    moveSlides('right');
-  });
-}
-
-function moveSlides(direction) {
-  let i = null;
-
-  dots.forEach((dot, index) => {
-    if (dot.classList.contains('active-dot')) {
-      i = index;
+    if (activeIndex > 0) {
+      activeIndex--;
+      moveCarousel(activeIndex);
     }
   });
 
-  const distance = 475;
-  if (i !== null && (direction === 'left' && i !== 0) || (direction === 'right' && i !== dots.length - 1)) {
-    i += direction === 'left' ? -1 : 1;
-    list.style.transform = `translateX(${-distance * i}px)`;
-  }
-  dots.forEach((dot, index) => {
-  dot.classList.remove('active-dot');
+  rightArrow.addEventListener('click', () => {
+    if (activeIndex < slides.length - 1) {
+      activeIndex++;
+      moveCarousel(activeIndex);
+    }
   });
-  dots[i].classList.add('active-dot');
-
 }
 
 dotClickMove();
 arrowClickMove();
-
-    // if (direction === 'left' && i === 0) {
-    //   leftArrow.style.opacity = 0.3;
-    //   leftArrow.style.cursor='not-allowed';
-    // }
-    // if (direction === 'right' && i === dots.length - 1) {
-    //   rightArrow.style.opacity = 0.3;
-    //   rightArrow.style.cursor='not-allowed';
-    // }
-
-
-
-//   controls.addEventListener('click', () => {
-//       console.log(checkCurrentIndex());
-//     })
-
-
 
 
 
@@ -411,7 +414,7 @@ function generateUniqUserId () {
   return ++lastUserCounter;
 }
 
-//Функция меняет аватар и меню, принимает на вход нового юзера
+//Функция меняет аватар и меню, принимает на вход нового юзера, меняет секцию Library Card
 function changePage (user) {
   const userLetters = user.firstName[0].toUpperCase() + user.lastName[0].toUpperCase(); // две буквы имени
   const profileAvatarBtn = document.querySelector('.profile-link') //кнопка с иконкой
@@ -458,7 +461,10 @@ function changePage (user) {
   signupNotAuth.classList.add('hide');
 
   //Меняю форму Your Library card
+  const formCardsTitle = document.querySelector('.form-cards-title'); //это заголовок формы
   const inputs = document.querySelectorAll('[data-user-name], [data-user-number]'); //выбираю два инпута
+
+  formCardsTitle.textContent = 'Your Library card'; //поменяла тайтл формы
 
   inputs.forEach((input)=>{ //перебираю инпуты
     input.value = input.hasAttribute('data-user-name') ? username : cardStr; //закидываю данные юзеры в инпуты
@@ -628,7 +634,7 @@ allBuyBtnWithAbonement.forEach((button, index)=>{
 
 function addBookToUserProfile (book) {
   const rentedBooksList = document.querySelector('.rented-list')
-  console.log('успех')
+  // console.log('успех')
   const liBook = document.createElement('li');
   liBook.textContent = `${book.title}, ${book.author}`;
   rentedBooksList.appendChild(liBook);
@@ -645,17 +651,17 @@ function checkBooksRenderButtons (user) {
   if (!user) {
     return
   }
-  console.log('test')
+  // console.log('test')
   const allBuyBtn = document.querySelectorAll('.btn-abonement');
-  console.log(allBuyBtn)
+  // console.log(allBuyBtn)
   const arrBook = user.books;
-  console.log(arrBook)
+  // console.log(arrBook)
   const btnIndexArray = arrBook.map(obj => obj.btnIndex);
-  console.log(btnIndexArray)
+  // console.log(btnIndexArray)
   btnIndexArray.forEach((index) => {
     let btn = []
     btn.push(allBuyBtn[index]);
-    console.log(btn)
+    // console.log(btn)
 
     btn.forEach((b)=>{
       b.classList.add('disabled');
@@ -670,7 +676,7 @@ if(user.books.length > 0) {
 
   books.forEach((item)=>{
   const rentedBooksList = document.querySelector('.rented-list')
-  console.log('успех')
+  // console.log('успех')
   const liBook = document.createElement('li');
   liBook.textContent = `${item.title}, ${item.author}`;
   rentedBooksList.appendChild(liBook);
@@ -710,7 +716,7 @@ loginForm.addEventListener('submit', (e)=>{
   }
 })
 
-
+//функиция логина
 function login () {
   const emailOrCardInput = document.getElementById('user-id').value;
   const passwordInput = document.getElementById('login-pass').value;
@@ -729,7 +735,7 @@ function login () {
     localStorage.setItem('allLibraryUsers', JSON.stringify(allUsers));
 
     changePage(user); // меняем страницу под юзера
-    activeUser = user.counter; //меняем переменную активного юзера на номер бзера
+    activeUser = user.counter; //меняем переменную активного юзера на номер юзера
     localStorage.setItem('activeUser', activeUser); //записываем активного юзера в локалсторадж
     checkBooksRenderButtons (user); //проверяю есть ли у него книги и меняю кнопки buy на own
     location.reload();
@@ -741,12 +747,13 @@ function login () {
   }
 }
 
-let timeoutId;
+
 
 // функиция которая проверяет и ищет пользователя в форме Check readers card
 function checkUser () {
   const userNameInput = document.getElementById('name').value || null; //получаю значение инпута с именем
   const userCardInput = document.getElementById('number').value || null; //инпут с номером
+
   let allUsers = JSON.parse(localStorage.getItem('allLibraryUsers')); //скачиваю пользователей с локалсторадж
 
   if (userNameInput && userCardInput) { //если инпуты не пустые
@@ -755,23 +762,29 @@ function checkUser () {
     });
 
     //если нашли юзера по карте проверяем по имени + фамилии, просто по имени и по фамилии + имя
-  if (user && userNameInput === user.firstName || userNameInput === user.firstName + ' ' + user.lastName || userNameInput === user.lastName + ' ' + user.firstName) {
+    if (user && (userNameInput === user.firstName || userNameInput === user.firstName + ' ' + user.lastName || userNameInput === user.lastName + ' ' + user.firstName)) {
     findYourLibraryCardFormChange (user, userNameInput, userCardInput);
+  } else {
+    alert('Пользователь и номер читательской карты не найдены.')
   }
   }
 }
 
+//функция которая показывает статистику если нашелся пользователь в локале
 function findYourLibraryCardFormChange (user, userNameInput, userCardInput) {
 //показываем статистику этого пользователя
-console.log('test')
+// console.log('test')
 //Меняю форму Your Library card
 const inputs = document.querySelectorAll('[data-user-name], [data-user-number]'); //выбираю два инпута
+const formTitle = document.querySelector('.form-cards-title');
+
+formTitle.textContent = 'Your Library card';
 
 inputs.forEach((input)=>{ //перебираю инпуты
-input.value = input.hasAttribute('data-user-name') ? userNameInput : userCardInput; //закидываю данные юзеры в инпуты
-input.setAttribute('readonly', 'readonly'); // лочу ввод данных в инпуты
-input.style.color = '#bb945f'; //меняю цвет текста в инпутах //РАЗОБРАТЬСЯ ПОЧЕМУ НЕ КРАСИТ!!!
-// input.style.cursor = 'not-allowed'; //выключаю курсор на инпутах
+  input.value = input.hasAttribute('data-user-name') ? userNameInput : userCardInput; //закидываю данные юзеры в инпуты
+  input.setAttribute('readonly', 'readonly'); // лочу ввод данных в инпуты
+  input.style.color = '#bb945f'; //меняю цвет текста в инпутах //РАЗОБРАТЬСЯ ПОЧЕМУ НЕ КРАСИТ!!!
+  // input.style.cursor = 'not-allowed'; //выключаю курсор на инпутах
 });
 
 //Показываю блок со статистикой
@@ -787,10 +800,13 @@ visitsCount.innerHTML = user.visits;
 
 //Подставляю данные Books
 const booksCount = document.querySelector('[data-books]');
-booksCount.innerHTML = user.books || 0;
+booksCount.innerHTML = user.books.length || 0;
 
 // После 10 секунд отменяю все
 timeoutId = setTimeout(function () {
+      //возвращаюсь заголовок
+      const formTitle = document.querySelector('.form-cards-title');
+      formTitle.textContent = 'Find your Library card';
       // скрываю статистику и показаю кнопку
       const inputs = document.querySelectorAll('[data-user-name], [data-user-number]');
       inputs.forEach((input) => {
@@ -825,6 +841,171 @@ cardCheckForm.addEventListener('submit', (e) => {
   }
 })
 
+//валидации инпута с кредитной картой
+document.getElementById('credit-card').addEventListener('input', function(e) {
+  const input = e.target;
+  const value = input.value.replace(/\D/g, ''); // удаляет все символы, кроме цифр
+  const formattedValue = value.replace(/(\d{4})(?=\d)/g, '$1 '); // добавляет пробел после каждых 4 цифр
+  input.value = formattedValue;
+});
+
+//валидации инпутов срока карты
+const expiration1Input = document.getElementById('exp1');
+const expiration2Input = document.getElementById('exp2');
+
+expiration1Input.addEventListener('input', function() {
+  validateExpiration(expiration1Input);
+});
+
+expiration2Input.addEventListener('input', function() {
+  validateExpiration(expiration2Input);
+});
+
+function validateExpiration(input) {
+  const value = input.value;
+  const numericValue = value.replace(/\D/g, '');
+
+  if (numericValue !== '00' && numericValue.length <= 2) {
+    input.value = numericValue;
+  } else {
+    input.value = '';
+  }
+}
+
+//валидация инпута поля ccv
+const cvcInput = document.getElementById('cvc');
+
+cvcInput.addEventListener('input', function() {
+  validateCvc(cvcInput);
+});
+
+function validateCvc(input) {
+  const value = input.value;
+  const numericValue = value.replace(/\D/g, '');
+
+  if (numericValue !== '000' && numericValue.length <= 3) {
+    input.value = numericValue;
+  } else {
+    input.value = '';
+  }
+};
+
+// Валидация email при регистрации
+const emailRegInput = document.getElementById('reg-email');
+const regForm = document.querySelector('.modal-form-register'); 
+
+emailRegInput.addEventListener('input', function () {
+  validateRegEmail();
+});
+
+regForm.addEventListener('submit', function (e) {
+  if (!validateRegEmail()) {
+    e.preventDefault(); // Отменяю отправку формы, если email невалиден
+  }
+});
+
+function validateRegEmail() {
+  const emailValue = emailRegInput.value.trim();
+
+  if (emailValue === '') {
+    // Пустое поле
+    emailRegInput.setCustomValidity('Пожалуйста, введите email. Поле не может быть пустым.');
+    return false; // Email невалиден
+  } else {
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z.]{2,}$/;
+
+    if (emailPattern.test(emailValue)) {
+      // Email валиден
+      emailRegInput.setCustomValidity('');
+      return emailExistCheck(emailValue); // Проверяю на существование такого же email
+    } else {
+      // Email невалиден
+      emailRegInput.setCustomValidity('Некорректный email. Пример валидного email: example@example.com');
+      return false; // Email невалиден
+    }
+  }
+}
+
+// Функция, которая проверяет, что пользователь уже зарегистрирован с таким email
+function emailExistCheck(email) {
+  let allUsers = JSON.parse(localStorage.getItem('allLibraryUsers')) || []; // Все пользователи
+  let allEmails = []; // Массив для email
+  let emailExists = false;
+
+  for (const user of allUsers) { // Перебираю циклом все объекты и собираю email
+    allEmails.push(user.email);
+  }
+  // Все email собраны в массиве allEmails
+
+  for (const item of allEmails) {
+    if (email === item) {
+      emailExists = true;
+      break;
+    }
+  }
+
+  if (emailExists) {
+    emailRegInput.setCustomValidity('На этот email адрес уже зарегистрирован пользователь. Выберите другой email.');
+    return false; // Email уже существует
+  } else {
+    emailRegInput.setCustomValidity('');
+    return true; // Email уникален
+  }
+}
+
+
+
+//валидация имени при регистрации
+firstNameInput.addEventListener('input', function(){
+  validateName (firstNameInput);
+});
+
+lastNameInput.addEventListener('input', function(){
+  validateName (lastNameInput);
+});
+
+
+function validateName(input) {
+  const inputValueTrimmed = input.value.trim();
+
+
+  const regex = /^[a-zA-Zа-яА-Я]*$/;
+
+  if (!regex.test(inputValueTrimmed)) {
+    input.setCustomValidity('Имя может содержать только буквы');
+  } else {
+    input.value = inputValueTrimmed;
+    input.setCustomValidity('');
+  }
+}
+
+//валидация email при логине
+const emailLogInput = document.getElementById('user-id');
+
+emailLogInput.addEventListener('input', function(){
+  validateLogEmail(emailLogInput);
+})
+
+function validateLogEmail(input) {
+  const emailValue = input.value.trim();
+
+  if (emailValue === '') {
+    // пустое поле
+    input.setCustomValidity('Пожалуйста, введите email. Поле не может быть пустым.');
+  } else {
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z.]{2,}$/;
+
+    if (emailPattern.test(emailValue)) {
+      //email валиден
+      emailInput.setCustomValidity('');
+    } else {
+      // email невалиден
+      emailInput.setCustomValidity('Некорректный email. Пример валидного email: example@example.com');
+    }
+}
+}
+
+
 // Логика покупки книг тут
 const buyAbonementForm = document.querySelector('.modal-form-libary'); //это форма покупки абонемента BUY A LIBRARY CARD
 
@@ -832,7 +1013,7 @@ const buyAbonementForm = document.querySelector('.modal-form-libary'); //это 
 buyAbonementForm.addEventListener('submit', (e)=>{
   e.preventDefault();
 
-  buyAbonement (activeUserDefine ()); //вызываю функцию покупки абонемента передаю в нее вызов функции оперделения активного юзера
+  buyAbonement (activeUserDefine ()); //вызываю функцию покупки абонемента передаю в нее вызов функции опрeделения активного юзера
 
   buyAbonementForm.reset(); //очищаю форму
 
@@ -848,10 +1029,13 @@ function activeUserDefine () {
   let allUsers = JSON.parse(localStorage.getItem('allLibraryUsers'));
   let activeUser = JSON.parse(localStorage.getItem('activeUser'));
 
-  let user = allUsers.find((item)=>{
-    return item.counter === activeUser
-  });
-  return user
+  if (allUsers) {
+    let user = allUsers.find((item)=>{
+      return item.counter === activeUser
+    });
+    return user
+  }
+  
 }
 
 //эта функция принимает на вход объект активного юзера,
@@ -864,14 +1048,12 @@ function buyAbonement (user) {
     user.abonement = true;
     allUsers[userIndex] = user;
     localStorage.setItem('allLibraryUsers', JSON.stringify(allUsers));
-    console.log('success')
-    console.log(modalReg)
+    // console.log('success')
+    // console.log(modalReg)
     alert('Абонемент успешно куплен! Теперь можно добавлять книги в профиль.')
     location.reload();
   }
 }
-
-//собираю все кнопки buy
 
 
 
