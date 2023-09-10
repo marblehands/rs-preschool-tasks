@@ -366,6 +366,26 @@ modalOverlay.forEach((element)=>{ //перебираю overlay
   })
 })
 
+//Открываю и закрываю модальные окна LOGIN и REGISTER по соответствующим ссылкам
+const linkToOpenLogin = document.querySelector('.caption-link-login');
+const linkToOpenReg = document.querySelector('.caption-link-reg');
+const modalWindowReg = document.getElementById('register');
+const modalWindowLogin = document.getElementById('login');
+
+linkToOpenLogin.addEventListener('click', function(){
+  if (modalReg) {
+    modalWindowReg.classList.add('hide');
+    modalWindowLogin.classList.remove('hide');
+  }
+})
+
+linkToOpenReg.addEventListener('click', function(){
+  if (modalReg) {
+    modalWindowLogin.classList.add('hide');
+    modalWindowReg.classList.remove('hide');
+  }
+})
+
 
 
 // Local Storage Study
@@ -413,6 +433,8 @@ function generateUniqUserId () {
   lastUserCounter = 0;
   return ++lastUserCounter;
 }
+
+
 
 //Функция меняет аватар и меню, принимает на вход нового юзера, меняет секцию Library Card
 function changePage (user) {
