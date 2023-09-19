@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/normalise.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+  <title>JS30 Audio Player Task</title>
+</head>
+<body>
+  <main>
+    <div class="container">
+      <!-- Left -->
+      <div class="player-wrapper">
+        <div class="cover-wrapper">
+          <img src="assets/img/cover.jpg" alt="Cover" class="cover-img">
+        </div>
+        <div class="song-info">
+          <h1 class="song-title">The Killing Jar two lines</h1>
+          <p class="song-author">Siouxsie & The Banshees</p>
+        </div>
+        <div class="player-controls">
+          <button class="control control-previous"><img src="assets/svg/previous-sign.svg" alt="" class="control-img"></button>
+          <button class="control control-play"><img src="assets/svg/play-sign.svg" alt="" class="control-img"></button>
+          <button class="control control-next"><img src="assets/svg/next-sign.svg" alt="" class="control-img"></button>
+        </div>
+        <div class="pr-bar">
+          <input type="range" min="0" max="100" value="50" class="slider" id="mySlider">
+          <div class="pr-bar-time"><span id="sliderValue">00:00</span><span id="sliderValue">00:00</span></div>
+        </div>
+        <div class="volume-controls">
+          <button class="control control-volume"><img src="assets/svg/volume-sign.svg" alt="" class="control-img"></button>
+          <input type="range" min="0" max="100" value="50" class="volume" id="mySlider">
+        </div>
+      </div>
+      <!-- Right -->
+      <div class="playlist-wrapper">
+        <!--Radio panel-->
+        <div class="radio-panel-wrapper">
+          <p class="radio-panel-label">Choose playlist you prefer</p>
+          <div class="radio-controls-wrapper">
+            <input type="radio" name="genre" id="retro" checked>
+            <label for="retro" class="radio-label">
+              <span class="emoji">🎙</span>
+              <span class="genre-title">Retro FM</span>
+            </label>
+            <input type="radio" name="genre" id="road" checked>
+            <label for="road" class="radio-label">
+              <span class="emoji">🚘</span>
+              <span class="genre-title">On the Road</span>
+            </label>
+            <input type="radio" name="genre" id="punk" checked>
+            <label for="punk" class="radio-label">
+              <span class="emoji">🪦</span>
+              <span class="genre-title">Postpunk</span>
+            </label>
+            <input type="radio" name="genre" id="electro" checked>
+            <label for="electro" class="radio-label">
+              <span class="emoji">🎹</span>
+              <span class="genre-title">Electronics</span>
+            </label>
+            <input type="radio" name="genre" id="classic" checked>
+            <label for="classic" class="radio-label">
+              <span class="emoji">🎧</span>
+              <span class="genre-title">Classic</span>
+            </label>
+            <input type="radio" name="genre" id="pure" checked>
+            <label for="pure" class="radio-label">
+              <span class="emoji">🤍</span>
+              <span class="genre-title">Pure Beauty</span>
+            </label>
+          </div>
+        </div>
+        <!-- End of radio panel -->
+
+        <!-- Playlist -->
+        <div class="genre-playlist-wrapper">
+          <div class="song-item-wrapper">
+            <div class="song-item-cover-wrapper">
+              <img src="assets/img/cover.jpg" alt="Song Cover" class="song-item-cover-img">
+            </div>
+            <div class="song-item-info">
+              <div class="song-item-title">The Killing Jar</div>
+              <div class="song-item-author">Siouxsie And The Banshees</div>
+            </div>
+            <div class="song-item-controls">
+              <!-- <span class="current-playing-icon"></span> -->
+              <span class="song-item-duration">01:45</span>
+              <button class="control song-item-control"><img src="assets/svg/play-small-sign.svg" alt="" class="control-img"></button>
+            </div>
+          </div>
+
+          <div class="song-item-wrapper">
+            <div class="song-item-cover-wrapper">
+              <img src="assets/img/cover.jpg" alt="Song Cover" class="song-item-cover-img">
+            </div>
+            <div class="song-item-info">
+              <div class="song-item-title">The Killing Jar</div>
+              <div class="song-item-author">Siouxsie And The Banshees</div>
+            </div>
+            <div class="song-item-controls">
+              <!-- <span class="current-playing-icon"></span> -->
+              <span class="song-item-duration">01:45</span>
+              <button class="control song-item-control"><img src="assets/svg/play-small-sign.svg" alt="" class="control-img"></button>
+            </div>
+          </div>
+
+          <div class="song-item-wrapper">
+            <div class="song-item-cover-wrapper">
+              <img src="assets/img/cover.jpg" alt="Song Cover" class="song-item-cover-img">
+            </div>
+            <div class="song-item-info">
+              <div class="song-item-title">The Killing Jar</div>
+              <div class="song-item-author">Siouxsie And The Banshees</div>
+            </div>
+            <div class="song-item-controls">
+              <!-- <span class="current-playing-icon"></span> -->
+              <span class="song-item-duration">01:45</span>
+              <button class="control song-item-control"><img src="assets/svg/play-small-sign.svg" alt="" class="control-img"></button>
+            </div>
+          </div>
+
+          <div class="song-item-wrapper">
+            <div class="song-item-cover-wrapper">
+              <img src="assets/img/cover.jpg" alt="Song Cover" class="song-item-cover-img">
+            </div>
+            <div class="song-item-info">
+              <div class="song-item-title">The Killing Jar</div>
+              <div class="song-item-author">Siouxsie And The Banshees</div>
+            </div>
+            <div class="song-item-controls">
+              <!-- <span class="current-playing-icon"></span> -->
+              <span class="song-item-duration">01:45</span>
+              <button class="control song-item-control"><img src="assets/svg/play-small-sign.svg" alt="" class="control-img"></button>
+            </div>
+          </div>
+
+          <div class="song-item-wrapper">
+            <div class="song-item-cover-wrapper">
+              <img src="assets/img/cover.jpg" alt="Song Cover" class="song-item-cover-img">
+            </div>
+            <div class="song-item-info">
+              <div class="song-item-title">The Killing Jar</div>
+              <div class="song-item-author">Siouxsie And The Banshees</div>
+            </div>
+            <div class="song-item-controls">
+              <!-- <span class="current-playing-icon"></span> -->
+              <span class="song-item-duration">01:45</span>
+              <button class="control song-item-control"><img src="assets/svg/play-small-sign.svg" alt="" class="control-img"></button>
+            </div>
+          </div>
+          <!--End of songs items-->
+        </div>
+      </div>
+
+<!-- End of main container -->
+    </div>
+  </main>
+
+</body>
+</html>
