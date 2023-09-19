@@ -1,0 +1,227 @@
+:root {
+  --bg-global-primary: #101314;
+  --bg-global-secondary: #1C2023;
+  --bg-control-default: #2D3439;
+  --bg-control-hover: #3C444A;
+  --bg-control-active: #BFDDE2;
+  --bg-error-control-default: #4B2A2A;
+  --bg-error-control-default: #823B3B;
+  --default-text: #FEFEFE;
+  --default-text-inverse:var(--bg-global-primary);
+  --accent: #EC6747;
+  --fs-desktop-default-16: 16px;
+  --fs-mobile-default: 17px;
+  --fs-12: 12px;
+  --fs-14: 14px;
+  --fs-36: 36px;
+  --br-36: 36px;
+  --br-24: 24px;
+  --br-16: 16px;
+  --br-8: 8px;
+  --fm-default: 'Inter', sans-serif;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-bold: 600;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-36: 36px;
+  --spacing-48: 48px;
+  --spacing-64: 64px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-size: var(--fs-desktop-default-16);
+  background-color: var(--bg-control-active);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--fm-default);
+  font-weight: var(--fw-regular);
+  color: var(--default-text);
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  display: block;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+img {
+  display: block;
+}
+
+/* Main containers */
+
+.container {
+  width: 65vw;
+  height: 90vh;
+  background-color: var(--bg-global-primary);
+  border-radius: var(--br-36);
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.player-wrapper,
+.playlist-wrapper {
+  width: 50%;
+}
+
+.player-wrapper {
+  background-color: var(--bg-global-secondary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-36);
+  padding: var(--spacing-48);
+}
+
+.playlist-wrapper {
+  background-color: var(--bg-global-primary);
+}
+
+/* Cover */
+
+.cover-wrapper {
+  max-width: 20em;
+  max-height: 20em;
+  border-radius: var(--br-24);
+  overflow: hidden;
+}
+
+.cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Song Infos */
+
+.song-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap:var(--spacing-12);
+  text-align: center;
+}
+
+.song-title {
+  font-size: var(--br-24);
+  font-weight: var(--fw-medium);
+  margin: 0;
+}
+
+.song-author {
+  font-size: var(--fs-14);
+  font-weight: var(--fw-regular);
+  letter-spacing: 0.6px;
+  opacity: 0.6;
+}
+
+/* Controls */
+
+.player-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-24);
+}
+
+.control {
+  border-radius: 100%;
+  padding: var(--spacing-12);
+}
+
+.control-previous,
+.control-next {
+  width: 4em;
+  height: 4em;
+  background-color: var(--bg-control-default);
+}
+
+.control-play {
+  max-width: 8em;
+  max-height: 8em;
+  padding: var(--spacing-36);
+  background-color: var(--accent);
+  filter: drop-shadow(0px 3px 7px rgba(236, 103, 71, 0.10)) drop-shadow(0px 13px 13px rgba(236, 103, 71, 0.09)) drop-shadow(0px 29px 18px rgba(236, 103, 71, 0.05)) drop-shadow(0px 52px 21px rgba(236, 103, 71, 0.01)) drop-shadow(0px 82px 23px rgba(236, 103, 71, 0.00));
+}
+
+.volume-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-24);
+}
+
+.control-volume {
+  width: 3em;
+  height: 3em;
+  background-color: var(--bg-control-default);
+}
+
+.control-img {
+  display: block;
+  object-fit: cover;
+}
+
+/* Progress Bar */
+
+.pr-bar {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.pr-bar-time {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--fs-desktop-default-16);
+  opacity: 0.6;
+}
+
+/* Styles for progress bar input */
+
+input[type="range"].slider {
+  width: 100%;
+  height: var(--spacing-8);
+  background-color: var(--bg-control-default);
+  border: none;
+  border-radius: 100%;
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="range"].volume {
+  width: 8em;
+  height: var(--spacing-8);
+  background-color: var(--bg-control-default);
+  border: none;
+  border-radius: 100%;
+  outline: none;
+  cursor: pointer;
+}
