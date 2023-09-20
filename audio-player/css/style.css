@@ -2,13 +2,14 @@
   --bg-global-primary: #101314;
   --bg-global-secondary: #1C2023;
   --bg-control-default: #2D3439;
-  --bg-control-hover: #3C444A;
+  --bg-control-hover: #464E53;
   --bg-control-active: #BFDDE2;
   --bg-error-control-default: #4B2A2A;
   --bg-error-control-default: #823B3B;
   --default-text: #FEFEFE;
   --default-text-inverse:var(--bg-global-primary);
-  --accent: #EC6747;
+  --accent-default: #EC6747;
+  --accent-hover: #EE5632;
   --fs-desktop-default-16: 16px;
   --fs-mobile-default: 17px;
   --fs-12: 12px;
@@ -99,7 +100,7 @@ img {
 
 .playlist-wrapper {
   background-color: var(--bg-global-primary);
-  gap: var(--spacing-48);
+  gap: var(--spacing-36);
 }
 
 /* Cover */
@@ -155,6 +156,8 @@ img {
   border-radius: 100%;
   padding: var(--spacing-12);
   background-color: var(--bg-control-default);
+  opacity: 0.85;
+  transition: background-color 0.6s ease, opacity 0.6s ease, filter 0.6s ease;
 }
 
 .control-previous,
@@ -163,12 +166,26 @@ img {
   height: 4em;
 }
 
-.control-play {
-  max-width: 8em;
-  max-height: 8em;
+.control-previous {
+  background: var(--bg-control-default) center/50% no-repeat url(../assets/svg/previous-sign.svg);
+}
+
+.control-next {
+  background: var(--bg-control-default) center/50% no-repeat url(../assets/svg/next-sign.svg);
+}
+
+.control-sound {
+  width: 6em;
+  height: 6em;
   padding: var(--spacing-36);
-  background-color: var(--accent);
-  filter: drop-shadow(0px 3px 7px rgba(236, 103, 71, 0.10)) drop-shadow(0px 13px 13px rgba(236, 103, 71, 0.09)) drop-shadow(0px 29px 18px rgba(236, 103, 71, 0.05)) drop-shadow(0px 52px 21px rgba(236, 103, 71, 0.01)) drop-shadow(0px 82px 23px rgba(236, 103, 71, 0.00));
+
+  background: var(--accent-default) center/50% no-repeat url(../assets/svg/play-sign.svg);
+
+  filter: drop-shadow(0px 3px 7px rgba(236, 103, 71, 0.10))
+          drop-shadow(0px 13px 13px rgba(236, 103, 71, 0.09))
+          drop-shadow(0px 29px 18px rgba(236, 103, 71, 0.05))
+          drop-shadow(0px 52px 21px rgba(236, 103, 71, 0.01))
+          drop-shadow(0px 82px 23px rgba(236, 103, 71, 0.00));
 }
 
 .volume-controls {
@@ -180,13 +197,30 @@ img {
 .control-volume {
   width: 3em;
   height: 3em;
-  background-color: var(--bg-control-default);
+  background: var(--bg-control-default) center/50% no-repeat url(../assets/svg/volume-sign.svg);
 }
 
 .control-img {
   display: block;
   object-fit: cover;
 }
+
+.pause {
+  background: var(--accent-default) center/50% no-repeat url(../assets/svg/pause-sign.svg);
+}
+
+/* States for left controls */
+
+.control:hover {
+  opacity: 1;
+  background-color: var(--bg-control-hover);
+}
+
+.control-sound:hover {
+  background-color: var(--accent-hover);
+  filter: drop-shadow(0px 3px 6px rgba(236, 103, 71, 0.20)) drop-shadow(0px 11px 11px rgba(236, 103, 71, 0.17)) drop-shadow(0px 24px 15px rgba(236, 103, 71, 0.10)) drop-shadow(0px 43px 17px rgba(236, 103, 71, 0.03)) drop-shadow(0px 68px 19px rgba(236, 103, 71, 0.00));
+}
+
 
 /* Progress Bar */
 
@@ -241,29 +275,49 @@ input[type="range"].volume {
   opacity: 0.6;
 }
 
-.radio-controls-wrapper {
+#pills {
   display: flex;
   gap: var(--spacing-8);
   flex-wrap: wrap;
 }
 
-.radio-label {
+.radio-pill {
   display: flex;
   font-size: 12px;
   font-weight: var(--fw-medium);
-  letter-spacing: 0.5px;
   gap: var(--spacing-8);
   padding: var(--spacing-12) var(--spacing-16);
   background-color: var(--bg-control-default);
   border-radius: 8em;
+  cursor: pointer;
+  transition: background-color 0.6s ease;
 }
 
-.radio-label span {
+.radio-pill:hover {
+  background-color: var(--bg-control-hover);
+}
+
+#retro:checked ~ #pills label:nth-child(1),
+#road:checked ~ #pills label:nth-child(2),
+#punk:checked ~ #pills label:nth-child(3),
+#electro:checked ~ #pills label:nth-child(4),
+#classic:checked ~ #pills label:nth-child(5),
+#pure:checked ~ #pills label:nth-child(6) {
+  background-color: var(--bg-control-active);
+  color: var(--default-text-inverse);
+}
+
+.radio-pill span {
   display: inline-block;
 }
 
-.radio-label span:nth-child(2) {
-  opacity: 0.7;
+.radio-pill span:nth-child(2) {
+  opacity: 0.8;
+  transition: opacity 0.6s ease;
+}
+
+.radio-pill span:nth-child(2):hover {
+  opacity: 1;
 }
 
 .radio-controls-wrapper input {
@@ -273,10 +327,22 @@ input[type="range"].volume {
 /* Playlist */
 
 .genre-playlist-wrapper {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-8);
   width: 100%;
+  overflow: auto;
+}
+
+.genre-playlist-wrapper-decor::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: 10%;
+  background: linear-gradient(180deg, rgba(20, 24, 25, 0.00) 0%, #141819 100%);
 }
 
 .song-item-wrapper {
