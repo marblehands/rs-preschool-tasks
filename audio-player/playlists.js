@@ -4,14 +4,14 @@
       title: 'Безумный Мир',
       band: 'Мираж',
       cover: 'assets/img/cover.jpg',
-      url: './assets/audio/retro/mirazh-bezumniy-mir.mp3',
+      url: './assets/audio/test-song-1.mp3',
       duration: '03:40',
     },
     {
       title: 'Su Di Noi',
       band: 'Pupo',
       cover: 'assets/img/cover.jpg',
-      url: 'assets/audio/retro/pupo-sudinoi.mp3',
+      url: 'assets/audio/test-song-2.mp3',
       duration: '03:20',
     },
     {
@@ -46,10 +46,10 @@
 
   road: [
     {
-      title: 'Road',
-      band: 'Мираж',
+      title: 'Where Is My Mind',
+      band: 'Pixies',
       cover: 'assets/img/cover.jpg',
-      url: 'assets/audio/retro/mirazh-bezumniy-mir.mp3',
+      url: 'assets/audio/road/pixies-were-is-my-mind.mp3',
       duration: '03:40',
     },
     {
@@ -91,10 +91,10 @@
 
   punk: [
     {
-      title: 'Безумный Мир',
-      band: 'Мираж',
+      title: 'Echo and The Bunnymen',
+      band: 'Nocturnal Me',
       cover: 'assets/img/cover.jpg',
-      url: 'assets/audio/retro/mirazh-bezumniy-mir.mp3',
+      url: 'assets/audio/postpunk/echo-and-the-bunnymen-nocturnal-me.mp3',
       duration: '03:40',
     },
     {
@@ -184,7 +184,7 @@
       title: 'Classic',
       band: 'Мираж',
       cover: 'assets/img/cover.jpg',
-      url: 'assets/audio/retro/mirazh-bezumniy-mir.mp3',
+      url: 'assets/audio/classic/simon-garfunkel-the-sound-of-silence.mp3',
       duration: '03:40',
     },
     {
@@ -229,7 +229,7 @@
       title: 'Чувствую',
       band: 'Вера Сухомлин',
       cover: 'assets/img/cover.jpg',
-      url: 'assets/audio/retro/vera-suhomlin-chuvstvuyu.mp3',
+      url: 'assets/audio/beauty/vera-suhomlin-chuvstvuyu.mp3',
       duration: '03:40',
     },
     {

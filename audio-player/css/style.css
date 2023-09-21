@@ -381,6 +381,7 @@ input[type="range"].volume {
 .song-item-title {
   font-size: var(--fs-16);
   font-weight: var(--fw-medium);
+  line-height: 1.3em;
 }
 
 .song-item-author {
