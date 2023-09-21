@@ -4,9 +4,25 @@ let isPlay = false
 const soundControl = document.querySelector('.control-sound')
 const pills = Array.from(document.getElementsByName('genre'))
 const playlistWrapper = document.querySelector('.playlist-wrapper')
+let currentPlaylist = getCurrentPlaylist ()
+const audio = new Audio();
+
+function playAudio() {
+  if (!isPlay) {
+    audio.src = currentPlaylist[0].url
+    audio.currentTime = 0
+    audio.play()
+    isPlay = true
+    soundControl.classList.add('pause')
+  } else if (isPlay) {
+    audio.pause()
+    isPlay = false
+    soundControl.classList.remove('pause')
+  }
+}
 
 soundControl.addEventListener('click', function () {
-  soundControlToggle ()
+  playAudio()
 })
 
 pills.forEach((pill) => {
@@ -16,16 +32,6 @@ pills.forEach((pill) => {
     loadPlaylist ()
   })
 })
-
-// Main Sound Control Toggle
-function soundControlToggle () {
-  if (!isPlay) {
-    soundControl.classList.add('pause')
-  } else {
-    isPlay = false
-    soundControl.classList.remove('pause')
-  }
-}
 
 // Find current playlist
 function getCurrentPlaylist () {
@@ -37,10 +43,9 @@ function getCurrentPlaylist () {
 
 //Paste playlist data
 function loadPlaylist () {
-  const playlist = getCurrentPlaylist ()
 
-  if (playlist) {
-    playlist.forEach(song => {
+  if (currentPlaylist) {
+    currentPlaylist.forEach(song => {
       const songItemLayout = `
           <div class="song-item-wrapper">
             <div class="song-item-cover-wrapper">
@@ -62,6 +67,7 @@ function loadPlaylist () {
 }
 
 loadPlaylist ()
+
 
 
 

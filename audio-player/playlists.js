@@ -4,7 +4,7 @@
       title: 'Безумный Мир',
       band: 'Мираж',
       cover: 'assets/img/cover.jpg',
-      url: 'assets/audio/retro/mirazh-bezumniy-mir.mp3',
+      url: './assets/audio/retro/mirazh-bezumniy-mir.mp3',
       duration: '03:40',
     },
     {
