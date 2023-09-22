@@ -167,7 +167,7 @@ pills.forEach((pill) => {
 // Initialisation
 function getPlaylist () {
   const pillChecked = pills.filter(pill => pill.checked)
-  const playlist = pillChecked[0].id
+  const playlist = pillChecked[songIndex].id
   return music[playlist]
 }
 
