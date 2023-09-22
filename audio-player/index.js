@@ -198,6 +198,7 @@ function loadCurrentSondData () {
   currentSongTitle.innerHTML = playlist[songIndex].title
   currentSongBand.innerHTML = playlist[songIndex].band
   audio.src = playlist[songIndex].url
+  durationValue.innerHTML = playlist[songIndex].duration
 }
 
 // function playPause () {
@@ -215,7 +216,7 @@ function loadCurrentSondData () {
 function playSong () {
   mainControl.classList.add('pause')
   audio.play()
-  updatePregress ()
+  updateProgress ()
   isPlay = 1 - isPlay
 }
 
@@ -229,6 +230,7 @@ function playNext () {
   songIndex++
   songIndex >= playlist.length ? songIndex = 0 : songIndex = songIndex
   loadCurrentSondData ()
+  updateProgress ()
   playSong()
 }
 
@@ -236,6 +238,7 @@ function playPrev () {
   songIndex--
   songIndex < 0 ? songIndex = playlist.length - 1 : songIndex = songIndex
   loadCurrentSondData ()
+  updateProgress ()
   playSong()
 }
 
@@ -248,20 +251,18 @@ audio.addEventListener('ended', playNext)
 
 
 
-function updatePregress () {
+function updateProgress () {
   audio.onloadedmetadata = function() {
-    progress.max = Math.round(audio.duration)
-    progress.value = Math.round(audio.currentTime)
+    progress.max = Math.floor(audio.duration)
+    progress.value = Math.floor(audio.currentTime)
+    currentTimeValue.innerHTML = Math.floor(audio.currentTime);
   }
-  currentTimeValue.innerHTML = Math.round(audio.currentTime)
-  durationValue.innerHTML = Math.round(audio.duration)
 
-  if (audio.play()) {
-    setInterval(()=>{
-      currentTimeValue.innerHTML = Math.round(audio.currentTime)
-      progress.value = Math.round(audio.currentTime)
-    }, 500)
-  }
+  audio.addEventListener('timeupdate', function() {
+    currentTimeValue.innerHTML = Math.floor(audio.currentTime);
+    progress.value = Math.floor(audio.currentTime);
+  });
+
 }
 
 
