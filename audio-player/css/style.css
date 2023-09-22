@@ -312,7 +312,7 @@ input[type="range"].volume {
 #road:checked ~ #pills label:nth-child(2),
 #punk:checked ~ #pills label:nth-child(3),
 #electro:checked ~ #pills label:nth-child(4),
-#classic:checked ~ #pills label:nth-child(5),
+#love:checked ~ #pills label:nth-child(5),
 #beauty:checked ~ #pills label:nth-child(6) {
   background-color: var(--bg-control-active);
   color: var(--default-text-inverse);
