@@ -39,6 +39,7 @@
 }
 
 body {
+  position: relative;
   min-height: 100vh;
   font-size: var(--fs-desktop-default-16);
   background-color: var(--bg-control-active);
@@ -419,4 +420,44 @@ input[type="range"].volume {
   padding: 10px;
   max-width: 2em;
   max-height: 2em;
+}
+
+/* Footer */
+
+footer {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  padding: 0 1em 1em;
+  justify-content: space-between;
+  align-items: end;
+  color: var(--bg-global-primary);
+  font-size: 12px;
+}
+
+
+.github-link:link,
+.github-link:visited,
+.github-link:focus,
+.github-link:active {
+  text-decoration: none;
+  color: var(--bg-global-primary);
+}
+
+.github-link:hover {
+  text-decoration: underline;
+}
+
+.rs-logo-wrapper {
+  display: flex;
+  padding: 12px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.30);
+}
+
+.rs-logo-img {
+  display: block;
 }
