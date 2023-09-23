@@ -154,6 +154,7 @@ let songIndex = 0
 let playlist = getPlaylist ()
 loadCurrentPlaylist () //загружаю текущий плейлист
 loadCurrentSondData () //подгружаю cover / title / band текущей песни
+updateProgress ()
 
 //подгружаю плейлисты по клику радио
 pills.forEach((pill) => {
@@ -170,14 +171,41 @@ function getNewSong () {
   const songControls = document.querySelectorAll('.song-item-control')
 
   songControls.forEach((control, index)=>{
-    control.addEventListener('click', () =>{
+    control.addEventListener('click', (e) =>{
+      e.stopPropagation();
       let newPlaylist = getPlaylist ()
-      console.log(newPlaylist)
       playNewSong(index, newPlaylist, newPlaylist[index])
+      const targetElement = e.target
+      // console.log(targetElement)
+      defineTargetElement(targetElement)
       // return {songIndex: index, song: playlist[index]}
     })
   })
 }
+
+function defineTargetElement (target) {
+  const songControls = document.querySelectorAll('.song-item-control')
+  if (target.classList.contains('song-item-control')) {
+    const targetIcon = target.querySelector('.control-img')
+    console.log(target)
+    changeActiveSong (songControls, target, targetIcon)
+  } else {
+    const targetButton = target.closest('.song-item-control');
+    console.log(targetButton)
+    changeActiveSong (songControls, targetButton, target)
+  }
+}
+
+function changeActiveSong (controls, control, icon) {
+  controls.forEach((control)=>{
+    control.classList.remove('song-item-control-active')
+    // const icon = control.closest('.control-img')
+    // icon.src = 'assets/svg/play-small-sign.svg'
+  })
+  control.classList.add('song-item-control-active')
+  icon.src = 'assets/svg/pause-small-sign.svg'
+}
+
 function playNewSong(index, newPlaylist, song) {
   playlist = newPlaylist
   songIndex = index
@@ -292,7 +320,6 @@ function loadCurrentSondData () {
 function playSong () {
   mainControl.classList.add('pause')
   audio.play()
-  updateProgress ()
   isPlay = 1 - isPlay
 }
 
@@ -338,7 +365,7 @@ function updateProgress () {
   });
 }
 
-progress.onchange = function () {
+progress.oninput = function () {
   audio.currentTime = progress.value
 }
 
@@ -357,6 +384,24 @@ function formatTime (time) {
   }
   return time
 }
+
+const volumeControl = document.querySelector('.control-volume')
+volumeControl.addEventListener('click', ()=>{
+  if(isPlay) {
+    soundMute()
+  }
+})
+
+function soundMute () {
+  if (audio.volume !== 0.0) {
+    volumeControl.classList.add('control-volume-stop')
+    audio.volume = 0.0
+  } else {
+    volumeControl.classList.remove('control-volume-stop')
+    audio.volume = 0.5
+  }
+}
+
 
 
 
