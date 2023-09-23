@@ -151,7 +151,7 @@ const durationValue = document.getElementById('duration')
 
 let isPlay = 0
 let songIndex = 0
-const playlist = getPlaylist ()
+let playlist = getPlaylist ()
 loadCurrentPlaylist () //загружаю текущий плейлист
 loadCurrentSondData () //подгружаю cover / title / band текущей песни
 
@@ -160,9 +160,31 @@ pills.forEach((pill) => {
   pill.addEventListener('click', function () {
     playlistWrapper.innerHTML = '';
     loadCurrentPlaylist ()
+    getNewSong ()
   })
 })
 
+getNewSong ()
+
+function getNewSong () {
+  const songControls = document.querySelectorAll('.song-item-control')
+
+  songControls.forEach((control, index)=>{
+    control.addEventListener('click', () =>{
+      let newPlaylist = getPlaylist ()
+      console.log(newPlaylist)
+      playNewSong(index, newPlaylist, newPlaylist[index])
+      // return {songIndex: index, song: playlist[index]}
+    })
+  })
+}
+function playNewSong(index, newPlaylist, song) {
+  playlist = newPlaylist
+  songIndex = index
+  loadCurrentSondData ()
+  playSong ()
+  audio.addEventListener('ended', playNext)
+}
 
 // Initialisation
 function getPlaylist () {
@@ -172,26 +194,80 @@ function getPlaylist () {
 }
 
 function loadCurrentPlaylist () {
+  const songsWrapper = document.querySelector('.playlist-wrapper')
+
   const playlist = getPlaylist ()
-    playlist.forEach(song => {
-      const songItemLayout = `
-          <div class="song-item-wrapper">
-            <div class="song-item-cover-wrapper">
-              <img src="${song.cover}" alt="${song.band} - ${song.title} Song Cover" class="song-item-cover-img">
-            </div>
-            <div class="song-item-info">
-              <div class="song-item-title">${song.title}</div>
-              <div class="song-item-author">${song.band}</div>
-            </div>
-            <div class="song-item-controls">
-              <span class="song-item-duration">${song.duration}</span>
-              <button class="control song-item-control"><img src="assets/svg/play-small-sign.svg" alt="" class="control-img"></button>
-            </div>
-          </div>`
-      playlistWrapper.insertAdjacentHTML('beforeend', songItemLayout)
-      const songControl = document.querySelector('.song-item-control')
-    });
+  playlist.forEach((song)=>{
+    const songWrapper = document.createElement('div') //обертка целой песни
+    songWrapper.className = 'song-item-wrapper'
+
+    const songCoverWrapper = document.createElement('div') //обертка обложки
+    songCoverWrapper.className = 'song-item-cover-wrapper'
+
+    songWrapper.appendChild(songCoverWrapper) //вставляю обертку обложки в обертку песни
+
+    const coverImg = document.createElement('img') // изображение обертки
+    coverImg.src = song.cover
+    coverImg.alt = `${song.band} - ${song.title} Song Cover`
+    coverImg.className = 'song-item-cover-img'
+
+    songCoverWrapper.appendChild(coverImg)
+
+    const songInfo = document.createElement('div') //обертка информации о песне
+    songInfo.className = 'song-item-info'
+
+    const songTitle = document.createElement('div')
+    songTitle.className = 'song-item-title'
+    songTitle.textContent = song.title
+
+    const songBand = document.createElement('div')
+    songBand.className = 'song-item-author'
+    songBand.textContent = song.band
+
+    songInfo.appendChild(songTitle)
+    songInfo.appendChild(songBand)
+
+    const songControls = document.createElement('div') //обертка контролов песни
+    songControls.className = 'song-item-controls'
+
+    const songDuration = document.createElement('span')
+    songDuration.className = 'song-item-duration'
+    songDuration.textContent = song.duration
+
+    const songControl = document.createElement('button')
+    songControl.className = 'control song-item-control'
+
+    const controlIcon = document.createElement('img')
+    controlIcon.className = 'control-img'
+    controlIcon.src = 'assets/svg/play-small-sign.svg'
+    controlIcon.alt = ''
+
+    songWrapper.appendChild(songInfo);
+    songWrapper.appendChild(songControls);
+
+    songControls.appendChild(songDuration)
+    songControls.appendChild(songControl)
+    songControl.appendChild(controlIcon)
+
+    songsWrapper.appendChild(songWrapper)
+  })
 }
+
+//           <div class="song-item-wrapper">
+//             <div class="song-item-cover-wrapper">
+//               <img src="${song.cover}" alt="${song.band} - ${song.title} Song Cover" class="song-item-cover-img">
+//             </div>
+//             <div class="song-item-info">
+//               <div class="song-item-title">${song.title}</div>
+//               <div class="song-item-author">${song.band}</div>
+//             </div>
+//             <div class="song-item-controls">
+//               <span class="song-item-duration">${song.duration}</span>
+//               <button class="control song-item-control">
+//                 <img src="assets/svg/play-small-sign.svg" alt="" class="control-img">
+//               </button>
+//             </div>
+//           </div>
 
 function loadCurrentSondData () {
   currentCover.src = playlist[songIndex].cover
@@ -262,7 +338,6 @@ function updateProgress () {
     currentTimeValue.innerHTML = Math.floor(audio.currentTime);
     progress.value = Math.floor(audio.currentTime);
   });
-
 }
 
 
@@ -270,6 +345,29 @@ function updateProgress () {
 
 
 
+
+
+
+
+
+
+
+// `
+//           <div class="song-item-wrapper">
+//             <div class="song-item-cover-wrapper">
+//               <img src="${song.cover}" alt="${song.band} - ${song.title} Song Cover" class="song-item-cover-img">
+//             </div>
+//             <div class="song-item-info">
+//               <div class="song-item-title">${song.title}</div>
+//               <div class="song-item-author">${song.band}</div>
+//             </div>
+//             <div class="song-item-controls">
+//               <span class="song-item-duration">${song.duration}</span>
+//               <button class="control song-item-control">
+//                 <img src="assets/svg/play-small-sign.svg" alt="" class="control-img">
+//               </button>
+//             </div>
+//           </div>`
 
 // // Play Sound
 // function playNext () {
