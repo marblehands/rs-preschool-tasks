@@ -386,18 +386,20 @@ function formatTime (time) {
 }
 
 const volumeControl = document.querySelector('.control-volume')
+const progressVolume = document.getElementById('volume')
+
 volumeControl.addEventListener('click', ()=>{
-  if(isPlay) {
     soundMute()
-  }
 })
 
 function soundMute () {
   if (audio.volume !== 0.0) {
     volumeControl.classList.add('control-volume-stop')
+    progressVolume.value = '0'
     audio.volume = 0.0
   } else {
     volumeControl.classList.remove('control-volume-stop')
+    progressVolume.value = '50'
     audio.volume = 0.5
   }
 }
