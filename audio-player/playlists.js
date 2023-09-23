@@ -4,14 +4,14 @@
       title: 'Безумный Мир',
       band: 'Мираж',
       cover: 'assets/img/retro-cover-0.png',
-      url: './assets/audio/test-song-1.mp3',
+      url: './assets/audio/retro/mirazh-bezumniy-mir.mp3',
       duration: '03:40',
     },
     {
       title: 'Su Di Noi',
       band: 'Pupo',
       cover: 'assets/img/retro-cover-1.jpeg',
-      url: 'assets/audio/test-song-2.mp3',
+      url: 'assets/audio/retro/pupo-sudinoi.mp3',
       duration: '03:20',
     },
     {
