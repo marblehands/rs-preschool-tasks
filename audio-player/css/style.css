@@ -4,8 +4,8 @@
   --bg-control-default: #2D3439;
   --bg-control-hover: #464E53;
   --bg-control-active: #BFDDE2;
-  --bg-error-control-default: #4B2A2A;
-  --bg-error-control-default: #823B3B;
+  --bg-error-control-default: #4B2A2A;;
+  --bg-error-control-hover: #823B3B;
   --default-text: #FEFEFE;
   --default-text-inverse:var(--bg-global-primary);
   --accent-default: #EC6747;
@@ -212,7 +212,7 @@ img {
 }
 
 .control-volume-stop {
-  background: var(--bg-error-control-default) center/50% no-repeat url(../assets/svg/volume-stop-sign.svg);
+  background: var(--bg-error-control-default) center/50% no-repeat url(../assets/svg/volume-mute-sign.svg);
 }
 
 .control-img {
@@ -238,7 +238,7 @@ img {
 
 .control-volume-stop:hover {
   opacity: 1;
-  background-color: #823B3B;
+  background-color: var(--bg-error-control-hover);
 }
 
 

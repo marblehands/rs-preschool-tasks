@@ -148,6 +148,9 @@ const progress = document.getElementById('progress')
 const currentTimeValue = document.getElementById('current-time')
 const durationValue = document.getElementById('duration')
 
+const volumeControl = document.querySelector('.control-volume')
+const progressVolume = document.getElementById('volume')
+
 
 let isPlay = 0
 let songIndex = 0
@@ -303,6 +306,8 @@ function loadCurrentSondData () {
   currentSongBand.innerHTML = playlist[songIndex].band
   audio.src = playlist[songIndex].url
   durationValue.innerHTML = playlist[songIndex].duration
+  // progressVolume.value = '50'
+  // audio.volume = 0.5
 }
 
 // function playPause () {
@@ -385,22 +390,33 @@ function formatTime (time) {
   return time
 }
 
-const volumeControl = document.querySelector('.control-volume')
-const progressVolume = document.getElementById('volume')
+
+let currentVolume = audio.volume
+let currentProgressVolume = progressVolume.value
 
 volumeControl.addEventListener('click', ()=>{
     soundMute()
 })
 
+progressVolume.oninput = function () {
+  audio.volume = Math.round(progressVolume.value / 10) / 10
+  currentProgressVolume = progressVolume.value
+  console.log(progressVolume.value)
+  if (audio.volume === 0) {
+    audio.volume = 0.0
+    soundMute ()
+  }
+}
+
 function soundMute () {
-  if (audio.volume !== 0.0) {
+  if (audio.volume !== 0) {
     volumeControl.classList.add('control-volume-stop')
-    progressVolume.value = '0'
+    progressVolume.value = 0
     audio.volume = 0.0
   } else {
     volumeControl.classList.remove('control-volume-stop')
-    progressVolume.value = '50'
-    audio.volume = 0.5
+    progressVolume.value = currentProgressVolume
+    audio.volume = currentVolume
   }
 }
 
