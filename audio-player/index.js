@@ -306,7 +306,6 @@ function playNext () {
   songIndex++
   songIndex >= playlist.length ? songIndex = 0 : songIndex = songIndex
   loadCurrentSondData ()
-  updateProgress ()
   playSong()
 }
 
@@ -314,9 +313,10 @@ function playPrev () {
   songIndex--
   songIndex < 0 ? songIndex = playlist.length - 1 : songIndex = songIndex
   loadCurrentSondData ()
-  updateProgress ()
   playSong()
 }
+
+// updateProgress ()
 
 mainControl.addEventListener('click', ()=>{
   isPlay ? pauseSong () : playSong ()
@@ -329,16 +329,35 @@ audio.addEventListener('ended', playNext)
 
 function updateProgress () {
   audio.onloadedmetadata = function() {
-    progress.max = Math.floor(audio.duration)
-    progress.value = Math.floor(audio.currentTime)
-    currentTimeValue.innerHTML = Math.floor(audio.currentTime);
+    progress.max = audio.duration
+    progress.value = audio.currentTime
   }
-
   audio.addEventListener('timeupdate', function() {
-    currentTimeValue.innerHTML = Math.floor(audio.currentTime);
-    progress.value = Math.floor(audio.currentTime);
+    currentTimeValue.innerHTML = convertTime(audio.currentTime);
+    progress.value = audio.currentTime;
   });
 }
+
+progress.onchange = function () {
+  audio.currentTime = progress.value
+}
+
+
+function convertTime (time) {
+  let minutes = Math.floor(time / 60)
+  let seconds = Math.floor(time % 60)
+  minutes = formatTime(minutes)
+  seconds = formatTime(seconds)
+  return `${minutes}:${seconds}`
+}
+
+function formatTime (time) {
+  if (time < 10) {
+    time = `0${time}`
+  }
+  return time
+}
+
 
 
 
