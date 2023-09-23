@@ -211,6 +211,10 @@ img {
   background: var(--bg-control-default) center/50% no-repeat url(../assets/svg/volume-sign.svg);
 }
 
+.control-volume-stop {
+  background: var(--bg-error-control-default) center/50% no-repeat url(../assets/svg/volume-stop-sign.svg);
+}
+
 .control-img {
   display: block;
   object-fit: cover;
@@ -230,6 +234,11 @@ img {
 .control-sound:hover {
   background-color: var(--accent-hover);
   filter: drop-shadow(0px 3px 6px rgba(236, 103, 71, 0.20)) drop-shadow(0px 11px 11px rgba(236, 103, 71, 0.17)) drop-shadow(0px 24px 15px rgba(236, 103, 71, 0.10)) drop-shadow(0px 43px 17px rgba(236, 103, 71, 0.03)) drop-shadow(0px 68px 19px rgba(236, 103, 71, 0.00));
+}
+
+.control-volume-stop:hover {
+  opacity: 1;
+  background-color: #823B3B;
 }
 
 
