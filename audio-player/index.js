@@ -345,7 +345,7 @@ function checkPlaylist () {
 
 function changeSongsControls () {
   const songIcons = document.querySelectorAll('.control-img') //берет все иконки маленький кнопок play
-  if (!isPlay) { //если музыка играет
+  if (isPlay) { //если музыка играет
     songIcons[songIndex].src = 'assets/svg/play-small-sign.svg'
   } else {
     songIcons[songIndex].src = 'assets/svg/pause-small-sign.svg'
@@ -371,8 +371,12 @@ function playNext () {
   songIndex++
   songIndex >= playlist.length ? songIndex = 0 : songIndex = songIndex
   loadCurrentSondData ()
-  playSong()
-  checkPlaylist ()
+  if (isPlay) {
+    playSong()
+    const songIcons = document.querySelectorAll('.control-img')
+    songIcons[songIndex].src = 'assets/svg/pause-small-sign.svg'
+  }
+
 }
 
 function playPrev () {
@@ -380,8 +384,11 @@ function playPrev () {
   songIndex--
   songIndex < 0 ? songIndex = playlist.length - 1 : songIndex = songIndex
   loadCurrentSondData ()
-  playSong()
-  checkPlaylist ()
+  if (isPlay) {
+    playSong()
+    const songIcons = document.querySelectorAll('.control-img')
+    songIcons[songIndex].src = 'assets/svg/pause-small-sign.svg'
+  }
 }
 
 function resetActiveControls () {
