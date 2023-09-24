@@ -1,3 +1,26 @@
+console.log(`
+1. Task: https://github.com/rolling-scopes-school/tasks/blob/master/tasks/js30%23/js30.md
+\n
+2. Deploy: https://rolling-scopes-school.github.io/marblehands-JSFEPRESCHOOL2023Q2/audio-player/index.html
+\n
+3. Done 25.09.2023 / deadline 25.09.2023
+\n
+4. Score: 70 / 70
+\n
+Моя оценка после самопроверки: 70 баллов
+
+Дополнительный функционал:
+Реализовано несколько плейлистов, которые переключаются по клику на радиобаттоны (pills).
+При клике на радиобаттон и отображении нового плейлиста справа, плеер не переключает текущую песню и текущий плейлист на новые автоматически. Для того чтобы начать прослушивать новый плейлист, пользователь нажимает на кнопку play, относящуюся к новой песне.
+Реализован контрол мьюта громкости и прогресс бар для плавного изменения уровня громкости.
+Реализован кастомный дизайн.
+Реализована адаптивность. Десктопная версию от 1080px и выше. Мобильная версия от 320px до 1080px.
+\n
+Привет, мой Ревьюер :) 
+Если у тебя есть комментарии, любые советы или вопросы по моей работе, пожалуйста напиши мне RS дискорде: Ania @marblehands Спасибо за твою проверку!
+`);
+
+
 // import music from './playlists.js'
 
 // let isPlay = false
@@ -187,8 +210,8 @@ function getNewSong () {
           const songIcons = document.querySelectorAll('.control-img')
           songIcons.forEach((icon)=>{
             icon.src = 'assets/svg/play-small-sign.svg'
-            console.log(icon.src)
-            console.log('test')
+            // console.log(icon.src)
+            // console.log('test')
           })
         }
       } else {
@@ -214,11 +237,11 @@ function defineTargetElement (target) {
   const songIcons = document.querySelectorAll('.control-img')
   if (target.classList.contains('song-item-control')) {
     const targetIcon = target.querySelector('.control-img')
-    console.log(target)
+    // console.log(target)
     changeStyleActiveControl (songIcons, target, targetIcon)
   } else {
     const targetButton = target.closest('.song-item-control');
-    console.log(targetButton)
+    // console.log(targetButton)
     changeStyleActiveControl (songIcons, targetButton, target)
   }
 }
@@ -405,12 +428,12 @@ mainControl.addEventListener('click', ()=>{
 })
 nextControl.addEventListener('click', ()=>{
   playNext ()
-  console.log(playlist, songIndex, isPlay)
+  // console.log(playlist, songIndex, isPlay)
   isPlay = true
 })
 prevControl.addEventListener('click', ()=>{
   playPrev ()
-  console.log(playlist, songIndex, isPlay)
+  // console.log(playlist, songIndex, isPlay)
   isPlay = true
 })
 // prevControl.addEventListener('click', playPrev)
@@ -461,7 +484,7 @@ progressVolume.oninput = function () {
   // audio.volume = Math.round(progressVolume.value / 10) / 10
   audio.volume = progressVolume.value / 100
   currentProgressVolume = progressVolume.value
-  console.log(progressVolume.value)
+  // console.log(progressVolume.value)
   if (audio.volume === 0) {
     volumeControl.classList.add('control-volume-stop')
   } else {
