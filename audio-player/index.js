@@ -170,6 +170,14 @@ pills.forEach((pill) => {
 
 getNewSong ()
 
+const allSongControls = document.querySelectorAll('.song-item-control')
+
+allSongControls.forEach((control)=>{
+  control.addEventListener('click', ()=>{
+
+  })
+})
+
 function getNewSong () {
   const songControls = document.querySelectorAll('.song-item-control')
 
@@ -187,23 +195,21 @@ function getNewSong () {
 }
 
 function defineTargetElement (target) {
-  const songControls = document.querySelectorAll('.song-item-control')
+  const songIcons = document.querySelectorAll('.control-img')
   if (target.classList.contains('song-item-control')) {
     const targetIcon = target.querySelector('.control-img')
     console.log(target)
-    changeActiveSong (songControls, target, targetIcon)
+    changeActiveSong (songIcons, target, targetIcon)
   } else {
     const targetButton = target.closest('.song-item-control');
     console.log(targetButton)
-    changeActiveSong (songControls, targetButton, target)
+    changeActiveSong (songIcons, targetButton, target)
   }
 }
 
-function changeActiveSong (controls, control, icon) {
-  controls.forEach((control)=>{
-    control.classList.remove('song-item-control-active')
-    // const icon = control.closest('.control-img')
-    // icon.src = 'assets/svg/play-small-sign.svg'
+function changeActiveSong (icons, control, icon) {
+  icons.forEach((icon)=>{
+    icon.src = 'assets/svg/play-small-sign.svg'
   })
   control.classList.add('song-item-control-active')
   icon.src = 'assets/svg/pause-small-sign.svg'
@@ -322,14 +328,25 @@ function loadCurrentSondData () {
 //   }
 // }
 
+function changeSongsControls () {
+  const songIcons = document.querySelectorAll('.control-img')
+  if (isPlay) {
+    songIcons[songIndex].src = 'assets/svg/play-small-sign.svg'
+  } else {
+    songIcons[songIndex].src = 'assets/svg/pause-small-sign.svg'
+  }
+}
+
 function playSong () {
   mainControl.classList.add('pause')
+  changeSongsControls ()
   audio.play()
   isPlay = 1 - isPlay
 }
 
 function pauseSong () {
   mainControl.classList.remove('pause')
+  changeSongsControls ()
   audio.pause()
   isPlay = 1 - isPlay
 }
@@ -365,8 +382,8 @@ function updateProgress () {
     progress.value = audio.currentTime
   }
   audio.addEventListener('timeupdate', function() {
-    currentTimeValue.innerHTML = convertTime(audio.currentTime);
-    progress.value = audio.currentTime;
+    currentTimeValue.innerHTML = convertTime(audio.currentTime)
+    progress.value = audio.currentTime
   });
 }
 
@@ -399,12 +416,14 @@ volumeControl.addEventListener('click', ()=>{
 })
 
 progressVolume.oninput = function () {
-  audio.volume = Math.round(progressVolume.value / 10) / 10
+  // audio.volume = Math.round(progressVolume.value / 10) / 10
+  audio.volume = progressVolume.value / 100
   currentProgressVolume = progressVolume.value
   console.log(progressVolume.value)
   if (audio.volume === 0) {
-    audio.volume = 0.0
-    soundMute ()
+    volumeControl.classList.add('control-volume-stop')
+  } else {
+    volumeControl.classList.remove('control-volume-stop')
   }
 }
 
@@ -420,6 +439,12 @@ function soundMute () {
   }
 }
 
+function highlightActiveSong () {
+  let playlist = getPlaylist ()
+  let song = playlist[songIndex]
+  const songItems = document.querySelectorAll('.song-item-info')
+  let songWrapper = songControls
+}
 
 
 
