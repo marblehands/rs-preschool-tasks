@@ -144,15 +144,15 @@ const prevControl = document.querySelector('.control-previous') //кнопка p
 const nextControl = document.querySelector('.control-next') //кнопка next
 const mainControl = document.querySelector('.control-sound') //кнопка play/pause
 
-const progress = document.getElementById('progress')
-const currentTimeValue = document.getElementById('current-time')
-const durationValue = document.getElementById('duration')
+const progress = document.getElementById('progress') //прогресс песни
+const currentTimeValue = document.getElementById('current-time') //span текущее время
+const durationValue = document.getElementById('duration') //span продолжительность песни
 
-const volumeControl = document.querySelector('.control-volume')
-const progressVolume = document.getElementById('volume')
+const volumeControl = document.querySelector('.control-volume') //кнопка мьюта
+const progressVolume = document.getElementById('volume') //прогресс громкости
 
 
-let isPlay = 0
+let isPlay = false
 let songIndex = 0
 let playlist = getPlaylist ()
 loadCurrentPlaylist () //загружаю текущий плейлист
@@ -170,14 +170,6 @@ pills.forEach((pill) => {
 
 getNewSong ()
 
-const allSongControls = document.querySelectorAll('.song-item-control')
-
-allSongControls.forEach((control)=>{
-  control.addEventListener('click', ()=>{
-
-  })
-})
-
 function getNewSong () {
   const songControls = document.querySelectorAll('.song-item-control')
 
@@ -185,34 +177,29 @@ function getNewSong () {
     control.addEventListener('click', (e) =>{
       e.stopPropagation();
       let newPlaylist = getPlaylist ()
-      playNewSong(index, newPlaylist, newPlaylist[index])
-      const targetElement = e.target
+      if (playlist === newPlaylist) {
+        if ((isPlay && index !== songIndex) || (!isPlay && index !== songIndex) || (!isPlay && index === songIndex)) {
+          playNewSong(index, newPlaylist, newPlaylist[index])
+          const targetElement = e.target
+          defineTargetElement(targetElement)
+        } else {
+          pauseSong ()
+          const songIcons = document.querySelectorAll('.control-img')
+          songIcons.forEach((icon)=>{
+            icon.src = 'assets/svg/play-small-sign.svg'
+            console.log(icon.src)
+            console.log('test')
+          })
+        }
+      } else {
+        playNewSong(index, newPlaylist, newPlaylist[index])
+          const targetElement = e.target
+          defineTargetElement(targetElement)
+      }
       // console.log(targetElement)
-      defineTargetElement(targetElement)
       // return {songIndex: index, song: playlist[index]}
     })
   })
-}
-
-function defineTargetElement (target) {
-  const songIcons = document.querySelectorAll('.control-img')
-  if (target.classList.contains('song-item-control')) {
-    const targetIcon = target.querySelector('.control-img')
-    console.log(target)
-    changeActiveSong (songIcons, target, targetIcon)
-  } else {
-    const targetButton = target.closest('.song-item-control');
-    console.log(targetButton)
-    changeActiveSong (songIcons, targetButton, target)
-  }
-}
-
-function changeActiveSong (icons, control, icon) {
-  icons.forEach((icon)=>{
-    icon.src = 'assets/svg/play-small-sign.svg'
-  })
-  control.classList.add('song-item-control-active')
-  icon.src = 'assets/svg/pause-small-sign.svg'
 }
 
 function playNewSong(index, newPlaylist, song) {
@@ -221,6 +208,27 @@ function playNewSong(index, newPlaylist, song) {
   loadCurrentSondData ()
   playSong ()
   audio.addEventListener('ended', playNext)
+}
+
+function defineTargetElement (target) {
+  const songIcons = document.querySelectorAll('.control-img')
+  if (target.classList.contains('song-item-control')) {
+    const targetIcon = target.querySelector('.control-img')
+    console.log(target)
+    changeStyleActiveControl (songIcons, target, targetIcon)
+  } else {
+    const targetButton = target.closest('.song-item-control');
+    console.log(targetButton)
+    changeStyleActiveControl (songIcons, targetButton, target)
+  }
+}
+
+function changeStyleActiveControl (icons, control, icon) {
+  icons.forEach((icon)=>{
+    icon.src = 'assets/svg/play-small-sign.svg'
+  })
+  control.classList.add('song-item-control-active')
+  icon.src = 'assets/svg/pause-small-sign.svg'
 }
 
 // Initialisation
@@ -328,9 +336,16 @@ function loadCurrentSondData () {
 //   }
 // }
 
+function checkPlaylist () {
+  let newPlaylist = getPlaylist ()
+  if (playlist === newPlaylist) {
+    changeSongsControls ()
+  }
+}
+
 function changeSongsControls () {
-  const songIcons = document.querySelectorAll('.control-img')
-  if (isPlay) {
+  const songIcons = document.querySelectorAll('.control-img') //берет все иконки маленький кнопок play
+  if (!isPlay) { //если музыка играет
     songIcons[songIndex].src = 'assets/svg/play-small-sign.svg'
   } else {
     songIcons[songIndex].src = 'assets/svg/pause-small-sign.svg'
@@ -339,30 +354,41 @@ function changeSongsControls () {
 
 function playSong () {
   mainControl.classList.add('pause')
-  changeSongsControls ()
+  checkPlaylist ()
   audio.play()
-  isPlay = 1 - isPlay
+  isPlay = true
 }
 
 function pauseSong () {
   mainControl.classList.remove('pause')
-  changeSongsControls ()
+  checkPlaylist ()
   audio.pause()
-  isPlay = 1 - isPlay
+  isPlay = false
 }
 
 function playNext () {
+  resetActiveControls ()
   songIndex++
   songIndex >= playlist.length ? songIndex = 0 : songIndex = songIndex
   loadCurrentSondData ()
   playSong()
+  checkPlaylist ()
 }
 
 function playPrev () {
+  resetActiveControls ()
   songIndex--
   songIndex < 0 ? songIndex = playlist.length - 1 : songIndex = songIndex
   loadCurrentSondData ()
   playSong()
+  checkPlaylist ()
+}
+
+function resetActiveControls () {
+  const songIcons = document.querySelectorAll('.control-img')
+          songIcons.forEach((icon)=>{
+            icon.src = 'assets/svg/play-small-sign.svg'
+})
 }
 
 // updateProgress ()
@@ -370,8 +396,17 @@ function playPrev () {
 mainControl.addEventListener('click', ()=>{
   isPlay ? pauseSong () : playSong ()
 })
-nextControl.addEventListener('click', playNext)
-prevControl.addEventListener('click', playPrev)
+nextControl.addEventListener('click', ()=>{
+  playNext ()
+  console.log(playlist, songIndex, isPlay)
+  isPlay = true
+})
+prevControl.addEventListener('click', ()=>{
+  playPrev ()
+  console.log(playlist, songIndex, isPlay)
+  isPlay = true
+})
+// prevControl.addEventListener('click', playPrev)
 audio.addEventListener('ended', playNext)
 
 
