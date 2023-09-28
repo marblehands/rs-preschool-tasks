@@ -36,6 +36,7 @@ async function getImages () {
       const imgUrl = data[i].url_m
       // console.log(imgUrl)
       div.className = 'photo-item'
+      div.style.backgroundColor = '#111111'
       div.style.background = `url('${imgUrl}')`
       fragment.append(div)
     }
