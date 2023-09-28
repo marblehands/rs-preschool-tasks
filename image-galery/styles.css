@@ -22,7 +22,7 @@ main {
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  width: 100%;
+  width: 70%;
 }
 
 .nav{
@@ -30,19 +30,36 @@ main {
   flex-direction: column;
   gap: 1em;
   padding: 2em 0;
-  width: 70%;
+  width: 100%;
 }
 
 .container {
   display: flex;
   flex-wrap: wrap;
-  width: 70%;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 20px
+  gap: 20px;
+  width: 100%;
 }
 
 .photo-item {
   width: calc(100% / 3 - 20px);
   height: 200px;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+  padding: 2em 0;
+}
+
+.rs-logo-img {
+  width: 6em;
+  height: auto;
+}
+
+input[type=search] {
+  height: 50px;
 }
