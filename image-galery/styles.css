@@ -10,27 +10,39 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: rgb(22, 22, 22);
+  color: rgb(249, 255, 255);
 }
 
-header {
-  padding: 2em;
+h1 {
+  font-family: 'Space Mono', monospace;
+  line-height: 1.2em;
+  font-size: 3.2em;
 }
+
+/* header {
+  padding: 2em;
+} */
 
 main {
+  position: relative;
   flex-grow: 1;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: start;
-  align-items: center;
-  width: 70%;
+  align-items: start;
+  width: 100%;
+  padding: 4em 6em;
 }
 
 .nav{
   display: flex;
   flex-direction: column;
   gap: 1em;
-  padding: 2em 0;
-  width: 100%;
+  padding: 4em 2em 0 0;
+  width: 30%;
+  position: sticky;
+  top: 0;
 }
 
 .container {
@@ -39,20 +51,12 @@ main {
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-  width: 100%;
+  width: 70%;
 }
 
 .photo-item {
   width: calc(100% / 3 - 20px);
   height: 200px;
-}
-
-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 70%;
-  padding: 2em 0;
 }
 
 .rs-logo-img {
@@ -63,3 +67,31 @@ footer {
 input[type=search] {
   height: 50px;
 }
+
+input[type=radio] {
+  display: none;
+}
+
+.colour-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.colour-label  {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 20px;
+  background-color: red;
+  cursor: pointer;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 2em 6em;
+}
+
