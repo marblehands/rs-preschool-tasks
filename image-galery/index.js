@@ -120,23 +120,23 @@ function generateFirstTypeLayout (urls, i) {
   
     const layoutRowRight = document.createElement('div')
     layoutRowRight.className = 'layout-row-right'
-  
+
     const imgItem = document.createElement('div')
     imgItem.classList = 'img-item'
     imgItem.style.background = `center / cover no-repeat url('${data[i]}')`
-  
+
     const imgItemLeft = document.createElement('div')
     imgItemLeft.classList = 'img-item'
     imgItemLeft.style.background = `center / cover no-repeat url('${data[i+1]}')`
-  
+
     const imgItemRightUp = document.createElement('div')
     imgItemRightUp.classList = 'img-item'
     imgItemRightUp.style.background = `center / cover no-repeat url('${data[i+2]}')`
-  
+
     const imgItemRightBottom = document.createElement('div')
     imgItemRightBottom.classList = 'img-item'
     imgItemRightBottom.style.background = `center / cover no-repeat url('${data[i+3]}')`
-  
+
     layoutRowLeft.append(imgItem)
     layoutRowRight.append(imgItemRightUp)
     layoutRowRight.append(imgItemRightBottom)
