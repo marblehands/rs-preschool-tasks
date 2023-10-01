@@ -1,4 +1,17 @@
 // const url = 'https://api.unsplash.com/photos/random?query=nature&client_id=3On3S9wWwINjjBODC1Of5GFsFbbpsj-1MGDaW_7SSG4'
+console.log(`
+1. Task: https://github.com/rolling-scopes-school/tasks/blob/master/tasks/js30%23/js30-5.md
+\n
+2. Deploy: https://rolling-scopes-school.github.io/marblehands-JSFEPRESCHOOL2023Q2/image-galery/
+\n
+3. Done 01.10.2023 / deadline 02.10.2023
+\n
+4. Score: 60 / 60
+\n
+Моя оценка после самопроверки: 60 баллов
+\n
+Привет, мой Ревьюер :) Если у тебя есть комментарии, любые советы или вопросы по моей работе, пожалуйста напиши мне RS дискорде: aNaN @marblehands Спасибо за твою проверку!
+`);
 
 const container = document.querySelector('.container')
 const searchInput = document.getElementById('searchTag')
