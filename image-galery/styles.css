@@ -347,6 +347,9 @@ footer {
   .controls {
     padding: 1.5em;
   }
+  footer {
+    padding: 1.2em 3em;
+  }
 }
 
 @media (max-width: 1366px) {
@@ -390,6 +393,7 @@ footer {
   }
   .container {
     width: 100%;
+    margin-top: 200px;
   }
 }
 
@@ -417,6 +421,9 @@ footer {
     left: 89%;
     top: 8%;
   }
+  .container {
+    margin-top: 262px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -428,5 +435,17 @@ footer {
   }
 .controls {
   flex-direction: column;
-};
 }
+.container {
+  margin-top: 374px;
+}
+footer {
+  padding: 1em;
+}
+}
+
+/* @media screen and (max-height: 940px){
+  h1 {
+    font-size: 3em;
+  }
+} */
