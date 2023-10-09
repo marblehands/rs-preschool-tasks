@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #090B09;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2em;
+  color: #AEF020;
+}
+
+#game-container {
+  display: grid;
+  grid-template-columns: (60, 1fr);
+  grid-template-columns: (60, 1fr);
+  width: 80vmin;
+  height: 80vmin;
+  background-color: #0E160A;
+  border: .25vmin solid #2B461E;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  position: fixed;
+  bottom: 1em;
+  width: 100vw;
+  padding: 0 1em;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 0.5em;
+  color: #455E3A;
+}
