@@ -7,18 +7,56 @@
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Press+Start+2P&display=swap" rel="stylesheet">
   <title>Snake Game</title>
 </head>
 <body class="body">
-  <div id="game-container"><div class="target"></div><div class="snake-body"></div></div>
+  <div class="wrapper">
+    <div class="board-game">
+      <div class="first-screen-modal">
+        <h1 class="page-title">Snake/Game</h1>
+        <div class="intro-text">
+          <p>Вы родились маленькой змейкой в большом большом жестоком мире.</br>
+          </br>
+          Чтобы выжить, нужно хорошо кушать, не выходить из зоны комфорта и не зацикливаться на себе.</br>
+        </br>
+          И тогда у вас всё будет хорошо!</br>
+          (нет)
+        </p>
+        </div>
+        <button class="control control-l">Start</button>
+      </div>
+      <canvas id="cvs"></canvas>
+      <div class="game-over-modal hide">
+        <h2 class="game-over-modal-title">Game Over</h2>
+        <div class="game-info-wrapper">
+          <div class="current-score"><p class="current-score-info">Score <span class="current-score-number">/05</span></p></div>
+          <div class="high-score"><p class="high-score-info">High Score <span class="high-score-number">/23</span></p></div>
+        </div>
+        <button class="new-game-start">Start New Game</button>
+      </div>
+    </div>
+    <div class="wrapper-score hide">
+      <div class="current-score"><p class="current-score-info">Score <span class="current-score-number">/05</span></p></div>
+      <div class="high-score"><p class="high-score-info">High Score <span class="high-score-number">/23</span></p></div>
+    </div>
+  </div>
+
+  <!-- Background -->
+  <div class="background-wrapper">
+    <div class="sky-up"></div>
+    <div class="sky-down"></div>
+    <div class="air"></div>
+    <div class="ground"></div>
+  </div>
   <footer>
     <p class="copyright">
       <a href="https://www.github.com/marblehands" class="github-link" target="_blank">nan</a> /2023
     </p>
-    <a href="https://rs.school/js-stage0/" class="rs-link">
-      <img src="assets/svg/rs-logo-js.svg" alt="RS School Logo" width="96" height="36">
+    <a href="https://rs.school/js-stage0/" class="rs-link" target="_blank">
+      <img src="assets/svg/rs-logo-js-inverse.svg" alt="RS School Logo" width="96" height="36">
     </a>
   </footer>
+  <script src="index.js"></script>
 </body>
 </html>
