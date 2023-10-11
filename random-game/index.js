@@ -1,3 +1,13 @@
+//start the game
+const startBtn = document.getElementById('start')
+
+startBtn.addEventListener('click', () =>{
+  const firstScreen = document.querySelector('.first-screen-modal')
+  const scoreInfo = document.querySelector('.wrapper-score')
+  firstScreen.classList.add('hide')
+  scoreInfo.classList.remove('hide')
+})
+
 //canvas
 const canvas = document.getElementById('board-canvas')
 const context = canvas.getContext('2d')
@@ -20,37 +30,6 @@ let ratio = boardWidth / moduleSize
 const loopFrequency = 1000/15
 let gameUpdate
 
-//variables for snake
-let snake = [
-  {x : 2, y : 0}, //head
-  {x : 1, y : 0}, //body
-  {x : 0, y : 0}, //tail
-]
-
-//food
-let food = generateRandomFood ()
-
-//generate random coordinates for food
-function generateRandomFood () {
-  let food = {
-    x : Math.floor(Math.random() * ratio),
-    y : Math.floor(Math.random() * ratio),
-  }
-
-  while (snake.some(segment => segment.x === food.x && segment.y === food.y)) {
-    food = {
-      x : Math.floor(Math.random() * ratio),
-      y : Math.floor(Math.random() * ratio),
-    }
-  }
-
-  return food
-}
-
-function createFood () {
-  drawModule(food.x, food.y, foodColour)
-}
-
 //get canvas size
 updateCanvasWidth()
 window.addEventListener('resize', updateCanvasWidth)
@@ -69,6 +48,48 @@ function updateCanvasWidth() {
 
   return canvas.width
 }
+
+//variables for snake
+let snake = [
+  {x : 2, y : 0}, //head
+  {x : 1, y : 0}, //body
+  {x : 0, y : 0}, //tail
+]
+
+//food
+let food = generateRandomFood ()
+
+//generate random coordinates for food
+function generateRandomFood () {
+  let boardWidth = updateCanvasWidth()
+  if (boardWidth > 600) {
+    boardWidth /= 2
+  }
+  console.log(boardWidth)
+  let ratio = boardWidth / moduleSize
+  console.log(ratio)
+  let food = {
+    x : Math.floor(Math.random() * ratio),
+    y : Math.floor(Math.random() * ratio),
+  }
+
+  while (snake.some(segment => segment.x === food.x && segment.y === food.y && food.x >= 20 && food.y >= 20)) {
+    food = {
+      x : Math.floor(Math.random() * ratio),
+      y : Math.floor(Math.random() * ratio),
+    }
+  }
+
+  console.log(food)
+  return food
+}
+
+function createFood () {
+  drawModule(food.x, food.y, foodColour)
+  console.log('success')
+}
+
+
 
 
 //updating the board infinitely
