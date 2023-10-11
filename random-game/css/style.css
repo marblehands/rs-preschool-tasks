@@ -12,13 +12,16 @@
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background: #092C2E;
+  /* background: #092C2E; */
   font-family: 'Press Start 2P', sans-serif;
   font-size: 1em;
   text-transform: uppercase;
   color: #AEF020;
   position: relative;
 }
+
+
+
 
 .wrapper {
   display: flex;
@@ -199,69 +202,42 @@ footer {
   color: #455E3A;
 }
 
-/* Background Illustrations */
-
-.background-wrapper {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  z-index: -10;
+@media (min-width: 1920px){
+  .board-game {
+    width: 700px;
+    height: 700px;
+  }
 }
 
-.sky-up {
-  width: 100vw;
-  height: 25vh;
-  /* background: #1D4245 url('assets/svg/sky-up-pattern.svg') repeat-x bottom left fixed; */
-  background-color: #1D4245;
-  background-image: url('assets/svg/sky-up-pattern.svg');
-  background-repeat: repeat-x;
-  background-position: bottom;
-  /* background-attachment: fixed; */
+@media (max-width: 600px){
+  body {
+    padding-top: 36px;
+    background: #061011;
+    justify-content: start !important;
+    background-image: url(../assets/svg/pattern-body-mobile.svg) !important;
+    background-position: top left !important;
+    background-repeat: repeat-x !important;
+  }
+  .wrapper-score {
+    padding: 0 1em !important;
+  }
+  .board-game {
+    width: 500px;
+    height: 500px;
+  }
 }
 
-.sky-down {
-  width: 100vw;
-  height: 10vh;
-  background: #163133;
-  background-image: url('assets/svg/sky-down-pattern.svg');
-  background-repeat: repeat;
+@media (max-width: 500px){
+  .board-game {
+    width: 400px;
+    height: 400px;
+  }
 }
 
-.air {
-  width: 100vw;
-  height: 43vh;
-  background: #132B2D;
-  background-image: url('assets/svg/air-pattern.svg');
-  background-repeat: repeat-x;
-  background-position: top;
+@media (max-width: 400px){
+  .board-game {
+    width: 375px;
+    height: 375px;
+  }
 }
 
-.ground {
-  width: 100vw;
-  height: 22vh;
-  background: #061011;
-}
-
-.clouds {
-  position: fixed;
-  top: 2%;
-  width: 100vw;
-  height: 100vw;
-  background-image: url('assets/svg/clouds.svg');
-  background-repeat: repeat-x;
-  background-position: top left;
-  background-size: contain;
-}
-
-.trees {
-  position: fixed;
-  bottom: 5%;
-  width: 100vw;
-  height: 100vw;
-  background-image: url(assets/svg/trees.svg);
-  background-repeat: repeat-x;
-  background-position: bottom left;
-  background-size: contain;
-}
