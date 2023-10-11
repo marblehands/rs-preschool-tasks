@@ -13,8 +13,8 @@ const foodColour = '#00FFC2'
 //canvas size
 let boardWidth = updateCanvasWidth()
 let boardHeight = boardWidth
-let ratio = 40
-let moduleSize = boardWidth / ratio
+let moduleSize = 30
+let ratio = boardWidth / moduleSize
 
 //variables for game
 const loopFrequency = 1000/15
@@ -26,6 +26,30 @@ let snake = [
   {x : 1, y : 0}, //body
   {x : 0, y : 0}, //tail
 ]
+
+//food
+let food = generateRandomFood ()
+
+//generate random coordinates for food
+function generateRandomFood () {
+  let food = {
+    x : Math.floor(Math.random() * ratio),
+    y : Math.floor(Math.random() * ratio),
+  }
+
+  while (snake.some(segment => segment.x === food.x && segment.y === food.y)) {
+    food = {
+      x : Math.floor(Math.random() * ratio),
+      y : Math.floor(Math.random() * ratio),
+    }
+  }
+
+  return food
+}
+
+function createFood () {
+  drawModule(food.x, food.y, foodColour)
+}
 
 //get canvas size
 updateCanvasWidth()
@@ -53,7 +77,7 @@ function infiniteLoad () {
 
   createBoardGame()
   createSnake()
-  // createFood()
+  createFood ()
   // runSnake()
   // growSnake()
   // updateScore()
