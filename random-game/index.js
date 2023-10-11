@@ -1,12 +1,12 @@
-//start the game
-const startBtn = document.getElementById('start')
+// //start the game
+// const startBtn = document.getElementById('start')
 
-startBtn.addEventListener('click', () =>{
-  const firstScreen = document.querySelector('.first-screen-modal')
-  const scoreInfo = document.querySelector('.wrapper-score')
-  firstScreen.classList.add('hide')
-  scoreInfo.classList.remove('hide')
-})
+// startBtn.addEventListener('click', () =>{
+//   const firstScreen = document.querySelector('.first-screen-modal')
+//   const scoreInfo = document.querySelector('.wrapper-score')
+//   firstScreen.classList.add('hide')
+//   scoreInfo.classList.remove('hide')
+// })
 
 //canvas
 const canvas = document.getElementById('board-canvas')
@@ -27,8 +27,9 @@ let moduleSize = 30
 let ratio = boardWidth / moduleSize
 
 //variables for game
-const loopFrequency = 1000/15
+const loopFrequency = 1000/5
 let gameUpdate
+let game = false
 
 //get canvas size
 updateCanvasWidth()
@@ -73,33 +74,55 @@ function generateRandomFood () {
     y : Math.floor(Math.random() * ratio),
   }
 
-  while (snake.some(segment => segment.x === food.x && segment.y === food.y && food.x >= 20 && food.y >= 20)) {
+  while (snake.some((segment) => (segment.x === food.x && segment.y === food.y) || (food.x >= 20 && food.y >= 20))) {
     food = {
       x : Math.floor(Math.random() * ratio),
       y : Math.floor(Math.random() * ratio),
     }
   }
-
+  console.log(snake)
   console.log(food)
   return food
 }
 
 function createFood () {
   drawModule(food.x, food.y, foodColour)
-  console.log('success')
+  // console.log('success')
+}
+
+//variables for direction
+let currentDirection = ''
+
+const directions = {
+  RIGHT: 'ArrowRight',
+  LEFT: 'ArrowLeft',
+  DOWN: 'ArrowDown',
+  UP: 'ArrowUp'
+}
+
+document.addEventListener('keyup', setDirection)
+function setDirection (event) {
+  const newDirection = event.key
+  console.log(newDirection)
+
+  if(!game) {
+    game = true
+    gameUpdate = setInterval(infiniteLoad, loopFrequency)
+  }
+  currentDirection = newDirection
 }
 
 
-
+infiniteLoad ()
 
 //updating the board infinitely
 function infiniteLoad () {
-  console.log('test')
+  // console.log('test')
 
   createBoardGame()
   createSnake()
   createFood ()
-  // runSnake()
+  runSnake()
   // growSnake()
   // updateScore()
 
@@ -108,7 +131,7 @@ function infiniteLoad () {
   //   endOfGame()
   // }
 }
-gameUpdate = setInterval(infiniteLoad, loopFrequency)
+
 
 //create Game Board
 function createBoardGame () {
@@ -141,11 +164,43 @@ function drawModule (x, y, color) {
   // )
 }
 
+//create snake on canvas
 function createSnake () {
   snake.forEach((segment, index) => {
     const colour = index === 0 ? snakeHeadColour : snakeBodyColour
     drawModule(segment.x, segment.y, colour)
   })
+}
+
+//movement of snake
+function runSnake () {
+  if(!game) return;
+  //get head coordinates
+  const headPosition = { ...snake[0] }
+  console.log(headPosition)
+
+  //change head position
+  switch(currentDirection) {
+    case directions.RIGHT:
+      headPosition.x += 1;
+      break;
+    case directions.LEFT:
+      headPosition.x -= 1;
+      break;
+    case directions.UP:
+      headPosition.y -= 1;
+      break;
+    case directions.DOWN:
+      headPosition.y += 1;
+      break;
+  }
+
+//remove last element in snake array
+snake.pop()
+
+//add new head to new snake
+snake.unshift(headPosition)
+
 }
 
 
