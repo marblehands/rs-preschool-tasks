@@ -17,24 +17,12 @@
   font-size: 1em;
   text-transform: uppercase;
   color: #AEF020;
-}
-
-button {
-  background: none;
-  border: none;
-  font-family: 'Press Start 2P', sans-serif;
-  cursor: pointer;
+  position: relative;
 }
 
 .wrapper {
   display: flex;
   flex-direction: column;
-}
-
-.wrapper-score {
-  display: flex;
-  justify-content: space-between;
-  padding: 1em 0;
 }
 
 .board-game {
@@ -43,6 +31,27 @@ button {
   height: 600px;
   background: #0A1A1B;
   /* border: 6px solid #0A1A1B; */
+}
+
+.wrapper-score {
+  position: absolute;
+  width: 100%;
+  bottom: -6%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 0;
+  color: #AEF020;
+  font-size: 12px;
+  line-height: normal;
+}
+
+/* Buttons */
+
+button {
+  background: none;
+  border: none;
+  font-family: 'Press Start 2P', sans-serif;
+  cursor: pointer;
 }
 
 .control {
@@ -55,6 +64,32 @@ button {
 
 .control-l {
   font-size: 24px;
+}
+
+.control-m {
+  font-size: 20px;
+}
+
+.game-controls-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  padding: 1em 0;
+}
+
+.game-controls-wrapper::after {
+  content: '|';
+  position: absolute;
+  display: block;
+  width: 1em;
+  height: 1em;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #485D5E;
+  font-size: 20px;
 }
 
 /* Game Over Modal */
@@ -71,20 +106,40 @@ button {
   background-color: #0A1A1B;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
+  padding-top: 8em;
+}
+
+.game-over-modal {
+  background: url(assets/svg/rip-ill.svg);
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: contain;
+  background-position-y: 90%;
+
 }
 
 /* Typography  */
 
-h1 {
+.titles-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: center;
+}
+
+.page-title {
   color: #BFDEE0;
-font-family: Press Start 2P;
-font-size: 42px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-text-transform: uppercase;
+  font-size: 42px;
+  letter-spacing: 1.26px;
+}
+
+.game-score {
+  color: #BFDEE0;
+  font-size: 18px;
+  text-transform: none;
+  opacity: 0.6;
 }
 
 /* First Screen */
@@ -101,15 +156,15 @@ text-transform: uppercase;
 
 .intro-text p {
   color: #BFDEE0;
-text-align: center;
-font-family: Arial, Helvetica, sans-serif;
-text-decoration: none;
-text-transform: none;
-font-size: 16px;
-font-style: normal;
-line-height: normal;
-letter-spacing: 1.04px;
-opacity: 0.6;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  text-transform: none;
+  font-size: 16px;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 1.04px;
+  opacity: 0.6;
 }
 
 .hide {
@@ -142,4 +197,71 @@ footer {
   padding: 0 2em;
   font-size: 0.5em;
   color: #455E3A;
+}
+
+/* Background Illustrations */
+
+.background-wrapper {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  z-index: -10;
+}
+
+.sky-up {
+  width: 100vw;
+  height: 25vh;
+  /* background: #1D4245 url('assets/svg/sky-up-pattern.svg') repeat-x bottom left fixed; */
+  background-color: #1D4245;
+  background-image: url('assets/svg/sky-up-pattern.svg');
+  background-repeat: repeat-x;
+  background-position: bottom;
+  /* background-attachment: fixed; */
+}
+
+.sky-down {
+  width: 100vw;
+  height: 10vh;
+  background: #163133;
+  background-image: url('assets/svg/sky-down-pattern.svg');
+  background-repeat: repeat;
+}
+
+.air {
+  width: 100vw;
+  height: 43vh;
+  background: #132B2D;
+  background-image: url('assets/svg/air-pattern.svg');
+  background-repeat: repeat-x;
+  background-position: top;
+}
+
+.ground {
+  width: 100vw;
+  height: 22vh;
+  background: #061011;
+}
+
+.clouds {
+  position: fixed;
+  top: 2%;
+  width: 100vw;
+  height: 100vw;
+  background-image: url('assets/svg/clouds.svg');
+  background-repeat: repeat-x;
+  background-position: top left;
+  background-size: contain;
+}
+
+.trees {
+  position: fixed;
+  bottom: 5%;
+  width: 100vw;
+  height: 100vw;
+  background-image: url(assets/svg/trees.svg);
+  background-repeat: repeat-x;
+  background-position: bottom left;
+  background-size: contain;
 }

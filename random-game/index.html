@@ -13,7 +13,7 @@
 <body class="body">
   <div class="wrapper">
     <div class="board-game">
-      <div class="first-screen-modal">
+      <div class="first-screen-modal hide">
         <h1 class="page-title">Snake/Game</h1>
         <div class="intro-text">
           <p>Вы родились маленькой змейкой в большом большом жестоком мире.</br>
@@ -28,26 +28,31 @@
       </div>
       <canvas id="cvs"></canvas>
       <div class="game-over-modal hide">
-        <h2 class="game-over-modal-title">Game Over</h2>
-        <div class="game-info-wrapper">
-          <div class="current-score"><p class="current-score-info">Score <span class="current-score-number">/05</span></p></div>
-          <div class="high-score"><p class="high-score-info">High Score <span class="high-score-number">/23</span></p></div>
-        </div>
-        <button class="new-game-start">Start New Game</button>
+        <div class="titles-wrapper">
+        <h2 class="page-title">Game/Over</h2>
+        <h3 class="game-score">[your score /23]</h3>
       </div>
-    </div>
-    <div class="wrapper-score hide">
-      <div class="current-score"><p class="current-score-info">Score <span class="current-score-number">/05</span></p></div>
-      <div class="high-score"><p class="high-score-info">High Score <span class="high-score-number">/23</span></p></div>
+        <div class="game-controls-wrapper">
+          <button class="control control-m">Restart</button>
+          <button class="control control-m">Results</button>
+        </div>
+      </div>
+      <div class="wrapper-score">
+        <div class="current-score"><p class="current-score-info">Score <span class="current-score-number">/05</span></p></div>
+        <div class="high-score"><p class="high-score-info">High Score <span class="high-score-number">/23</span></p></div>
+      </div>
     </div>
   </div>
 
-  <!-- Background -->
+  <!-- Backgrounds -->
   <div class="background-wrapper">
+    <div class="clouds"></div>
     <div class="sky-up"></div>
     <div class="sky-down"></div>
     <div class="air"></div>
-    <div class="ground"></div>
+    <div class="ground">
+      <div class="trees"></div>
+    </div>
   </div>
   <footer>
     <p class="copyright">
