@@ -17,9 +17,9 @@
       <div class="first-screen-modal hide">
         <h1 class="page-title">Snake/Game</h1>
         <div class="intro-text">
-          <p>Вы родились маленькой змейкой в большом большом жестоком мире.</br>
+          <p>Вы родились маленькой змейкойв большом большом жестоком мире.</br>
           </br>
-          Чтобы выжить, нужно хорошо кушать, не выходить из зоны комфорта и не зацикливаться на себе.</br>
+          Чтобы выжить, нужно хорошо кушать, не выходить из зоныкомфорта и не зацикливатьсяна себе.</br>
         </br>
           И тогда у вас всё будет хорошо!</br>
           (нет)
@@ -27,7 +27,7 @@
         </div>
         <button class="control control-l">Start</button>
       </div>
-      <canvas id="cvs"></canvas>
+      <canvas id="board-canvas"></canvas>
       <div class="game-over-modal hide">
         <div class="titles-wrapper">
         <h2 class="page-title">Game/Over</h2>
@@ -38,11 +38,34 @@
           <button class="control control-m">Results</button>
         </div>
       </div>
+      <div class="top-score-modal hide">
+        <h2 class="page-title">Top/Scores</h2>
+        <div class="top-scores-table">
+          <div class="score-item active"><span class="score-text">98</span></div>
+          <div class="score-item"></div>
+          <div class="score-item"></div>
+          <div class="score-item"></div>
+          <div class="score-item"></div>
+          <div class="score-item"></div>
+          <div class="score-item"></div>
+          <div class="score-item"></div>
+          <div class="score-item"></div>
+          <div class="score-item"></div>
+          <div class="empty"></div>
+        </div>
+        <button class="control control-m">Close</button>
+      </div>
       <div class="wrapper-score">
         <div class="current-score"><p class="current-score-info">Score <span class="current-score-number">/05</span></p></div>
         <div class="high-score"><p class="high-score-info">High Score <span class="high-score-number">/23</span></p></div>
       </div>
     </div>
+    <nav class="controls-mobile">
+      <button class="control-mobile"></button>
+      <button class="control-mobile"></button>
+      <button class="control-mobile"></button>
+      <button class="control-mobile"></button>
+    </nav>
   </div>
 
   <!-- Backgrounds -->
