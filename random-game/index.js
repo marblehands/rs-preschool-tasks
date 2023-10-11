@@ -5,20 +5,27 @@ const boardWrapper = document.querySelector('.board-game')
 
 //variables with colors
 const boardColour = '#0A1A1B'
-const snakeBodyColour = '#AEF020'
+const snakeHeadColour = '#AEF020'
+const snakeBodyColour = '#2A686D'
 const foodColour = '#00FFC2'
 
 
 //canvas size
 let boardWidth = updateCanvasWidth()
 let boardHeight = boardWidth
-let ratio = 20
+let ratio = 40
 let moduleSize = boardWidth / ratio
 
 //variables for game
 const loopFrequency = 1000/15
 let gameUpdate
 
+//variables for snake
+let snake = [
+  {x : 2, y : 0}, //head
+  {x : 1, y : 0}, //body
+  {x : 0, y : 0}, //tail
+]
 
 //get canvas size
 updateCanvasWidth()
@@ -45,6 +52,7 @@ function infiniteLoad () {
   console.log('test')
 
   createBoardGame()
+  createSnake()
   // createFood()
   // runSnake()
   // growSnake()
@@ -61,7 +69,6 @@ gameUpdate = setInterval(infiniteLoad, loopFrequency)
 function createBoardGame () {
   context.fillStyle = boardColour
   context.fillRect(0, 0, boardWidth, boardHeight)
-  drawModule(1, 0, '#ffffff')
   // for (let k = 0; k < boardWidth - 30; k += 30) {
   //       for (let i = 0; i < boardWidth - 30; i += 30) {
   //         context.fillStyle = '#BFDEE0'
@@ -74,7 +81,26 @@ function createBoardGame () {
 //create one square module on canvas
 function drawModule (x, y, color) {
   context.fillStyle = color
-  context.fillRect(x * moduleSize, y * moduleSize, moduleSize, moduleSize)
+  context.fillRect(
+    x * moduleSize,
+    y * moduleSize,
+    moduleSize,
+    moduleSize)
+
+  // context.strokeStyle = boardColour
+  // context.strokeRect(
+  //   x * moduleSize,
+  //   y * moduleSize,
+  //   moduleSize,
+  //   moduleSize
+  // )
+}
+
+function createSnake () {
+  snake.forEach((segment, index) => {
+    const colour = index === 0 ? snakeHeadColour : snakeBodyColour
+    drawModule(segment.x, segment.y, colour)
+  })
 }
 
 
