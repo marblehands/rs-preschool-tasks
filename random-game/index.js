@@ -92,7 +92,7 @@ function createFood () {
 
 //variables for direction
 let currentDirection = ''
-
+let directionsSequence = [];
 const directions = {
   RIGHT: 'ArrowRight',
   LEFT: 'ArrowLeft',
@@ -109,7 +109,7 @@ function setDirection (event) {
   if (
   (nextDirection === directions.LEFT &&
     previousDirection !== directions.RIGHT) ||
-  (nextDirection === directions.RIG HT &&
+  (nextDirection === directions.RIGHT &&
     previousDirection !== directions.LEFT) ||
   (nextDirection === directions.DOWN &&
     previousDirection !== directions.UP) ||
@@ -120,7 +120,8 @@ function setDirection (event) {
       game = true
       gameUpdate = setInterval(infiniteLoad, loopFrequency)
     }
-    currentDirection = nextDirection
+    directionsSequence.push(nextDirection)
+    console.log(directionsSequence)
   }
 }
 
@@ -190,6 +191,10 @@ function runSnake () {
   //get head coordinates
   const headPosition = { ...snake[0] }
   console.log(headPosition)
+
+  if (directionsSequence.length) {
+    currentDirection = directionsSequence.shift()
+  }
 
   //change head position
   switch(currentDirection) {
