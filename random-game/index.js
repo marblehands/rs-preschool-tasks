@@ -102,14 +102,26 @@ const directions = {
 
 document.addEventListener('keyup', setDirection)
 function setDirection (event) {
-  const newDirection = event.key
-  console.log(newDirection)
+  const nextDirection = event.key
+  console.log(nextDirection)
+  let previousDirection = currentDirection
 
-  if(!game) {
-    game = true
-    gameUpdate = setInterval(infiniteLoad, loopFrequency)
+  if (
+  (nextDirection === directions.LEFT &&
+    previousDirection !== directions.RIGHT) ||
+  (nextDirection === directions.RIG HT &&
+    previousDirection !== directions.LEFT) ||
+  (nextDirection === directions.DOWN &&
+    previousDirection !== directions.UP) ||
+  (nextDirection === directions.UP &&
+    previousDirection !== directions.DOWN)
+  ) {
+    if(!game) {
+      game = true
+      gameUpdate = setInterval(infiniteLoad, loopFrequency)
+    }
+    currentDirection = nextDirection
   }
-  currentDirection = newDirection
 }
 
 
@@ -137,12 +149,12 @@ function infiniteLoad () {
 function createBoardGame () {
   context.fillStyle = boardColour
   context.fillRect(0, 0, boardWidth, boardHeight)
-  // for (let k = 0; k < boardWidth - 30; k += 30) {
-  //       for (let i = 0; i < boardWidth - 30; i += 30) {
-  //         context.fillStyle = '#BFDEE0'
-  //         context.fillRect(k, i, 29, 29)
-  //       }
-  //     }
+  for (let k = 29; k < 570; k += 30) {
+        for (let i = 29; i < 570; i += 30) {
+          context.fillStyle = '#1F2E2B'
+          context.fillRect(k, i, 2, 2)
+        }
+      }
 
 }
 
@@ -206,48 +218,3 @@ snake.unshift(headPosition)
 
 
 
-
-
-
-/////////
-
-// // }
-// const canvas = document.getElementById('cvs')
-// const context = canvas.getContext('2d')
-// const SPEED = 3
-
-// createBoard ()
-
-
-// function createBoard () {
-
-//   const size = 600;
-//   canvas.style.width = size + "px";
-//   canvas.style.height = size + "px";
-
-//   const screenRation = window.devicePixelRatio
-//   canvas.width = size * screenRation
-//   canvas.height = size * screenRation
-
-//   context.scale(screenRation, screenRation);
-
-//   for (let k = 29; k < 570; k += 30) {
-//     for (let i = 29; i < 570; i += 30) {
-//       context.fillStyle = 'rgba(255, 255, 255, 0.15)'
-//       context.fillRect(k, i, 2, 2)
-//     }
-//   }
-// }
-
-// let x = 0,
-//     y = 0
-
-// function oneFrameAnimation () {
-//   context.clearRect(0, 0, canvas.width, canvas.height)
-
-//   context.fillStyle = '#00FFC2'
-//   context.fillRect (x, y, 30, 30)
-//   x = x + 30
-// }
-
-// setInterval(oneFrameAnimation, 1000 / SPEED)
