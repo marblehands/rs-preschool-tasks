@@ -62,13 +62,13 @@ let food = generateRandomFood ()
 
 //generate random coordinates for food
 function generateRandomFood () {
-  let boardWidth = updateCanvasWidth()
+  // let boardWidth = updateCanvasWidth()
   if (boardWidth > 600) {
     boardWidth /= 2
   }
-  console.log(boardWidth)
+  // console.log(boardWidth)
   let ratio = boardWidth / moduleSize
-  console.log(ratio)
+  // console.log(ratio)
   let food = {
     x : Math.floor(Math.random() * ratio),
     y : Math.floor(Math.random() * ratio),
@@ -80,8 +80,8 @@ function generateRandomFood () {
       y : Math.floor(Math.random() * ratio),
     }
   }
-  console.log(snake)
-  console.log(food)
+  // console.log(snake)
+  // console.log(food)
   return food
 }
 
@@ -103,7 +103,7 @@ const directions = {
 document.addEventListener('keyup', setDirection)
 function setDirection (event) {
   const nextDirection = event.key
-  console.log(nextDirection)
+  // console.log(nextDirection)
   let previousDirection = currentDirection
 
   if (
@@ -121,28 +121,8 @@ function setDirection (event) {
       gameUpdate = setInterval(infiniteLoad, loopFrequency)
     }
     directionsSequence.push(nextDirection)
-    console.log(directionsSequence)
+    // console.log(directionsSequence)
   }
-}
-
-
-infiniteLoad ()
-
-//updating the board infinitely
-function infiniteLoad () {
-  // console.log('test')
-
-  createBoardGame()
-  createSnake()
-  createFood ()
-  runSnake()
-  // growSnake()
-  // updateScore()
-
-  // if (goOut() || eatSelf()) {
-  //   clearInterval(gameUpdate)
-  //   endOfGame()
-  // }
 }
 
 
@@ -156,7 +136,6 @@ function createBoardGame () {
           context.fillRect(k, i, 2, 2)
         }
       }
-
 }
 
 //create one square module on canvas
@@ -190,7 +169,7 @@ function runSnake () {
   if(!game) return;
   //get head coordinates
   const headPosition = { ...snake[0] }
-  console.log(headPosition)
+  // console.log(headPosition)
 
   if (directionsSequence.length) {
     currentDirection = directionsSequence.shift()
@@ -212,12 +191,39 @@ function runSnake () {
       break;
   }
 
-//remove last element in snake array
-snake.pop()
+if (isFoodEaten()) {
+  food = generateRandomFood ()
+} else {
+  //remove last element in snake array
+  snake.pop()
+}
 
 //add new head to new snake
 snake.unshift(headPosition)
+}
 
+function isFoodEaten () {
+  const head = snake[0]
+  return head.x === food.x && head.y === food.y
+}
+
+infiniteLoad ()
+
+//updating the board infinitely
+function infiniteLoad () {
+  // console.log('test')
+
+  createBoardGame()
+  createSnake()
+  createFood ()
+  runSnake()
+  // growSnake()
+  // updateScore()
+
+  // if (goOut() || eatSelf()) {
+  //   clearInterval(gameUpdate)
+  //   endOfGame()
+  // }
 }
 
 
