@@ -31,6 +31,10 @@ const loopFrequency = 1000/5
 let gameUpdate
 let game = false
 
+//variable for score
+const currentScoreNum = document.querySelector('.current-score-number')
+const highScoreNum = document.querySelector('.high-score-number')
+
 //get canvas size
 updateCanvasWidth()
 window.addEventListener('resize', updateCanvasWidth)
@@ -56,6 +60,7 @@ let snake = [
   {x : 1, y : 0}, //body
   {x : 0, y : 0}, //tail
 ]
+const defaultSnakeLength = snake.length
 
 //food
 let food = generateRandomFood ()
@@ -207,6 +212,12 @@ function isFoodEaten () {
   return head.x === food.x && head.y === food.y
 }
 
+//score update
+function updateScore () {
+  let currentScore = snake.length - defaultSnakeLength
+  currentScoreNum.innerHTML = `/${currentScore}`
+}
+
 infiniteLoad ()
 
 //updating the board infinitely
@@ -217,15 +228,12 @@ function infiniteLoad () {
   createSnake()
   createFood ()
   runSnake()
-  // growSnake()
-  // updateScore()
+  updateScore ()
 
   // if (goOut() || eatSelf()) {
   //   clearInterval(gameUpdate)
-  //   endOfGame()
+  //   // endOfGame()
   // }
 }
-
-
 
 
