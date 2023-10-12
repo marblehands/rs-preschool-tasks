@@ -36,6 +36,7 @@ let game = false
 const currentScoreNum = document.querySelector('.current-score-number')
 const highScoreNum = document.querySelector('.high-score-number')
 
+
 //get canvas size
 updateCanvasWidth()
 window.addEventListener('resize', updateCanvasWidth)
@@ -215,11 +216,10 @@ function isFoodEaten () {
 
 //score update
 let currentScore = 0
-let highScore = 0
+let highScore = highScoreCount ()
 function updateScore () {
   currentScore = snake.length - defaultSnakeLength
   currentScoreNum.innerHTML = `/${currentScore}`
-  highScoreNum.innerHTML = `/${highScore}`
 }
 
 infiniteLoad ()
@@ -233,6 +233,7 @@ function infiniteLoad () {
   createFood ()
   runSnake()
   updateScore ()
+  highScoreCount ()
 
   if (goOut() || eatSelf()) {
     clearInterval(gameUpdate)
@@ -266,4 +267,31 @@ function endOfGame() {
   const gameOverModal = document.querySelector('.game-over-modal')
   gameOverModal.classList.remove('hide')
   context.clearRect(0, 0, canvas.width, canvas.height)
+
+  const totalScoreNum = document.querySelector('.total-score-number')
+  totalScoreNum.innerHTML =`/${currentScore}`
+
+  saveResults ()
+  highScoreCount ()
+}
+
+function saveResults () {
+  let allGamesResults = JSON.parse(localStorage.getItem('allGamesResults')) || []
+  allGamesResults.push(currentScore)
+  localStorage.setItem('allGamesResults', JSON.stringify(allGamesResults))
+}
+
+function highScoreCount () {
+  let allGamesResults = JSON.parse(localStorage.getItem('allGamesResults')) || []
+  if (allGamesResults.length) {
+    let highScore = allGamesResults.reduce((accum, score) => {
+      return ((score > accum) ? score : accum)
+    }, [allGamesResults[0]])
+    highScoreNum.innerHTML = `/${highScore}`
+    return highScore
+  } else {
+    let highScore = 0
+    highScoreNum.innerHTML = `/${highScore}`
+    return highScore
+  }
 }
