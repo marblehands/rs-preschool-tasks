@@ -128,6 +128,7 @@ function setDirection (event) {
     if(!game) {
       game = true
       gameUpdate = setInterval(infiniteLoad, loopFrequency)
+      floatCloud ()
     }
     directionsSequence.push(nextDirection)
     // console.log(directionsSequence)
@@ -269,6 +270,9 @@ function endOfGame() {
   const totalScoreNum = document.querySelector('.total-score-number')
   totalScoreNum.innerHTML =`/${currentScore}`
 
+  // const clouds = document.querySelector('.clouds')
+  // clouds.style.animation = ''
+
   saveResults ()
   highScoreCount ()
 }
@@ -354,4 +358,9 @@ function updateScoreTable () {
       item.appendChild(scoreNum)
     }
   })
+}
+
+function floatCloud () {
+  const clouds = document.querySelector('.clouds')
+  clouds.style.animation = '100s float infinite linear'
 }
