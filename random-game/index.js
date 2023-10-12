@@ -230,10 +230,24 @@ function infiniteLoad () {
   runSnake()
   updateScore ()
 
-  // if (goOut() || eatSelf()) {
-  //   clearInterval(gameUpdate)
-  //   // endOfGame()
-  // }
+  if (goOut() || eatSelf()) {
+    clearInterval(gameUpdate)
+    console.log('test')
+    // endOfGame()
+  }
 }
 
+function goOut () {
+  const head = snake[0]
+  console.log(head.y, ratio)
+  return (head.x >= ratio || head.x < 0 || head.y >= ratio || head.y < 0)
+}
 
+function eatSelf () {
+  const newSnake = [ ...snake ]
+  const head = newSnake.shift()
+  console.log(newSnake)
+  return (
+    newSnake.some((segment) => (head.x === segment.x && head.y === segment.y))
+    )
+}
