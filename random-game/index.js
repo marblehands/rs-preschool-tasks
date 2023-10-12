@@ -1,12 +1,14 @@
-// //start the game
-// const startBtn = document.getElementById('start')
+//game controls and modals
+const startBtn = document.getElementById('start')
+const gameOverModal = document.querySelector('.game-over-modal')
 
-// startBtn.addEventListener('click', () =>{
-//   const firstScreen = document.querySelector('.first-screen-modal')
-//   const scoreInfo = document.querySelector('.wrapper-score')
-//   firstScreen.classList.add('hide')
-//   scoreInfo.classList.remove('hide')
-// })
+//start the game
+startBtn.addEventListener('click', () =>{
+  const firstScreen = document.querySelector('.first-screen-modal')
+  const scoreInfo = document.querySelector('.wrapper-score')
+  firstScreen.classList.add('hide')
+  scoreInfo.classList.remove('hide')
+})
 
 //canvas
 const canvas = document.getElementById('board-canvas')
@@ -237,34 +239,30 @@ function infiniteLoad () {
 
   if (goOut() || eatSelf()) {
     clearInterval(gameUpdate)
-    console.log('test')
-    console.log(ratio)
-    setTimeout(endOfGame, 800)
+    endOfGame()
+    // console.log('test')
+    // console.log(ratio)
   }
 }
 
 function goOut () {
   const head = snake[0]
-  console.log(head.y, ratio)
-  return (
-    head.x >= ratio || 
-    head.x < 0 || 
-    head.y >= ratio || 
-    head.y < 0
-    )
+  // console.log(head.y, ratio)
+  console.log(ratio)
+  return (head.x >= ratio + 1 || head.x < -1 || head.y >= ratio + 1 || head.y < -1)
 }
 
 function eatSelf () {
   const newSnake = [ ...snake ]
   const head = newSnake.shift()
-  console.log(newSnake)
+  // console.log(newSnake)
   return (
     newSnake.some((segment) => (head.x === segment.x && head.y === segment.y))
     )
 }
 
 function endOfGame() {
-  const gameOverModal = document.querySelector('.game-over-modal')
+  game = false
   gameOverModal.classList.remove('hide')
   context.clearRect(0, 0, canvas.width, canvas.height)
 
@@ -295,3 +293,28 @@ function highScoreCount () {
     return highScore
   }
 }
+
+// restart the game
+const restartBtn = document.getElementById('restart')
+restartBtn.addEventListener('click', () => {
+  console.log('click')
+  startNewGame()
+})
+
+function startNewGame () {
+  snake = [
+    {x : 8, y : 10},
+    {x : 7, y : 10},
+    {x : 6, y : 10},
+  ]
+
+  currentDirection = ''
+  directionsSequence = [];
+
+  game = false
+
+  gameOverModal.classList.add('hide')
+
+  infiniteLoad ()
+}
+
