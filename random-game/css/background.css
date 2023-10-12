@@ -1,0 +1,101 @@
+/* Background Illustrations */
+
+.background-wrapper {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  z-index: -10;
+}
+
+.sky-up {
+  width: 100vw;
+  height: 25vh;
+  /* background: #1D4245 url('assets/svg/sky-up-pattern.svg') repeat-x bottom left fixed; */
+  background-color: #1D4245;
+  background-image: url('../assets/svg/sky-up-pattern.svg');
+  background-repeat: repeat-x;
+  background-position: bottom;
+  /* background-attachment: fixed; */
+}
+
+.sky-down {
+  width: 100vw;
+  height: 10vh;
+  background: #163133;
+  background-image: url('../assets/svg/sky-down-pattern.svg');
+  background-repeat: repeat;
+}
+
+.air {
+  width: 100vw;
+  height: 43vh;
+  background: #132B2D;
+  background-image: url('../assets/svg/air-pattern.svg');
+  background-repeat: repeat-x;
+  background-position: top;
+}
+
+.ground {
+  width: 100vw;
+  height: 22vh;
+  background: #061011;
+}
+
+.clouds {
+  position: fixed;
+  top: 2%;
+  width: 100vw;
+  height: 100vw;
+  background-image: url('../assets/svg/clouds.svg');
+  background-repeat: repeat-x;
+  background-position: top left;
+  background-size: contain;
+}
+
+.trees {
+  position: fixed;
+  bottom: 5%;
+  width: 100vw;
+  height: 100vw;
+  background-image: url(../assets/svg/trees.svg);
+  background-repeat: repeat-x;
+  background-position: bottom left;
+  background-size: contain;
+}
+
+@media screen and (max-width: 1024px){
+  .clouds {
+    top: -5%;
+    background-position: top center;
+    background-size: 170%;
+  }
+  .trees {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px){
+  body {
+    background: #061011;
+    justify-content: start;
+  }
+  .background-wrapper {
+    display: none;
+  }
+}
+
+@media screen and (min-height: 900px) {
+  .air {
+    height: 30vh;
+  }
+  .ground {
+    height: 35vh;
+  }
+  .trees {
+    bottom: 20%;
+  };
+}
+
+

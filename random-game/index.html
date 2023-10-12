@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/background.css">
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <title>Snake Game</title>
+</head>
+<body class="body">
+  <div class="wrapper">
+    <div class="board-game">
+      <div class="first-screen-modal hide">
+        <h1 class="page-title">Snake/Game</h1>
+        <div class="intro-text">
+          <p>Вы родились маленькой змейкойв большом большом жестоком мире.</br>
+          </br>
+          Чтобы выжить, нужно хорошо кушать, не выходить из зоныкомфорта и не зацикливатьсяна себе.</br>
+        </br>
+          И тогда у вас всё будет хорошо!</br>
+          (нет)
+        </p>
+        </div>
+        <button class="control control-l" id="start">Start</button>
+      </div>
+      <canvas id="board-canvas"></canvas>
+      <div class="game-over-modal hide">
+        <div class="titles-wrapper">
+        <h2 class="page-title">Game/Over</h2>
+        <h3 class="game-score">[your score <span class="total-score-number">/0</span>]</h3>
+      </div>
+        <div class="game-controls-wrapper">
+          <button class="control control-m" id="restart">Restart</button>
+          <button class="control control-m" id="results">Results</button>
+        </div>
+      </div>
+      <div class="top-score-modal hide">
+        <h2 class="page-title">Top/Scores</h2>
+        <div class="top-scores-table">
+          <div class="score-item active"><span class="score-text">98</span></div>
+          <div class="score-item"></div>
+          <div class="score-item"></div>
+          <div class="score-item"></div>
+          <div class="score-item"></div>
+          <div class="score-item"></div>
+          <div class="score-item"></div>
+          <div class="score-item"></div>
+          <div class="score-item"></div>
+          <div class="score-item"></div>
+          <div class="empty"></div>
+        </div>
+        <button class="control control-m" id="close">Close</button>
+      </div>
+      <div class="wrapper-score">
+        <div class="current-score"><p class="current-score-info">Score <span class="current-score-number">/0</span></p></div>
+        <div class="high-score"><p class="high-score-info">High Score <span class="high-score-number">/0</span></p></div>
+      </div>
+    </div>
+    <nav class="controls-mobile">
+      <button class="control-mobile"></button>
+      <button class="control-mobile"></button>
+      <button class="control-mobile"></button>
+      <button class="control-mobile"></button>
+    </nav>
+  </div>
+
+  <!-- Backgrounds -->
+  <div class="background-wrapper">
+    <div class="clouds"></div>
+    <div class="sky-up"></div>
+    <div class="sky-down"></div>
+    <div class="air"></div>
+    <div class="ground">
+      <div class="trees"></div>
+    </div>
+  </div>
+  <footer>
+    <p class="copyright">
+      <a href="https://www.github.com/marblehands" class="github-link" target="_blank">nan</a> /2023
+    </p>
+    <a href="https://rs.school/js-stage0/" class="rs-link" target="_blank">
+      <img src="assets/svg/rs-logo-js-inverse.svg" alt="RS School Logo" width="96" height="36">
+    </a>
+  </footer>
+  <script src="index.js"></script>
+</body>
+</html>
