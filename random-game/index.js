@@ -239,7 +239,7 @@ function infiniteLoad () {
 
   if (goOut() || eatSelf()) {
     clearInterval(gameUpdate)
-    endOfGame()
+    setTimeout(endOfGame, 800)
     // console.log('test')
     // console.log(ratio)
   }
@@ -249,7 +249,7 @@ function goOut () {
   const head = snake[0]
   // console.log(head.y, ratio)
   console.log(ratio)
-  return (head.x >= ratio + 1 || head.x < -1 || head.y >= ratio + 1 || head.y < -1)
+  return (head.x >= ratio || head.x < 0 || head.y >= ratio || head.y < 0)
 }
 
 function eatSelf () {
@@ -337,15 +337,17 @@ closeBtn.addEventListener('click', () => {
 //update score table
 function updateScoreTable () {
   const allGamesResults = JSON.parse(localStorage.getItem('allGamesResults')) || []
-  const lastTenGamesResults = allGamesResults.slice(-10).reverse()
+  allGamesResults.sort((a,b)=> a - b)
+  const lastTenGamesResults = allGamesResults.slice(10).reverse()
+  const bestScores = [ ...new Set(lastTenGamesResults.filter(value => value !== 0))]
   const scoreItems = document.querySelectorAll('.score-item')
   scoreItems.forEach((item, index) => {
-    if (lastTenGamesResults[index] !== undefined) {
+    if (bestScores[index] !== undefined) {
       const scoreNum = document.createElement('span')
       scoreNum.className = 'score-text'
       item.classList.add('active')
       item.innerHTML = ''
-      scoreNum.textContent = lastTenGamesResults[index]
+      scoreNum.textContent = bestScores[index]
       item.appendChild(scoreNum)
     }
   })
