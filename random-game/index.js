@@ -24,7 +24,8 @@ const foodColour = '#00FFC2'
 let boardWidth = updateCanvasWidth()
 let boardHeight = boardWidth
 let moduleSize = 30
-let ratio = boardWidth / moduleSize
+// let ratio = boardWidth / moduleSize
+let ratio = 20
 
 //variables for game
 const loopFrequency = 1000/5
@@ -56,9 +57,9 @@ function updateCanvasWidth() {
 
 //variables for snake
 let snake = [
-  {x : 2, y : 0}, //head
-  {x : 1, y : 0}, //body
-  {x : 0, y : 0}, //tail
+  {x : 8, y : 10}, //head
+  {x : 7, y : 10}, //body
+  {x : 6, y : 10}, //tail
 ]
 const defaultSnakeLength = snake.length
 
@@ -213,9 +214,12 @@ function isFoodEaten () {
 }
 
 //score update
+let currentScore = 0
+let highScore = 0
 function updateScore () {
-  let currentScore = snake.length - defaultSnakeLength
+  currentScore = snake.length - defaultSnakeLength
   currentScoreNum.innerHTML = `/${currentScore}`
+  highScoreNum.innerHTML = `/${highScore}`
 }
 
 infiniteLoad ()
@@ -233,14 +237,20 @@ function infiniteLoad () {
   if (goOut() || eatSelf()) {
     clearInterval(gameUpdate)
     console.log('test')
-    // endOfGame()
+    console.log(ratio)
+    setTimeout(endOfGame, 800)
   }
 }
 
 function goOut () {
   const head = snake[0]
   console.log(head.y, ratio)
-  return (head.x >= ratio || head.x < 0 || head.y >= ratio || head.y < 0)
+  return (
+    head.x >= ratio || 
+    head.x < 0 || 
+    head.y >= ratio || 
+    head.y < 0
+    )
 }
 
 function eatSelf () {
@@ -250,4 +260,10 @@ function eatSelf () {
   return (
     newSnake.some((segment) => (head.x === segment.x && head.y === segment.y))
     )
+}
+
+function endOfGame() {
+  const gameOverModal = document.querySelector('.game-over-modal')
+  gameOverModal.classList.remove('hide')
+  context.clearRect(0, 0, canvas.width, canvas.height)
 }

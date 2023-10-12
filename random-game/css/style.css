@@ -293,10 +293,10 @@ footer {
 }
 
 @media (min-width: 1920px){
-  .board-game {
+  /* .board-game {
     width: 700px;
     height: 700px;
-  }
+  } */
 }
 
 @media (max-width: 600px){
@@ -311,17 +311,17 @@ footer {
   .wrapper-score {
     padding: 0 1em !important;
   }
-  .board-game {
+  /* .board-game {
     width: 500px;
     height: 500px;
-  }
+  } */
 }
 
 @media (max-width: 500px){
-  .board-game {
+  /* .board-game {
     width: 400px;
     height: 400px;
-  }
+  } */
 }
 
 @media (max-width: 400px){
