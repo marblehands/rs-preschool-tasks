@@ -318,3 +318,35 @@ function startNewGame () {
   infiniteLoad ()
 }
 
+//open results table
+const gameResultsModal = document.querySelector('.top-score-modal')
+const resultsBtn = document.getElementById('results')
+resultsBtn.addEventListener('click', () => {
+  gameOverModal.classList.add('hide')
+  gameResultsModal.classList.remove('hide')
+  updateScoreTable ()
+})
+
+//close results
+const closeBtn = document.getElementById('close')
+closeBtn.addEventListener('click', () => {
+  gameOverModal.classList.remove('hide')
+  gameResultsModal.classList.add('hide')
+})
+
+//update score table
+function updateScoreTable () {
+  const allGamesResults = JSON.parse(localStorage.getItem('allGamesResults')) || []
+  const lastTenGamesResults = allGamesResults.slice(-10).reverse()
+  const scoreItems = document.querySelectorAll('.score-item')
+  scoreItems.forEach((item, index) => {
+    if (lastTenGamesResults[index] !== undefined) {
+      const scoreNum = document.createElement('span')
+      scoreNum.className = 'score-text'
+      item.classList.add('active')
+      item.innerHTML = ''
+      scoreNum.textContent = lastTenGamesResults[index]
+      item.appendChild(scoreNum)
+    }
+  })
+}
