@@ -337,9 +337,12 @@ closeBtn.addEventListener('click', () => {
 //update score table
 function updateScoreTable () {
   const allGamesResults = JSON.parse(localStorage.getItem('allGamesResults')) || []
-  allGamesResults.sort((a,b)=> a - b)
-  const lastTenGamesResults = allGamesResults.slice(10).reverse()
-  const bestScores = [ ...new Set(lastTenGamesResults.filter(value => value !== 0))]
+  allGamesResults.sort((a,b)=> b - a)
+  console.log(allGamesResults)
+  const allGamesResultsFiltered = [ ...new Set(allGamesResults)]
+  console.log(allGamesResultsFiltered)
+  const bestScores = allGamesResultsFiltered.slice(0, 10)
+  console.log(bestScores)
   const scoreItems = document.querySelectorAll('.score-item')
   scoreItems.forEach((item, index) => {
     if (bestScores[index] !== undefined) {
