@@ -1,12 +1,14 @@
-// //start the game
-// const startBtn = document.getElementById('start')
+//game controls and modals
+const startBtn = document.getElementById('start')
+const gameOverModal = document.querySelector('.game-over-modal')
 
-// startBtn.addEventListener('click', () =>{
-//   const firstScreen = document.querySelector('.first-screen-modal')
-//   const scoreInfo = document.querySelector('.wrapper-score')
-//   firstScreen.classList.add('hide')
-//   scoreInfo.classList.remove('hide')
-// })
+//start the game
+startBtn.addEventListener('click', () =>{
+  const firstScreen = document.querySelector('.first-screen-modal')
+  const scoreInfo = document.querySelector('.wrapper-score')
+  firstScreen.classList.add('hide')
+  scoreInfo.classList.remove('hide')
+})
 
 //canvas
 const canvas = document.getElementById('board-canvas')
@@ -237,34 +239,30 @@ function infiniteLoad () {
 
   if (goOut() || eatSelf()) {
     clearInterval(gameUpdate)
-    console.log('test')
-    console.log(ratio)
-    setTimeout(endOfGame, 800)
+    endOfGame()
+    // console.log('test')
+    // console.log(ratio)
   }
 }
 
 function goOut () {
   const head = snake[0]
-  console.log(head.y, ratio)
-  return (
-    head.x >= ratio || 
-    head.x < 0 || 
-    head.y >= ratio || 
-    head.y < 0
-    )
+  // console.log(head.y, ratio)
+  console.log(ratio)
+  return (head.x >= ratio + 1 || head.x < -1 || head.y >= ratio + 1 || head.y < -1)
 }
 
 function eatSelf () {
   const newSnake = [ ...snake ]
   const head = newSnake.shift()
-  console.log(newSnake)
+  // console.log(newSnake)
   return (
     newSnake.some((segment) => (head.x === segment.x && head.y === segment.y))
     )
 }
 
 function endOfGame() {
-  const gameOverModal = document.querySelector('.game-over-modal')
+  game = false
   gameOverModal.classList.remove('hide')
   context.clearRect(0, 0, canvas.width, canvas.height)
 
@@ -294,4 +292,61 @@ function highScoreCount () {
     highScoreNum.innerHTML = `/${highScore}`
     return highScore
   }
+}
+
+// restart the game
+const restartBtn = document.getElementById('restart')
+restartBtn.addEventListener('click', () => {
+  console.log('click')
+  startNewGame()
+})
+
+function startNewGame () {
+  snake = [
+    {x : 8, y : 10},
+    {x : 7, y : 10},
+    {x : 6, y : 10},
+  ]
+
+  currentDirection = ''
+  directionsSequence = [];
+
+  game = false
+
+  gameOverModal.classList.add('hide')
+
+  infiniteLoad ()
+}
+
+//open results table
+const gameResultsModal = document.querySelector('.top-score-modal')
+const resultsBtn = document.getElementById('results')
+resultsBtn.addEventListener('click', () => {
+  gameOverModal.classList.add('hide')
+  gameResultsModal.classList.remove('hide')
+  updateScoreTable ()
+})
+
+//close results
+const closeBtn = document.getElementById('close')
+closeBtn.addEventListener('click', () => {
+  gameOverModal.classList.remove('hide')
+  gameResultsModal.classList.add('hide')
+})
+
+//update score table
+function updateScoreTable () {
+  const allGamesResults = JSON.parse(localStorage.getItem('allGamesResults')) || []
+  const lastTenGamesResults = allGamesResults.slice(-10).reverse()
+  const scoreItems = document.querySelectorAll('.score-item')
+  scoreItems.forEach((item, index) => {
+    if (lastTenGamesResults[index] !== undefined) {
+      const scoreNum = document.createElement('span')
+      scoreNum.className = 'score-text'
+      item.classList.add('active')
+      item.innerHTML = ''
+      scoreNum.textContent = lastTenGamesResults[index]
+      item.appendChild(scoreNum)
+    }
+  })
 }
