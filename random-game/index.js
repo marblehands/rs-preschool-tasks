@@ -392,4 +392,10 @@ function updateScoreTable () {
 function floatCloud () {
   const clouds = document.querySelector('.clouds')
   clouds.style.animation = '100s float infinite linear'
+
+  const batLeft = document.querySelector('.bat-left')
+  const batRight = document.querySelector('.bat-right')
+
+  batLeft.style.animation = 'move1 10s infinite alternate'
+  batRight.style.animation = 'move2 10s infinite alternate'
 }
