@@ -66,6 +66,29 @@
   background-size: contain;
 }
 
+.bat-left {
+  position: fixed;
+  bottom: 45%;
+  left: 12%;
+  width: 126px;
+  height: 52px;
+  background-image: url(../assets/svg/bat.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bat-right {
+  position: fixed;
+  bottom: 55%;
+  right: 8%;
+  width: 126px;
+  height: 52px;
+  background-image: url(../assets/svg/bat.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: scaleX(-1);
+}
+
 @keyframes float {
   from {
      background-position: 0 0;
