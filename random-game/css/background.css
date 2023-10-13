@@ -54,6 +54,7 @@
   background-size: contain;
 }
 
+
 .trees {
   position: fixed;
   bottom: 5%;
@@ -63,6 +64,24 @@
   background-repeat: repeat-x;
   background-position: bottom left;
   background-size: contain;
+}
+
+@keyframes float {
+  from {
+     background-position: 0 0;
+  }
+  to {
+     background-position: 1476px 0;
+  }
+}
+
+@keyframes trees {
+  from {
+     background-position: 0 0;
+  }
+  to {
+     background-position: 1476px 0;
+  }
 }
 
 @media screen and (max-width: 1024px){
