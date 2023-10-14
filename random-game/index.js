@@ -31,12 +31,20 @@ console.log(`
 const startBtn = document.getElementById('start')
 const gameOverModal = document.querySelector('.game-over-modal')
 
+//audio related variables
+const audio = new Audio()
+const playlist = ['assets/audio/spooky-halloween.mp3', 'assets/audio/spooky-scenes.mp3', 'assets/audio/let-the-mystery-unfold.mp3', 'assets/audio/kim-lightyear-lullaby.mp3']
+let currentSong = 0
+audio.src = playlist[currentSong]
+
 //start the game
 startBtn.addEventListener('click', () =>{
   const firstScreen = document.querySelector('.first-screen-modal')
   const scoreInfo = document.querySelector('.wrapper-score')
   firstScreen.classList.add('hide')
   scoreInfo.classList.remove('hide')
+  audio.play()
+  animatePage ()
 })
 
 //canvas
@@ -157,7 +165,6 @@ function setDirection (event) {
     if(!game) {
       game = true
       gameUpdate = setInterval(infiniteLoad, loopFrequency)
-      floatCloud ()
     }
     directionsSequence.push(nextDirection)
     // console.log(directionsSequence)
@@ -389,7 +396,7 @@ function updateScoreTable () {
   })
 }
 
-function floatCloud () {
+function animatePage () {
   const clouds = document.querySelector('.clouds')
   clouds.style.animation = '100s float infinite linear'
 
@@ -403,11 +410,6 @@ function floatCloud () {
 
 //audio related functions
 
-const audio = new Audio()
-const playlist = ['assets/audio/spooky-halloween.mp3', 'assets/audio/spooky-scenes.mp3', 'assets/audio/let-the-mystery-unfold.mp3', 'assets/audio/kim-lightyear-lullaby.mp3']
-let currentSong = 0
-let isPlay = true
-
 audio.addEventListener('ended', playNext)
 
 function playNext () {
@@ -415,9 +417,6 @@ function playNext () {
   audio.src = playlist[currentSong]
   audio.play()
 }
-
-audio.src = playlist[currentSong]
-audio.play()
 
 //mute sound
 const volumeControl = document.querySelector('.mute-icon')
