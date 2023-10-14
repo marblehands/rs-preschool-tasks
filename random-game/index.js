@@ -1,16 +1,10 @@
 console.log(`
-1. Task: https://github.com/rolling-scopes-school/tasks/blob/master/tasks/js30%23/js30.md
-\n
-2. Deploy: https://rolling-scopes-school.github.io/marblehands-JSFEPRESCHOOL2023Q2/random-game/index.html
-\n
-3. Done 15.10.2023 / deadline 16.10.2023
-\n
-4. Score: 70 / 70
-\n
-Моя оценка после самопроверки: 70 баллов
+WARNING!!! КОГДА ТЫ НАЖМЕШЬ НА КНОПКУ START - ЗАИГРАЕТ МУЗЫКА WARNING!!!
 \n
 Привет, мой Ревьюер :)
 Если у тебя есть комментарии, любые советы или вопросы по моей работе, пожалуйста напиши мне RS дискорде: Ania @marblehands Спасибо за твою проверку!
+\n
+Моя оценка после самопроверки: 70 баллов
 \n
 1. Вёрстка +10
     * ✅ реализован интерфейс игры +5
