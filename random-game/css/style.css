@@ -33,11 +33,6 @@
   /* border: 6px solid #0A1A1B; */
 }
 
-/* #board-canvas {
-  width: 600px;
-  height: 600px;
-} */
-
 .wrapper-score {
   position: absolute;
   width: 100%;
@@ -261,6 +256,33 @@ button {
 /* Mobile Navigation */
 .controls-mobile {
   display: none;
+}
+
+/* /Mute sound */
+
+.mute-wrapper {
+  display: flex;
+  justify-self: end;
+  position: fixed;
+  right: 1em;
+  top: 1em;
+}
+
+.mute-text {
+  color: #7FB4B8;
+  font-size: 18px;
+}
+
+.mute-icon {
+  width: 40px;
+  height: 40px;
+  padding-top: 16px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.mute-icon:hover {
+  filter: brightness(0) saturate(100%) invert(96%) sepia(84%) saturate(6872%) hue-rotate(19deg) brightness(101%) contrast(88%);
 }
 
 /* Footer */

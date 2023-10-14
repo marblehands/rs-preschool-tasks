@@ -418,3 +418,19 @@ function playNext () {
 
 audio.src = playlist[currentSong]
 audio.play()
+
+//mute sound
+const volumeControl = document.querySelector('.mute-icon')
+
+volumeControl.addEventListener('click', soundMute)
+
+const currentVolume = audio.volume
+function soundMute () {
+  if (audio.volume !== 0) {
+    volumeControl.src = 'assets/svg/sound-icon.svg'
+    audio.volume = 0.0
+  } else {
+    volumeControl.src = 'assets/svg/mute-icon.svg'
+    audio.volume = currentVolume
+  }
+}
