@@ -399,3 +399,22 @@ function floatCloud () {
   batLeft.style.animation = 'move1 10s infinite alternate'
   batRight.style.animation = 'move2 10s infinite alternate'
 }
+
+
+//audio related functions
+
+const audio = new Audio()
+const playlist = ['assets/audio/spooky-halloween.mp3', 'assets/audio/spooky-scenes.mp3', 'assets/audio/let-the-mystery-unfold.mp3', 'assets/audio/kim-lightyear-lullaby.mp3']
+let currentSong = 0
+let isPlay = true
+
+audio.addEventListener('ended', playNext)
+
+function playNext () {
+  currentSong = (currentSong + 1) % playlist.length
+  audio.src = playlist[currentSong]
+  audio.play()
+}
+
+audio.src = playlist[currentSong]
+audio.play()
