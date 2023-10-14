@@ -66,6 +66,75 @@
   background-size: contain;
 }
 
+.bat-left {
+  position: fixed;
+  bottom: 45%;
+  left: 12%;
+  width: 126px;
+  height: 52px;
+  background-image: url(../assets/svg/bat.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@keyframes move1 {
+  0% {
+    left: 12%;
+    bottom: 45%;
+  }
+  25% {
+    left: 14%;
+    bottom: 46%;
+  }
+  50% {
+    left: 12%;
+    bottom: 44%;
+  }
+  75% {
+    left: 13%;
+    bottom: 46%;
+  }
+  100% {
+    left: 12%;
+    bottom: 45%;
+  }
+}
+
+.bat-right {
+  position: fixed;
+  bottom: 55%;
+  right: 8%;
+  width: 126px;
+  height: 52px;
+  background-image: url(../assets/svg/bat.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: scaleX(-1);
+}
+
+@keyframes move2 {
+  0% {
+    right: 8%;
+    bottom: 55%;
+  }
+  25% {
+    right: 10%;
+    bottom: 56%;
+  }
+  50% {
+    right: 8%;
+    bottom: 54%;
+  }
+  75% {
+    right: 9%;
+    bottom: 56%;
+  }
+  100% {
+    right: 8%;
+    bottom: 55%;
+  }
+}
+
 @keyframes float {
   from {
      background-position: 0 0;
