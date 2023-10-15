@@ -62,7 +62,7 @@ let moduleSize = 30
 let ratio = 20
 
 //variables for game
-const loopFrequency = 1000/5
+const loopFrequency = 1000/8
 let gameUpdate
 let game = false
 
@@ -143,7 +143,7 @@ const directions = {
 
 document.addEventListener('keyup', setDirection)
 function setDirection (event) {
-  const nextDirection = event.key
+  const nextDirection = event.key || event
   // console.log(nextDirection)
   let previousDirection = currentDirection
 
@@ -165,6 +165,28 @@ function setDirection (event) {
     // console.log(directionsSequence)
   }
 }
+
+//mobile controls
+const leftBtn = document.querySelector('.arrow-left')
+const rightBtn = document.querySelector('.arrow-right')
+const upBtn = document.querySelector('.arrow-up')
+const downBtn = document.querySelector('.arrow-down')
+
+leftBtn.addEventListener('click', () => {
+  setDirection(directions.LEFT)
+})
+
+rightBtn.addEventListener('click', () => {
+  setDirection(directions.RIGHT)
+})
+
+upBtn.addEventListener('click', () => {
+  setDirection(directions.UP)
+})
+
+downBtn.addEventListener('click', () => {
+  setDirection(directions.DOWN)
+})
 
 
 //create Game Board

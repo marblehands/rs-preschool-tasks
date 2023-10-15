@@ -373,7 +373,7 @@ footer {
     background-position: center center;
     background-size: 25%;
   }
-  .arrow-right {
+  .arrow-left {
     transform: scaleX(-1);
   }
   .arrow-up {
