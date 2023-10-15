@@ -51,11 +51,11 @@ button {
   background: none;
   border: none;
   font-family: 'Press Start 2P', sans-serif;
+  color: #AEF020;
   cursor: pointer;
 }
 
 .control {
-  color: #AEF020;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -258,11 +258,15 @@ button {
   display: none;
 }
 
+
+
 /* /Mute sound */
 
 .mute-wrapper {
   display: flex;
-  justify-self: end;
+  justify-content: end;
+  align-items: center;
+  gap: 0.5em;
   position: fixed;
   right: 1em;
   top: 1em;
@@ -273,17 +277,22 @@ button {
   font-size: 18px;
 }
 
+.mute-control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .mute-icon {
-  width: 40px;
-  height: 40px;
-  padding-top: 16px;
-  display: inline-block;
+  width: 24px;
+  height: 24px;
+  display: block;
   cursor: pointer;
 }
 
-.mute-icon:hover {
+/* .mute-icon:hover {
   filter: brightness(0) saturate(100%) invert(96%) sepia(84%) saturate(6872%) hue-rotate(19deg) brightness(101%) contrast(88%);
-}
+} */
 
 /* Footer */
 
@@ -322,17 +331,56 @@ footer {
   } */
 }
 
-@media (max-width: 600px){
+@media (max-width: 900px){
   body {
-    padding-top: 36px;
+    /* padding-top: 36px; */
     background: #061011 !important;
     justify-content: start !important;
     background-image: url(../assets/svg/pattern-body-mobile.svg) !important;
     background-position: top left !important;
     background-repeat: repeat-x !important;
   }
+  .mute-wrapper {
+    position: static;
+    height: 36px;
+  }
+  .mute-text {
+    font-size: 12px !important;
+  }
   .wrapper-score {
     padding: 0 1em !important;
+  }
+  .controls-mobile {
+    display: grid;
+    width: 600px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 4px;
+    position: absolute;
+    bottom:72px;
+  }
+  .control-mobile {
+    background: #0A1A1B;
+  }
+  .control-mobile::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+  }
+  /* Mobile controls bg */
+  .control-mobile {
+    background-image: url(../assets/svg/arrow.svg) !important;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 25%;
+  }
+  .arrow-right {
+    transform: scaleX(-1);
+  }
+  .arrow-up {
+    transform: rotate(-90deg);
+  }
+  .arrow-down {
+    transform: rotate(90deg);
   }
   /* .board-game {
     width: 500px;

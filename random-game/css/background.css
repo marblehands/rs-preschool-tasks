@@ -164,7 +164,7 @@
   }
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 900px){
   body {
     background: #061011;
     justify-content: start;
@@ -174,7 +174,7 @@
   }
 }
 
-@media screen and (min-height: 900px) {
+/* @media screen and (min-height: 900px) {
   .air {
     height: 30vh;
   }
@@ -184,6 +184,6 @@
   .trees {
     bottom: 20%;
   };
-}
+} */
 
 

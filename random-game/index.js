@@ -30,6 +30,7 @@ const audio = new Audio()
 const playlist = ['assets/audio/spooky-halloween.mp3', 'assets/audio/spooky-scenes.mp3', 'assets/audio/let-the-mystery-unfold.mp3', 'assets/audio/kim-lightyear-lullaby.mp3']
 let currentSong = 0
 audio.src = playlist[currentSong]
+audio.volume = 0.2
 
 //start the game
 startBtn.addEventListener('click', () =>{
