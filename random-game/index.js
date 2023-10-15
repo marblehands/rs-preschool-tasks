@@ -25,6 +25,12 @@ WARNING!!! КОГДА ТЫ НАЖМЕШЬ НА КНОПКУ START - ЗАИГРА
 const startBtn = document.getElementById('start')
 const gameOverModal = document.querySelector('.game-over-modal')
 
+//mobile controls
+const leftBtn = document.querySelector('.arrow-left')
+const rightBtn = document.querySelector('.arrow-right')
+const upBtn = document.querySelector('.arrow-up')
+const downBtn = document.querySelector('.arrow-down')
+
 //audio related variables
 const audio = new Audio()
 const playlist = ['assets/audio/spooky-halloween.mp3', 'assets/audio/spooky-scenes.mp3', 'assets/audio/let-the-mystery-unfold.mp3', 'assets/audio/kim-lightyear-lullaby.mp3']
@@ -40,6 +46,22 @@ startBtn.addEventListener('click', () =>{
   scoreInfo.classList.remove('hide')
   audio.play()
   animatePage ()
+
+  leftBtn.addEventListener('click', () => {
+      setDirection(directions.LEFT)
+  })
+
+  rightBtn.addEventListener('click', () => {
+      setDirection(directions.RIGHT)
+  })
+
+  upBtn.addEventListener('click', () => {
+      setDirection(directions.UP)
+  })
+
+  downBtn.addEventListener('click', () => {
+      setDirection(directions.DOWN)
+  })
 })
 
 //canvas
@@ -165,28 +187,6 @@ function setDirection (event) {
     // console.log(directionsSequence)
   }
 }
-
-//mobile controls
-const leftBtn = document.querySelector('.arrow-left')
-const rightBtn = document.querySelector('.arrow-right')
-const upBtn = document.querySelector('.arrow-up')
-const downBtn = document.querySelector('.arrow-down')
-
-leftBtn.addEventListener('click', () => {
-  setDirection(directions.LEFT)
-})
-
-rightBtn.addEventListener('click', () => {
-  setDirection(directions.RIGHT)
-})
-
-upBtn.addEventListener('click', () => {
-  setDirection(directions.UP)
-})
-
-downBtn.addEventListener('click', () => {
-  setDirection(directions.DOWN)
-})
 
 
 //create Game Board
