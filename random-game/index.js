@@ -84,7 +84,7 @@ let moduleSize = 30
 let ratio = 20
 
 //variables for game
-const loopFrequency = 1000/8
+const loopFrequency = 1000/5
 let gameUpdate
 let game = false
 
