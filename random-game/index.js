@@ -38,36 +38,12 @@ let currentSong = 0
 audio.src = playlist[currentSong]
 audio.volume = 0.2
 
-//start the game
-startBtn.addEventListener('click', () =>{
-  const firstScreen = document.querySelector('.first-screen-modal')
-  const scoreInfo = document.querySelector('.wrapper-score')
-  firstScreen.classList.add('hide')
-  scoreInfo.classList.remove('hide')
-  audio.play()
-  animatePage ()
-
-  leftBtn.addEventListener('click', () => {
-      setDirection(directions.LEFT)
-  })
-
-  rightBtn.addEventListener('click', () => {
-      setDirection(directions.RIGHT)
-  })
-
-  upBtn.addEventListener('click', () => {
-      setDirection(directions.UP)
-  })
-
-  downBtn.addEventListener('click', () => {
-      setDirection(directions.DOWN)
-  })
-})
-
 //canvas
 const canvas = document.getElementById('board-canvas')
 const context = canvas.getContext('2d')
-const boardWrapper = document.querySelector('.board-game')
+canvas.width = 600
+canvas.height = 600
+
 
 //variables with colors
 const boardColour = '#0A1A1B'
@@ -77,8 +53,8 @@ const foodColour = '#00FFC2'
 
 
 //canvas size
-let boardWidth = updateCanvasWidth()
-let boardHeight = boardWidth
+let boardWidth = 600
+let boardHeight = 600
 let moduleSize = 30
 // let ratio = boardWidth / moduleSize
 let ratio = 20
@@ -92,25 +68,52 @@ let game = false
 const currentScoreNum = document.querySelector('.current-score-number')
 const highScoreNum = document.querySelector('.high-score-number')
 
-
+// updateCanvasWidth()
 //get canvas size
-updateCanvasWidth()
-window.addEventListener('resize', updateCanvasWidth)
+// window.addEventListener('resize', updateCanvasWidth)
+
+//start the game
+startBtn.addEventListener('click', () =>{
+  const firstScreen = document.querySelector('.first-screen-modal')
+  const scoreInfo = document.querySelector('.wrapper-score')
+  firstScreen.classList.add('hide')
+  scoreInfo.classList.remove('hide')
+  audio.play()
+  animatePage ()
+  game = true
+  console.log(game)
+  // leftBtn.addEventListener('click', () => {
+  //     setDirection(directions.LEFT)
+  // })
+
+  // rightBtn.addEventListener('click', () => {
+  //     setDirection(directions.RIGHT)
+  // })
+
+  // upBtn.addEventListener('click', () => {
+  //     setDirection(directions.UP)
+  // })
+
+  // downBtn.addEventListener('click', () => {
+  //     setDirection(directions.DOWN)
+  // })
+})
 
 //update canvas width
-function updateCanvasWidth() {
-  var boardSize = boardWrapper.getBoundingClientRect().width
-  canvas.style.width = boardSize + 'px'
-  canvas.style.height = boardSize + 'px'
+// function updateCanvasWidth() {
+//   const boardWrapper = document.querySelector('.board-game')
+//   const boardSize = boardWrapper.getBoundingClientRect().width
+//   canvas.style.width = boardSize + 'px'
+//   canvas.style.height = boardSize + 'px'
 
-  const screenRatio = window.devicePixelRatio
-  canvas.width = boardSize * screenRatio
-  canvas.height = boardSize * screenRatio
+//   const screenRatio = window.devicePixelRatio
+//   canvas.width = boardSize * screenRatio
+//   canvas.height = boardSize * screenRatio
 
-  context.scale(screenRatio, screenRatio)
+//   context.scale(screenRatio, screenRatio)
 
-  return canvas.width
-}
+//   return canvas.width
+// }
 
 //variables for snake
 let snake = [
@@ -126,11 +129,11 @@ let food = generateRandomFood ()
 //generate random coordinates for food
 function generateRandomFood () {
   // let boardWidth = updateCanvasWidth()
-  if (boardWidth > 600) {
-    boardWidth /= 2
-  }
+  // if (boardWidth > 600) {
+  //   boardWidth /= 2
+  // }
   // console.log(boardWidth)
-  let ratio = boardWidth / moduleSize
+  // let ratio = boardWidth / moduleSize
   // console.log(ratio)
   let food = {
     x : Math.floor(Math.random() * ratio),
@@ -163,9 +166,11 @@ const directions = {
   UP: 'ArrowUp'
 }
 
+
 document.addEventListener('keyup', setDirection)
+
 function setDirection (event) {
-  const nextDirection = event.key || event
+  const nextDirection = event.key
   // console.log(nextDirection)
   let previousDirection = currentDirection
 
@@ -293,7 +298,7 @@ function infiniteLoad () {
 
   if (goOut() || eatSelf()) {
     clearInterval(gameUpdate)
-    setTimeout(endOfGame, 800)
+    endOfGame()
     // console.log('test')
     // console.log(ratio)
   }
@@ -303,7 +308,7 @@ function goOut () {
   const head = snake[0]
   // console.log(head.y, ratio)
   console.log(ratio)
-  return (head.x >= ratio || head.x < 0 || head.y >= ratio || head.y < 0)
+  return (head.x > ratio || head.x < 0 || head.y > ratio || head.y < 0)
 }
 
 function eatSelf () {
