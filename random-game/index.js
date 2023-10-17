@@ -59,10 +59,12 @@ let moduleSize = 30
 // let ratio = boardWidth / moduleSize
 let ratio = 20
 
+
 //variables for game
 const loopFrequency = 1000/5
 let gameUpdate
 let game = false
+let isGameOver = false
 
 //variable for score
 const currentScoreNum = document.querySelector('.current-score-number')
@@ -110,10 +112,12 @@ startBtn.addEventListener('click', () =>{
 //   canvas.width = boardSize * screenRatio
 //   canvas.height = boardSize * screenRatio
 
-//   context.scale(screenRatio, screenRatio)
+//   
 
 //   return canvas.width
 // }
+
+
 
 //variables for snake
 let snake = [
@@ -184,7 +188,7 @@ function setDirection (event) {
   (nextDirection === directions.UP &&
     previousDirection !== directions.DOWN)
   ) {
-    if(!game) {
+    if(!game && !isGameOver) {
       game = true
       gameUpdate = setInterval(infiniteLoad, loopFrequency)
       audio.play()
@@ -310,7 +314,9 @@ function goOut () {
   const head = snake[0]
   // console.log(head.y, ratio)
   console.log(ratio)
-  return (head.x > ratio || head.x < 0 || head.y > ratio || head.y < 0)
+  console.log(head.x, head.y)
+  console.log(canvas.width)
+  return ((head.x > ratio) || (head.x < 0) || (head.y > ratio) || (head.y < 0))
 }
 
 function eatSelf () {
@@ -324,6 +330,8 @@ function eatSelf () {
 
 function endOfGame() {
   game = false
+  isGameOver = true
+
   gameOverModal.classList.remove('hide')
   context.clearRect(0, 0, canvas.width, canvas.height)
 
@@ -362,6 +370,7 @@ function highScoreCount () {
 const restartBtn = document.getElementById('restart')
 restartBtn.addEventListener('click', () => {
   console.log('click')
+  isGameOver = false
   startNewGame()
 })
 
