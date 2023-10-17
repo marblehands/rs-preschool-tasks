@@ -401,9 +401,9 @@ function updateScoreTable () {
   const allGamesResults = JSON.parse(localStorage.getItem('allGamesResults')) || []
   allGamesResults.sort((a,b)=> b - a)
   console.log(allGamesResults)
-  const allGamesResultsFiltered = [ ...new Set(allGamesResults)]
-  console.log(allGamesResultsFiltered)
-  const bestScores = allGamesResultsFiltered.slice(0, 10)
+  // const allGamesResultsFiltered = [ ...new Set(allGamesResults)]
+  // console.log(allGamesResultsFiltered)
+  const bestScores = allGamesResults.slice(0, 10)
   console.log(bestScores)
   const scoreItems = document.querySelectorAll('.score-item')
   scoreItems.forEach((item, index) => {
