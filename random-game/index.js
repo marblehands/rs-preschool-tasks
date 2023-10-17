@@ -187,6 +187,8 @@ function setDirection (event) {
     if(!game) {
       game = true
       gameUpdate = setInterval(infiniteLoad, loopFrequency)
+      audio.play()
+      animatePage ()
     }
     directionsSequence.push(nextDirection)
     // console.log(directionsSequence)
